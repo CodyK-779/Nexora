@@ -9,17 +9,18 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(uuid())
+  id            String     @id @default(uuid())
   name          String
-  email         String    @unique
+  email         String     @unique
   emailVerified Boolean
   image         String?
-  role          Role      @default(USER)
+  role          Role       @default(USER)
   cart          Cart?
   order         Order[]
   address       Address[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  wishList      WishList[]
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
   sessions      Session[]
   accounts      Account[]
 
@@ -27,20 +28,50 @@ model User {
 }
 
 model Product {
-  id          String      @id @default(uuid())
-  name        String
-  description String
-  price       Float
-  images      String[]
-  categoryId  String
-  cartItem    CartItem[]
-  orderItem   OrderItem[]
-  inventory   Int         @default(0)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id            String         @id @default(uuid())
+  name          String
+  description   String
+  price         Float
+  images        String[]
+  categoryId    String
+  cartItem      CartItem[]
+  orderItem     OrderItem[]
+  wishListItems WishListItem[]
+  inventory     Int            @default(0)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
 
   // Relations
   category Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+  @@map("product")
+}
+
+model WishList {
+  id        String         @id @default(uuid())
+  userId    String
+  items     WishListItem[]
+  createdAt DateTime       @default(now())
+  updatedAt DateTime       @updatedAt
+
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("wishList")
+}
+
+model WishListItem {
+  id         String   @id @default(uuid())
+  wishListId String
+  productId  String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  // Relations
+  wishList WishList @relation(fields: [wishListId], references: [id], onDelete: Cascade)
+  product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("wishListItem")
 }
 
 model Category {
@@ -50,6 +81,8 @@ model Category {
   product     Product[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
+  @@map("category")
 }
 
 model Cart {
@@ -61,6 +94,8 @@ model Cart {
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("cart")
 }
 
 model CartItem {
@@ -74,6 +109,8 @@ model CartItem {
   // Relations
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
   cart    Cart    @relation(fields: [cardId], references: [id], onDelete: Cascade)
+
+  @@map("cartItem")
 }
 
 model Order {
@@ -89,6 +126,8 @@ model Order {
   // Relations
   user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
   address Address @relation(fields: [addressId], references: [id], onDelete: Cascade)
+
+  @@map("order")
 }
 
 model OrderItem {
@@ -101,6 +140,8 @@ model OrderItem {
   // Relations
   order   Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@map("orderItem")
 }
 
 model Address {
@@ -116,6 +157,8 @@ model Address {
 
   // Relations
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("address")
 }
 
 enum Role {
