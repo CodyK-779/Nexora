@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/app/_components/ui/button";
 import Link from "next/link";
-import { RegisterForm } from "@/components/register-form";
+import { RegisterForm } from "@/app/_components/register-form";
 
 export default function RegisterPage() {
   return (

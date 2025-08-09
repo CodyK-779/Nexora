@@ -1,12 +1,15 @@
-"use client";
-
-import { useSession } from "@/app/lib/auth-client";
 import { User } from "lucide-react";
 import Link from "next/link";
 import ProfileDropdown from "./ProfileDropdown";
+import MobileMenu from "./MobileMenu";
+import { OpenMenu } from "./Navbar";
+import { auth } from "../lib/auth";
+import { headers } from "next/headers";
 
-const NavButtons = () => {
-  const { data: session } = useSession();
+const NavButtons = async ({ openMenu, setOpenMenu }: OpenMenu) => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
   return (
     <div className="flex items-center gap-4">
@@ -20,10 +23,7 @@ const NavButtons = () => {
       ) : (
         <ProfileDropdown />
       )}
-      <Link href="/cart" className="flex items-center gap-2">
-        <i className="ri-shopping-cart-line text-lg font-medium"></i>
-        <p className="text-sm font-semibold">Cart</p>
-      </Link>
+      <MobileMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />
     </div>
   );
 };
