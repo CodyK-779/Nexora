@@ -2,11 +2,10 @@ import { User } from "lucide-react";
 import Link from "next/link";
 import ProfileDropdown from "./ProfileDropdown";
 import MobileMenu from "./MobileMenu";
-import { OpenMenu } from "./Navbar";
-import { auth } from "../lib/auth";
+import { auth } from "../app/lib/auth";
 import { headers } from "next/headers";
 
-const NavButtons = async ({ openMenu, setOpenMenu }: OpenMenu) => {
+const NavButtons = async () => {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
@@ -23,7 +22,7 @@ const NavButtons = async ({ openMenu, setOpenMenu }: OpenMenu) => {
       ) : (
         <ProfileDropdown />
       )}
-      <MobileMenu openMenu={openMenu} setOpenMenu={setOpenMenu} />
+      <MobileMenu />
     </div>
   );
 };

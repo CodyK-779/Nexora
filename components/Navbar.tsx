@@ -2,11 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import NavButtons from "./NavButtons";
 
-export interface OpenMenu {
-  openMenu: boolean;
-  setOpenMenu: (fun: boolean) => void;
-}
-
 export const navLinks = [
   { title: "Home", link: "/" },
   { title: "Shop", link: "/shop" },
@@ -14,14 +9,14 @@ export const navLinks = [
   { title: "Contact", link: "/contact" },
 ];
 
-const Navbar = ({ openMenu, setOpenMenu }: OpenMenu) => {
+const Navbar = () => {
   return (
     <div className="border-b py-2">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         {/* First Row */}
         <div className="flex items-center -ml-6">
           <Image src="/logo.png" alt="Logo" width={70} height={70} />
-          <p className="text-[22px] font-bold -ml-3 text-purple-700">Nexora</p>
+          <p className="text-[22px] font-bold -ml-3 text-gray-700">Nexora</p>
         </div>
         {/* Second Row */}
         <ul className="hidden lg:flex items-center gap-12 font-semibold text-neutral-500">
@@ -35,7 +30,7 @@ const Navbar = ({ openMenu, setOpenMenu }: OpenMenu) => {
           ))}
         </ul>
         {/* Third Row */}
-        <NavButtons openMenu={openMenu} setOpenMenu={setOpenMenu} />
+        <NavButtons />
       </div>
     </div>
   );
