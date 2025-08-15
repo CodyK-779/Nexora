@@ -4,6 +4,7 @@ import ProfileDropdown from "./ProfileDropdown";
 import MobileMenu from "./MobileMenu";
 import { auth } from "../app/lib/auth";
 import { headers } from "next/headers";
+import NavSearch from "./NavSearch";
 
 const NavButtons = async () => {
   const session = await auth.api.getSession({
@@ -12,8 +13,9 @@ const NavButtons = async () => {
 
   return (
     <div className="flex items-center gap-4">
+      <NavSearch />
       {!session ? (
-        <button className="px-3.5 py-2 rounded-full hover:bg-gray-800 hover:text-white transition-colors duration-200 ease-in">
+        <button>
           <Link href="/login" className="flex items-center gap-1.5">
             <User className="size-5 font-medium" />
             <p className="text-sm font-semibold">Account</p>

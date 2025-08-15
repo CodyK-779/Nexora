@@ -1,7 +1,7 @@
 "use client";
 
 import { signIn } from "@/app/lib/auth-client";
-import { Button } from "@/app/_components/ui/button";
+import { Button } from "@/components/ui/button";
 import { LoaderCircleIcon } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";

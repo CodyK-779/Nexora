@@ -1,16 +1,15 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Button } from "@/app/_components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/app/_components/ui/card";
-import { Input } from "@/app/_components/ui/input";
-import { Label } from "@/app/_components/ui/label";
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import SignupOauthBtn from "@/actions/signup-oauth-btn";
 import React, { useState } from "react";
@@ -18,6 +17,7 @@ import { useRouter } from "next/navigation";
 import { LoaderCircleIcon } from "lucide-react";
 import SignInAction from "@/actions/signin-action";
 import { toast } from "sonner";
+import { Button } from "./ui/button";
 
 export function LoginForm({
   className,

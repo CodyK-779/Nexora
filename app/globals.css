@@ -71,3 +71,13 @@
     @apply max-w-7xl mx-auto px-4
   }
 }
+
+.swiper-pagination-bullet {
+  background-color: white !important; /* inactive dots */
+  opacity: 0.5; /* optional fade */
+}
+
+.swiper-pagination-bullet-active {
+  background-color: white !important; /* active dot */
+  opacity: 1;
+}

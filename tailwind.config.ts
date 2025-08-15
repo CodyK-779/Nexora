@@ -11,6 +11,9 @@ module.exports = {
   ],
   theme: {
   	extend: {
+			screens: {
+				"cm": "876px"
+			},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
