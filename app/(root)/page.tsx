@@ -1,5 +1,11 @@
+import FeaturedCategories from "@/components/FeaturedCategories";
 import HeroSection from "@/components/HeroSection";
 
 export default function Home() {
-  return <HeroSection />;
+  return (
+    <>
+      <HeroSection />
+      <FeaturedCategories />
+    </>
+  );
 }

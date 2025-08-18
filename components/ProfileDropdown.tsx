@@ -12,6 +12,7 @@ import DropdownSignout from "./DropdownSignout";
 import { auth } from "@/app/lib/auth";
 import { headers } from "next/headers";
 import { getUserDetails } from "@/actions/user-action";
+import Link from "next/link";
 
 const ProfileDropdown = async () => {
   const session = await auth.api.getSession({
@@ -58,11 +59,13 @@ const ProfileDropdown = async () => {
             </p>
           </DropdownMenuItem>
           {user.role === "ADMIN" && (
-            <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
-              <LayoutDashboard className="size-8" />
-              <p className="text-sm font-medium text-neutral-600">
-                Admin Dashboard
-              </p>
+            <DropdownMenuItem className="px-4 py-2.5 cursor-pointer">
+              <Link href="/dashboard/users" className="flex items-center gap-3">
+                <LayoutDashboard className="size-4" />
+                <p className="text-sm font-medium text-neutral-600">
+                  Admin Dashboard
+                </p>
+              </Link>
             </DropdownMenuItem>
           )}
           <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">

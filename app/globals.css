@@ -81,3 +81,15 @@
   background-color: white !important; /* active dot */
   opacity: 1;
 }
+
+/* Default pagination position */
+.swiper-pagination {
+  bottom: 20px !important;
+}
+
+/* Mobile-specific pagination position */
+@media (max-width: 876px) {
+  .swiper-pagination {
+    bottom: -7px !important;
+  }
+}

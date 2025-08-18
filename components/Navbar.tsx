@@ -12,7 +12,7 @@ export const navLinks = [
 const Navbar = () => {
   return (
     <div className="fixed w-full top-0 border-b py-2 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-20">
-      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+      <div className="max-container flex items-center justify-between">
         {/* First Row */}
         <div className="flex items-center cm:gap-10 lg:gap-12">
           <Link href="/" className="flex items-center -ml-6">
@@ -20,7 +20,7 @@ const Navbar = () => {
             <p className="text-[22px] font-bold -ml-3 text-gray-700">Nexora</p>
           </Link>
           {/* Second Row */}
-          <ul className="hidden cm:flex items-center gap-8 lg:gap-12 font-semibold text-neutral-500">
+          <ul className="hidden cm:flex items-center gap-8 lg:gap-12 font-semibold">
             {navLinks.map((nav) => (
               <li
                 key={nav.link}
