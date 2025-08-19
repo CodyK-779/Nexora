@@ -1,5 +1,6 @@
 "use client";
 
+import { signOut } from "@/app/lib/auth-client";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,12 +13,43 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { Button } from "./ui/button";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 const DashSignout = () => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSignout = async () => {
+    setLoading(true);
+
+    try {
+      await signOut();
+      window.location.href = "/login";
+      toast.success("User Signed out successfully!");
+    } catch (error) {
+      toast.error("Failed to Sign out user.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button className="font-semibold">Log out</Button>
+        <Button
+          className="font-semibold flex items-center gap-2"
+          disabled={loading}
+        >
+          {loading ? (
+            <>
+              <Loader2 className="animate-spin" />
+              Loading...
+            </>
+          ) : (
+            <p>Log out</p>
+          )}
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
@@ -27,10 +59,13 @@ const DashSignout = () => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="bg-black text-white hover:text-white hover:bg-opacity-70 transition-all duration-200 ease-in">
+          <AlertDialogCancel className="font-medium bg-black dark:bg-white text-white dark:text-black hover:text-white hover:bg-opacity-70 transition-all duration-200 ease-in">
             Cancel
           </AlertDialogCancel>
-          <AlertDialogAction className="bg-red-600 hover:bg-red-500 transition-colors duration-200 ease-in">
+          <AlertDialogAction
+            onClick={handleSignout}
+            className="text-white bg-red-600 hover:bg-red-500 transition-colors duration-200 ease-in"
+          >
             Confirm
           </AlertDialogAction>
         </AlertDialogFooter>

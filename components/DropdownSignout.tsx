@@ -45,12 +45,16 @@ const DropdownSignout = () => {
           {isPending ? (
             <div className="flex items-center gap-3">
               <LoaderCircle className="animate-spin size-5" />
-              <p className="text-sm font-medium text-neutral-600">Loading...</p>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
+                Loading...
+              </p>
             </div>
           ) : (
             <div className="flex items-center gap-3">
               <LogOut className="size-4" />
-              <p className="text-sm font-medium text-neutral-600">Sign out</p>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
+                Sign out
+              </p>
             </div>
           )}
         </DropdownMenuItem>
@@ -63,11 +67,11 @@ const DropdownSignout = () => {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel className="bg-black text-white hover:text-white hover:bg-opacity-70 transition-all duration-200 ease-in">
+          <AlertDialogCancel className="font-medium bg-black dark:bg-white text-white dark:text-black hover:text-white hover:bg-opacity-70 transition-all duration-200 ease-in">
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction
-            className="bg-red-600 hover:bg-red-500 transition-colors duration-200 ease-in"
+            className="text-white bg-red-600 hover:bg-red-500 transition-colors duration-200 ease-in"
             onClick={handleSignout}
           >
             Confirm

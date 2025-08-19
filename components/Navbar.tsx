@@ -16,8 +16,23 @@ const Navbar = () => {
         {/* First Row */}
         <div className="flex items-center cm:gap-10 lg:gap-12">
           <Link href="/" className="flex items-center -ml-6">
-            <Image src="/logo.png" alt="Logo" width={70} height={70} />
-            <p className="text-[22px] font-bold -ml-3 text-gray-700">Nexora</p>
+            <Image
+              src="/logo.png"
+              alt="Logo"
+              width={70}
+              height={70}
+              className="block dark:hidden"
+            />
+            <Image
+              src="/logo-light.png"
+              alt="Logo"
+              width={70}
+              height={70}
+              className="hidden dark:block"
+            />
+            <p className="text-[22px] font-bold -ml-3 text-black dark:text-neutral-50">
+              Nexora
+            </p>
           </Link>
           {/* Second Row */}
           <ul className="hidden cm:flex items-center gap-8 lg:gap-12 font-semibold">

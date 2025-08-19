@@ -26,7 +26,12 @@ const MenuProvider = ({ children }: Props) => {
   const [openMenu, setOpenMenu] = useState(false);
 
   return (
-    <MenuContext.Provider value={{ openMenu, setOpenMenu }}>
+    <MenuContext.Provider
+      value={{
+        openMenu,
+        setOpenMenu,
+      }}
+    >
       {children}
     </MenuContext.Provider>
   );
