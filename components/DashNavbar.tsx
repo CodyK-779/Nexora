@@ -12,8 +12,8 @@ interface Props {
 const DashNavbar = ({ isMobileOpen, setIsMobileOpen }: Props) => {
   return (
     <div className="fixed top-0 w-full py-2 border-b bg-white dark:bg-background/95 dark:backdrop-blur dark:supports-[backdrop-filter]:bg-background/60 z-30">
-      <div className="max-container flex items-center justify-between">
-        <Link href="/" className="flex items-center lg:-ml-8 -ml-6">
+      <div className="px-6 flex items-center justify-between">
+        <Link href="/" className="flex items-center lg:-ml-[30px] -ml-6">
           <Image
             src="/logo.png"
             alt="Logo"

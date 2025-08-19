@@ -40,7 +40,7 @@ const slides = [
   {
     image: "/ps5.png",
     category: "Console",
-    title: "Ps5 Pro",
+    title: "Play Station 5 Pro",
     desc: "4K 120fps gaming with immersive haptics",
     promo: "Sale up to 15% OFF",
     margin: "mb-8",

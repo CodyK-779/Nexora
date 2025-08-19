@@ -1,5 +1,7 @@
 import { auth } from "@/app/lib/auth";
 import { ChartBar } from "@/components/ChartBart";
+import { ChartPie } from "@/components/ChartPie";
+import PopularItemList from "@/components/PopularItemList";
 import StatusCards from "@/components/StatusCards";
 import { headers } from "next/headers";
 
@@ -19,11 +21,15 @@ export default async function DashboardHome() {
           !
         </h1>
         <p className="max-[400px]:text-sm text-base sm:text-lg font-semibold text-neutral-600 dark:text-neutral-300">
-          Here's what happening with your store today
+          Here's what happening with your store today.
         </p>
       </div>
       <StatusCards />
       <ChartBar />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <ChartPie />
+        <PopularItemList />
+      </div>
     </section>
   );
 }

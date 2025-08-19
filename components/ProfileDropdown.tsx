@@ -30,7 +30,7 @@ const ProfileDropdown = async () => {
       <DropdownMenuTrigger asChild>
         <Avatar className="size-9 cursor-pointer">
           <AvatarImage src={session.user.image!} />
-          <AvatarFallback className="bg-black text-white">
+          <AvatarFallback className="bg-black text-white dark:bg-neutral-800 font-medium">
             {session.user.name.charAt(0).toUpperCase()}
           </AvatarFallback>
         </Avatar>
@@ -39,7 +39,7 @@ const ProfileDropdown = async () => {
         <DropdownMenuItem className="px-4 flex items-center gap-3 hover:bg-white">
           <Avatar className="size-11">
             <AvatarImage src={session.user.image!} />
-            <AvatarFallback className="bg-black text-white text-lg">
+            <AvatarFallback className="bg-black text-white text-lg dark:bg-neutral-800 font-medium">
               {session.user.name.charAt(0).toUpperCase()}
             </AvatarFallback>
           </Avatar>

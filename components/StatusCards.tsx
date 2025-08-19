@@ -7,7 +7,7 @@ import {
 
 const StatusCards = () => {
   return (
-    <div className="mt-6 flex flex-wrap sm:items-center px-2 gap-4">
+    <div className="mt-6 flex flex-wrap items-center px-2 gap-4">
       {/* First Card */}
       <div className="flex flex-col items-start gap-6 w-[230px] rounded-md px-3 py-2 bg-violet-400 text-black">
         <div className="flex items-start justify-between w-full">
