@@ -19,10 +19,10 @@ import {
 export const description = "A pie chart with a legend";
 
 const chartData = [
-  { browser: "clothing", visitors: 275, fill: "var(--color-clothing)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
+  { browser: "clothings", visitors: 275, fill: "var(--color-clothings)" },
+  { browser: "electronics", visitors: 200, fill: "var(--color-electronics)" },
+  { browser: "household", visitors: 187, fill: "var(--color-household)" },
+  { browser: "furniture", visitors: 173, fill: "var(--color-furniture)" },
   { browser: "other", visitors: 90, fill: "var(--color-other)" },
 ];
 
@@ -30,20 +30,20 @@ const chartConfig = {
   visitors: {
     label: "Visitors",
   },
-  clothing: {
-    label: "Clothing",
+  clothings: {
+    label: "Clothings",
     color: "var(--chart-1)",
   },
-  safari: {
-    label: "Safari",
+  electronics: {
+    label: "Electronics",
     color: "var(--chart-2)",
   },
-  firefox: {
-    label: "Firefox",
+  household: {
+    label: "Household",
     color: "var(--chart-3)",
   },
-  edge: {
-    label: "Edge",
+  furniture: {
+    label: "Furniture",
     color: "var(--chart-4)",
   },
   other: {

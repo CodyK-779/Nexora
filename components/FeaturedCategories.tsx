@@ -48,7 +48,7 @@ const gradientBgClasses = [
 const FeaturedCategories = () => {
   return (
     <section className="py-16 cm:mt-10 bg-gray-100 dark:bg-neutral-900">
-      <div className="max-container">
+      <div className="max-container flex flex-col items-center justify-center">
         {/* Title */}
         <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-2">
@@ -59,7 +59,7 @@ const FeaturedCategories = () => {
           </p>
         </div>
         {/* Categories */}
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4">
           {categories.map((cat, index) => (
             <div
               key={cat.id}

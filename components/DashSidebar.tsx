@@ -1,6 +1,13 @@
 "use client";
 
-import { Home, BarChart, ShoppingBag, Users, Settings } from "lucide-react";
+import {
+  Home,
+  ShoppingBag,
+  Users,
+  Settings,
+  PlusSquare,
+  LayoutDashboard,
+} from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,10 +27,15 @@ const DashSidebar = ({
 }: Props) => {
   const menuItems = [
     { name: "Dashboard", icon: Home, link: "/dashboard" },
-    { name: "Analytics", icon: BarChart, link: "/dashboard/analytics" },
-    { name: "Products", icon: ShoppingBag, link: "/dashboard/products" },
     { name: "Users", icon: Users, link: "/dashboard/users" },
-    { name: "Settings", icon: Settings, link: "/dashboard/settings" },
+    { name: "Add Product", icon: PlusSquare, link: "/dashboard/add-product" },
+    { name: "Products", icon: ShoppingBag, link: "/dashboard/products" },
+    {
+      name: "Categories",
+      icon: LayoutDashboard,
+      link: "/dashboard/manage-categories",
+    },
+    { name: "Orders", icon: Settings, link: "/dashboard/settings" },
   ];
 
   const pathname = usePathname();
@@ -52,7 +64,7 @@ const DashSidebar = ({
       >
         {/* Logo / Title */}
         <div className="flex items-center justify-between pt-6 p-4 border-b-2 border-neutral-200 dark:border-neutral-700">
-          <h1 className={`text-xl font-bold ${!isOpen && "cm:hidden"}`}>
+          <h1 className={`text-xl font-bold ${!isOpen && "lg:hidden"}`}>
             Admin Panel
           </h1>
           {/* Only desktop toggle */}
@@ -91,12 +103,13 @@ const DashSidebar = ({
               <Link
                 key={item.name}
                 href={item.link}
+                onClick={() => setIsMobileOpen(false)}
                 className={`flex items-center gap-4 px-4 py-3 ${
                   isActive && "bg-neutral-200 dark:bg-neutral-700"
                 }  transition-colors`}
               >
                 <item.icon className="w-6 h-6" />
-                <span className={`${!isOpen && "cm:hidden"} font-medium`}>
+                <span className={`${!isOpen && "lg:hidden"} font-medium`}>
                   {item.name}
                 </span>
               </Link>

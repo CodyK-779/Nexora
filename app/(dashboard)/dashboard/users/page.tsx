@@ -1,3 +1,3 @@
 export default function DashboardUsers() {
-  return <div>Users</div>;
+  return <section className="pt-2 px-2">users</section>;
 }
