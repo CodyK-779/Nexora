@@ -1,3 +1,5 @@
+import AddCategory from "@/components/AddCategory";
+
 export default function ManageCategories() {
   return (
     <section className="pt-2 px-2">
@@ -5,6 +7,7 @@ export default function ManageCategories() {
         Add New{" "}
         <span className="text-blue-700 dark:text-blue-600">Category</span>
       </h1>
+      <AddCategory />
     </section>
   );
 }

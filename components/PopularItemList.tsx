@@ -40,7 +40,7 @@ const PopularItemList = () => {
       <CardContent className="flex flex-col gap-4">
         {items.map((item, index) => (
           <div key={index + 1} className="flex items-center gap-4">
-            <div className="p-1 rounded-md bg-neutral-200 dark:bg-neutral-100">
+            <div className="p-1 rounded-md bg-neutral-100">
               <Image
                 src={item.img}
                 alt={item.name}
