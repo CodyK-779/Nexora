@@ -11,6 +11,7 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import DashSignout from "./DashSignout";
 
 interface Props {
   isOpen: boolean;
@@ -116,6 +117,9 @@ const DashSidebar = ({
             );
           })}
         </nav>
+        <div className="lg:hidden mt-6 px-4">
+          <DashSignout width />
+        </div>
       </aside>
     </>
   );

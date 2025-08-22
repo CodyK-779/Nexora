@@ -14,7 +14,7 @@ interface Props {
 
 const ImageUpload = ({ images, setImages }: Props) => {
   return (
-    <Card className="border-2 border-neutral-300 dark:border-neutral-700">
+    <Card className="border-2 border-neutral-200 dark:border-neutral-700">
       <CardHeader>
         <CardTitle>Images</CardTitle>
       </CardHeader>

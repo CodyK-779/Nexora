@@ -1,39 +1,7 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
-
-const categories = [
-  {
-    id: 1,
-    name: "Electronics",
-    image: "/electronic.png",
-  },
-  {
-    id: 2,
-    name: "Clothings",
-    image: "/clothing.png",
-  },
-  {
-    id: 3,
-    name: "Household",
-    image: "/kitchen.png",
-  },
-  {
-    id: 4,
-    name: "Furniture",
-    image: "/furniture.png",
-  },
-  {
-    id: 5,
-    name: "Sports",
-    image: "/sports.png",
-  },
-  {
-    id: 6,
-    name: "Collectables",
-    image: "/collectables.png",
-  },
-];
+import { getAllCategories } from "@/actions/category.action";
 
 const gradientBgClasses = [
   "bg-gradient-to-br from-purple-900 via-violet-800 to-indigo-900",
@@ -45,7 +13,9 @@ const gradientBgClasses = [
   "bg-gradient-to-br from-fuchsia-900 via-purple-800 to-violet-900",
 ];
 
-const FeaturedCategories = () => {
+const FeaturedCategories = async () => {
+  const categories = await getAllCategories();
+
   return (
     <section className="py-16 cm:mt-10 bg-gray-100 dark:bg-neutral-900">
       <div className="max-container flex flex-col items-center justify-center">
@@ -63,7 +33,7 @@ const FeaturedCategories = () => {
           {categories.map((cat, index) => (
             <div
               key={cat.id}
-              className={`flex flex-col items-center w-[140px] p-4 rounded-xl ${
+              className={`flex flex-col items-center max-[328px]:w-full w-[140px] p-4 rounded-xl ${
                 gradientBgClasses[index % gradientBgClasses.length]
               } shadow-md hover:-translate-y-1 hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in cursor-pointer`}
             >

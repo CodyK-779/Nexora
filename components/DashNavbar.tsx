@@ -34,7 +34,9 @@ const DashNavbar = ({ isMobileOpen, setIsMobileOpen }: Props) => {
         </Link>
         <div className="flex items-center gap-4">
           <ModeToggle />
-          <DashSignout />
+          <div className="hidden lg:block">
+            <DashSignout />
+          </div>
           <div className="lg:hidden">
             <button onClick={() => setIsMobileOpen(!isMobileOpen)}>
               {isMobileOpen ? <X /> : <Menu />}

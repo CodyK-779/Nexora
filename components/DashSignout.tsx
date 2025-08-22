@@ -17,7 +17,11 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
-const DashSignout = () => {
+interface Props {
+  width?: boolean;
+}
+
+const DashSignout = ({ width }: Props) => {
   const [loading, setLoading] = useState(false);
 
   const handleSignout = async () => {
@@ -38,7 +42,9 @@ const DashSignout = () => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
-          className="font-semibold flex items-center gap-2"
+          className={`font-semibold flex items-center gap-2 ${
+            width && "w-full"
+          }`}
           disabled={loading}
         >
           {loading ? (
