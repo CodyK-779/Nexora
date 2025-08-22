@@ -1,8 +1,7 @@
-"use client";
-
 import { Upload, X } from "lucide-react";
 import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { useState } from "react";
 
 interface Props {
   images: string[];
@@ -10,6 +9,8 @@ interface Props {
 }
 
 const ImageUpload = ({ images, setImages }: Props) => {
+  const [image, setImage] = useState("");
+
   return (
     <Card className="border-2 border-neutral-300 dark:border-neutral-700">
       <CardHeader>
