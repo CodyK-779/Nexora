@@ -73,8 +73,6 @@
     --chart-5: oklch(0.646 0.222 41.116);
   }
 }
-/* oklch(0.645 0.246 16.439) pink */
-/* oklch(0.828 0.189 84.429) gold */
 
 @layer base {
   * {
@@ -112,4 +110,10 @@
   .swiper-pagination {
     bottom: -7px !important;
   }
+}
+
+#cloudinary-overlay, 
+.cloudinary-widget, 
+.cloudinary-widget * {
+  z-index: 9999 !important;
 }

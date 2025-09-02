@@ -7,7 +7,7 @@ import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Loader2, Upload } from "lucide-react";
 import { CldUploadWidget } from "next-cloudinary";
-import { createCategory } from "@/actions/category.action";
+import { createCategory } from "@/actions/category-action";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -25,7 +25,9 @@ const AddCategory = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!name.trim() || !image.trim()) return;
+    if (!name.trim() || !image.trim()) {
+      return;
+    }
 
     setPending(true);
 

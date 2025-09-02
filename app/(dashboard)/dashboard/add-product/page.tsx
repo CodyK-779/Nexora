@@ -1,4 +1,4 @@
-import { getAllCategories } from "@/actions/category.action";
+import { getAllCategories } from "@/actions/category-action";
 import AddProduct from "@/components/AddProduct";
 
 export type UploadedFile = {

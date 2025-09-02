@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { getAllCategories } from "@/actions/category.action";
+import { getAllCategories } from "@/actions/category-action";
 
 const gradientBgClasses = [
   "bg-gradient-to-br from-purple-900 via-violet-800 to-indigo-900",

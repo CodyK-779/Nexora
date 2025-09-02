@@ -3,6 +3,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import "remixicon/fonts/remixicon.css";
 import { Toaster } from "sonner";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const poppins = Poppins({
@@ -33,6 +34,10 @@ export default function RootLayout({
           <main>{children}</main>
           <Toaster position="top-center" richColors />
         </ThemeProvider>
+        <Script
+          src="https://widget.cloudinary.com/v2.0/global/all.js"
+          strategy="beforeInteractive"
+        />
       </body>
     </html>
   );

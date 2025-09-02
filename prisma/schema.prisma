@@ -34,6 +34,7 @@ model Product {
   price         Float
   images        String[]
   categoryId    String
+  status        Status         @default(Normal)
   cartItem      CartItem[]
   orderItem     OrderItem[]
   wishListItems WishListItem[]
@@ -215,4 +216,9 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+enum Status {
+  Popular
+  Normal
 }

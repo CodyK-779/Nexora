@@ -8,11 +8,12 @@ import { UploadedFile } from "@/app/(dashboard)/dashboard/add-product/page";
 import { toast } from "sonner";
 
 interface Props {
-  images: UploadedFile[];
-  setImages: React.Dispatch<React.SetStateAction<UploadedFile[]>>;
+  imgInfo: UploadedFile[];
+  setImgInfo: React.Dispatch<React.SetStateAction<UploadedFile[]>>;
+  setImages: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
-const ImageUpload = ({ images, setImages }: Props) => {
+const ImageUpload = ({ imgInfo, setImgInfo, setImages }: Props) => {
   return (
     <Card className="border-2 border-neutral-200 dark:border-neutral-700">
       <CardHeader>
@@ -24,6 +25,12 @@ const ImageUpload = ({ images, setImages }: Props) => {
           options={{ maxFiles: 4 }}
           onSuccess={(result: any) => {
             setImages((prev) => {
+              const newImages = [...prev, result.info.secure_url];
+
+              return newImages.slice(0, 4);
+            });
+
+            setImgInfo((prev) => {
               const newImages = [
                 ...prev,
                 {
@@ -42,7 +49,7 @@ const ImageUpload = ({ images, setImages }: Props) => {
             return (
               <div
                 onClick={() => {
-                  if (images.length < 4) {
+                  if (imgInfo.length < 4) {
                     open();
                   } else {
                     toast.error("You can only upload a maximum of 4 images.");
@@ -77,9 +84,9 @@ const ImageUpload = ({ images, setImages }: Props) => {
         </CldUploadWidget>
 
         {/* Image Preview */}
-        {images.length > 0 && (
+        {imgInfo.length > 0 && (
           <div className="mt-4 space-y-2">
-            {images.map((file, idx) => (
+            {imgInfo.map((file, idx) => (
               <div
                 key={idx}
                 className="flex items-center justify-between border rounded-lg px-2.5 py-2 bg-neutral-50 dark:bg-neutral-800"
@@ -106,9 +113,10 @@ const ImageUpload = ({ images, setImages }: Props) => {
                 {/* Delete button */}
                 <button
                   type="button"
-                  onClick={() =>
-                    setImages((prev) => prev.filter((_, i) => i !== idx))
-                  }
+                  onClick={() => {
+                    setImgInfo((prev) => prev.filter((_, i) => i !== idx));
+                    setImages((prev) => prev.filter((_, i) => i !== idx));
+                  }}
                   className=" text-red-500 transition"
                 >
                   <Trash2 size={16} />

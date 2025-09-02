@@ -59,14 +59,14 @@ const ProfileDropdown = async () => {
             </p>
           </DropdownMenuItem>
           {user.role === "ADMIN" && (
-            <DropdownMenuItem className="px-4 py-2.5 cursor-pointer">
-              <Link href="/dashboard" className="flex items-center gap-3">
+            <Link href="/dashboard">
+              <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
                 <LayoutDashboard className="size-4" />
                 <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
                   Admin Dashboard
                 </p>
-              </Link>
-            </DropdownMenuItem>
+              </DropdownMenuItem>
+            </Link>
           )}
           <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
             <i className="ri-shopping-cart-line text-[16px] font-medium"></i>

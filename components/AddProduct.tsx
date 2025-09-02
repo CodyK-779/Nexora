@@ -15,6 +15,10 @@ import { Button } from "./ui/button";
 import ImageUpload from "./ImageUpload";
 import { Textarea } from "./ui/textarea";
 import { Category } from "@/app/generated/prisma";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { addProduct } from "@/actions/product-action";
+import { useRouter } from "next/navigation";
 
 interface Props {
   categories: Category[];
@@ -25,7 +29,58 @@ const AddProduct = ({ categories }: Props) => {
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState(0);
   const [inventory, setInventory] = useState(0);
-  const [images, setImages] = useState<UploadedFile[]>([]);
+  const [category, setCategory] = useState("");
+  const [images, setImages] = useState<string[]>([]);
+  const [imgInfo, setImgInfo] = useState<UploadedFile[]>([]);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const resetForm = () => {
+    setName("");
+    setDescription("");
+    setPrice(0);
+    setInventory(0);
+    setImgInfo([]);
+    setImages([]);
+  };
+
+  const handleUpload = async () => {
+    if (
+      !name.trim() ||
+      !description.trim() ||
+      price === 0 ||
+      inventory === 0 ||
+      !category.trim() ||
+      images.length === 0
+    ) {
+      toast.error("Please fill in all product details before submitting.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const results = await addProduct(
+        name,
+        description,
+        price,
+        inventory,
+        category,
+        images
+      );
+
+      if (results.success) {
+        toast.success("New Product Published Successfully!");
+        resetForm();
+        router.push("/dashboard/add-product", { scroll: false });
+      }
+    } catch (error) {
+      toast.error("Failed to publish new product.");
+      resetForm();
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -49,13 +104,13 @@ const AddProduct = ({ categories }: Props) => {
                 placeholder="Description..."
                 className="border-2 border-neutral-200 dark:border-neutral-700 h-32"
               />
-              <Select>
+              <Select onValueChange={(value: string) => setCategory(value)}>
                 <SelectTrigger className="py-5 border-2 border-neutral-200 dark:border-neutral-700">
                   <SelectValue placeholder="Select Category" />
                 </SelectTrigger>
                 <SelectContent>
                   {categories.map((cat) => (
-                    <SelectItem key={cat.id} value={cat.name}>
+                    <SelectItem key={cat.id} value={cat.id}>
                       {cat.name}
                     </SelectItem>
                   ))}
@@ -74,7 +129,7 @@ const AddProduct = ({ categories }: Props) => {
                 value={price === 0 ? "" : price}
                 onChange={(e) => {
                   const value = e.target.value;
-                  setPrice(value === "" ? 0 : parseInt(value));
+                  setPrice(value === "" ? 0 : parseFloat(value));
                 }}
                 placeholder="Product Price"
                 className="py-5 border-2 border-neutral-200 dark:border-neutral-700"
@@ -94,11 +149,26 @@ const AddProduct = ({ categories }: Props) => {
         </div>
 
         {/* Right column */}
-        <ImageUpload images={images} setImages={setImages} />
+        <ImageUpload
+          imgInfo={imgInfo}
+          setImgInfo={setImgInfo}
+          setImages={setImages}
+        />
       </div>
       <div className="grid place-content-center md:place-content-start">
-        <Button className="font-medium py-2 mt-7 text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 ease-in">
-          Publish Product
+        <Button
+          className="flex items-center gap-2 font-medium py-2 mt-7 text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 ease-in"
+          disabled={loading}
+          onClick={handleUpload}
+        >
+          {loading ? (
+            <>
+              <Loader2 className="animate-spin" />
+              <p>Adding...</p>
+            </>
+          ) : (
+            <p>Publish Product</p>
+          )}
         </Button>
       </div>
     </>
