@@ -19,7 +19,7 @@ const CategoryTable = ({ categories }: Props) => {
   return (
     <div className="mt-6 border-2 rounded-lg sm:max-w-[600px] w-full overflow-hidden sm:pl-3">
       <Table>
-        <TableHeader className="">
+        <TableHeader>
           <TableRow>
             <TableHead>Id</TableHead>
             <TableHead>Image</TableHead>

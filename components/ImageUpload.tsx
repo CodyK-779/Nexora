@@ -75,7 +75,7 @@ const ImageUpload = ({ imgInfo, setImgInfo, setImages }: Props) => {
                 <div className="flex max-[450px]:items-start items-center gap-2 max-[450px]:-mt-5 -mt-10">
                   <Upload className="text-blue-600 dark:text-blue-500 size-5 max-[450px]:size-4" />
                   <p className="text-xs sm:text-sm font-medium text-neutral-600 dark:text-neutral-300">
-                    Drag & drop product images, or click to upload
+                    Click to Upload, Up to 4 Product Images
                   </p>
                 </div>
               </div>

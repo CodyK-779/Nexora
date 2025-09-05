@@ -3,6 +3,7 @@ import { Card, CardContent, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
 import { Heart, ShoppingCart } from "lucide-react";
 import { getPopularProducts } from "@/actions/product-action";
+import { Badge } from "./ui/badge";
 
 const PopularProducts = async () => {
   const products = await getPopularProducts();
@@ -29,7 +30,7 @@ const PopularProducts = async () => {
                 className="group relative rounded-2xl shadow-sm hover:shadow-lg transition-shadow border-2"
               >
                 {/* Product Image */}
-                <div className="relative w-full aspect-video overflow-hidden rounded-t-2xl">
+                <div className="relative w-full aspect-video overflow-hidden rounded-t-2xl border-b">
                   <Image
                     src={p.images[0]}
                     alt="Product Image"
@@ -37,6 +38,12 @@ const PopularProducts = async () => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 768px, 1024px"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
+                  {p.images.length > 1 && (
+                    <div className="absolute top-2 right-2 flex items-center gap-1 bg-neutral-800 text-white px-2.5 rounded-full">
+                      <i className="ri-multi-image-line"></i>
+                      <p className="text-xs font-medium">{p.images.length}</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Product Info */}

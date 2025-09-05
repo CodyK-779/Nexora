@@ -72,6 +72,7 @@ model WishListItem {
   wishList WishList @relation(fields: [wishListId], references: [id], onDelete: Cascade)
   product  Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
 
+  @@unique([wishListId, productId])
   @@map("wishListItem")
 }
 
@@ -162,17 +163,6 @@ model Address {
   @@map("address")
 }
 
-enum Role {
-  ADMIN
-  USER
-}
-
-enum OrderStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
-}
-
 model Session {
   id        String   @id
   expiresAt DateTime
@@ -216,6 +206,17 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum OrderStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
 }
 
 enum Status {
