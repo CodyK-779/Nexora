@@ -2,6 +2,7 @@
 
 import { auth } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
+import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
 export async function getAllUsers() {
@@ -72,6 +73,29 @@ export async function changeRole(userId: string) {
   } catch (error) {
     console.error("Failed to change user role", error);
     throw new Error("Failed to change user role");
+  }
+}
+
+export async function editUserProfile(id: string, formData: FormData) {
+  try {
+    const name = formData.get("name") as string;
+    const bio = formData.get("bio") as string;
+    const image = formData.get("image") as string;
+
+    await prisma.user.update({
+      where: { id },
+      data: {
+        name,
+        bio,
+        image
+      }
+    });
+
+    revalidatePath("/dashboard/users");
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    return { success: false, error: "Failed to update profile" };
   }
 }
 

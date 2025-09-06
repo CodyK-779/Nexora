@@ -22,6 +22,7 @@ import DeleteUser from "@/components/DeleteUser";
 export type Payment = {
   id: string;
   name: string;
+  bio?: string;
   image: string | null;
   email: string;
   role: Role;
@@ -118,7 +119,7 @@ export const columns: ColumnDef<Payment>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <AdminProfileEdit />
+            <AdminProfileEdit user={user} />
             <ChangeRoles userId={user.id} role={user.role} />
             <DeleteUser id={user.id} />
             <DropdownMenuSeparator />
