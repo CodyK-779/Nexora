@@ -2,6 +2,25 @@
 
 import { prisma } from "@/app/lib/prisma";
 
+export async function getAllProducts() {
+  try {
+    const products = await prisma.product.findMany({
+      include: {
+        category: {
+          select: {
+            name: true
+          }
+        }
+      }
+    });
+
+    return products;
+  } catch (error) {
+    console.error("Failed to get products", error);
+    throw new Error("Failed to get products");
+  }
+}
+
 export async function addProduct(name: string, description: string, price: number, inventory: number, category: string, images: string[]) {
   try {
     const exisitingProduct = await prisma.product.findFirst({
@@ -51,7 +70,6 @@ export async function getPopularProducts() {
 
     return products;
   } catch (error) {
-    console.error("Failed to get popular products", error);
-    throw new Error("Failed to get popular products");
+    
   }
 }

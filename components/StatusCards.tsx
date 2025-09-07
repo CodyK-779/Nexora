@@ -1,3 +1,4 @@
+import { prisma } from "@/app/lib/prisma";
 import {
   BadgeDollarSignIcon,
   ShoppingBag,
@@ -5,7 +6,10 @@ import {
   Users,
 } from "lucide-react";
 
-const StatusCards = () => {
+const StatusCards = async () => {
+  const products = await prisma.product.count();
+  const users = await prisma.user.count();
+
   return (
     <div className="mt-6 flex flex-wrap items-center px-2 gap-4">
       {/* First Card */}
@@ -34,7 +38,7 @@ const StatusCards = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <h3 className="font-semibold">12</h3>
+          <h3 className="font-semibold">{products}</h3>
           <div className="flex items-center">
             <i className="ri-arrow-right-up-line font-medium"></i>
             <p className="text-sm font-semibold ml-1">+2.1%</p>
@@ -68,7 +72,7 @@ const StatusCards = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <h3 className="font-semibold">12</h3>
+          <h3 className="font-semibold">{users}</h3>
           <div className="flex items-center">
             <i className="ri-arrow-right-up-line font-medium"></i>
             <p className="text-sm font-semibold ml-1">+2.1%</p>
