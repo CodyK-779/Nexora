@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="max-w-[850px] w-full">
-      <div className="flex items-center justify-between py-4">
+      <div className="flex max-[450px]:flex-col items-center justify-between py-4 max-[450px]:gap-4">
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
@@ -82,7 +82,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ml-2">
           <SelectedDelete selectedCount={selectedCount} table={table} />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
