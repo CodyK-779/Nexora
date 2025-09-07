@@ -8,9 +8,10 @@ import {
   DropdownMenuSubTrigger,
 } from "./ui/dropdown-menu";
 import { Role } from "@/app/generated/prisma";
-import { useRouter } from "next/navigation";
 import { changeRole } from "@/actions/user-action";
 import { toast } from "sonner";
+import { useSession } from "@/app/lib/auth-client";
+import { creatorId } from "@/app/(dashboard)/dashboard/users/page";
 
 interface Props {
   userId: string;
@@ -18,7 +19,21 @@ interface Props {
 }
 
 const ChangeRoles = ({ userId, role }: Props) => {
+  const { data: session } = useSession();
+
+  if (!session) return;
+
   const handleRoleChange = async () => {
+    if (userId === session.user.id) {
+      toast.error("You cannot change your own role");
+      return;
+    }
+
+    if (userId === creatorId) {
+      toast.error("You cannot change the creator's role");
+      return;
+    }
+
     try {
       const results = await changeRole(userId);
 

@@ -108,6 +108,7 @@ export async function deleteUser(id: string) {
       where: { id }
     });
 
+    revalidatePath("/dashboard/users");
     return { success: true };
   } catch (error) {
     console.error("Failed to delete user", error);

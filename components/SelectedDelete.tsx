@@ -7,6 +7,7 @@ import { Table } from "@tanstack/react-table";
 import { useSession } from "@/app/lib/auth-client";
 import { toast } from "sonner";
 import { selectedUserDelete } from "@/actions/user-action";
+import { creatorId } from "@/app/(dashboard)/dashboard/users/page";
 
 interface Props<TData> {
   selectedCount: number;
@@ -20,15 +21,9 @@ export default function SelectedDelete<TData>({
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
 
-  if (!session) {
-    return;
-  }
+  if (!session) return;
 
   const handleDelete = async (ids: string[]) => {
-    const creatorId = "89nUHGBsm0qVXKXSL0KpJpmvJ2J3BPPJ";
-
-    console.log(ids);
-
     if (ids.includes(session.user.id)) {
       toast.error("You cannot delete yourself.");
       return;

@@ -19,12 +19,15 @@ import { Button } from "./ui/button";
 import UserImgChange from "./UserImgChange";
 import { editUserProfile } from "@/actions/user-action";
 import { toast } from "sonner";
+import { creatorId } from "@/app/(dashboard)/dashboard/users/page";
+import { useSession } from "@/app/lib/auth-client";
 
 interface Props {
   user: Payment;
 }
 
 const AdminProfileEdit = ({ user }: Props) => {
+  const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editForm, setEditForm] = useState({
@@ -33,7 +36,14 @@ const AdminProfileEdit = ({ user }: Props) => {
     image: user.image || "",
   });
 
+  if (!session) return;
+
   const handleSubmit = async () => {
+    if (user.id === creatorId && session.user.id !== creatorId) {
+      toast.error("You cannot edit the creator's profile");
+      return;
+    }
+
     setLoading(true);
 
     const formData = new FormData();

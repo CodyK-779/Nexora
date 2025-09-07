@@ -14,9 +14,10 @@ import {
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { deleteUser } from "@/actions/user-action";
 import { toast } from "sonner";
+import { useSession } from "@/app/lib/auth-client";
+import { creatorId } from "@/app/(dashboard)/dashboard/users/page";
 
 interface Props {
   id: string;
@@ -24,9 +25,21 @@ interface Props {
 
 const DeleteUser = ({ id }: Props) => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const { data: session } = useSession();
+
+  if (!session) return;
 
   const handleDelete = async () => {
+    if (id === session.user.id) {
+      toast.error("You cannot delete yourself");
+      return;
+    }
+
+    if (id === creatorId) {
+      toast.error("You cannot delete the creator of this domain");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -34,7 +47,6 @@ const DeleteUser = ({ id }: Props) => {
 
       if (results?.success) {
         toast.success("User Deleted Successfully!");
-        router.push("/dashboard/users", { scroll: false });
       }
     } catch (error) {
       toast.error("Failed to delete user");
