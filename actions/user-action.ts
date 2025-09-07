@@ -69,6 +69,7 @@ export async function changeRole(userId: string) {
       }
     });
 
+    revalidatePath("/dashboard/users");
     return { success: true };
   } catch (error) {
     console.error("Failed to change user role", error);
@@ -111,5 +112,27 @@ export async function deleteUser(id: string) {
   } catch (error) {
     console.error("Failed to delete user", error);
     throw new Error("Failed to delete user");
+  }
+}
+
+export async function selectedUserDelete(ids: string[]) {
+  try {
+    if (!ids || ids.length === 0) {
+      throw new Error("No user ids provided");
+    }
+
+    await prisma.user.deleteMany({
+      where: {
+        id: {
+          in: ids
+        }
+      }
+    });
+
+    revalidatePath("/dashboard/users");
+    return { success: true }
+  } catch (error) {
+    console.error("Error deleting users:", error);
+    return { success: false, error: "Failed to delete users" };
   }
 }

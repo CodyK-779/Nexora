@@ -18,15 +18,12 @@ interface Props {
 }
 
 const ChangeRoles = ({ userId, role }: Props) => {
-  const router = useRouter();
-
   const handleRoleChange = async () => {
     try {
       const results = await changeRole(userId);
 
       if (results.success) {
         toast.success("Changed User Role Successfully!");
-        router.push("/dashboard/users", { scroll: false });
       }
     } catch (error) {
       toast.error("Failed to change user role");

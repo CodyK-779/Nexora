@@ -31,6 +31,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import SelectedDelete from "@/components/SelectedDelete";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -68,6 +69,8 @@ export function DataTable<TData, TValue>({
     },
   });
 
+  const selectedCount = table.getFilteredSelectedRowModel().rows.length;
+
   return (
     <div className="max-w-[850px] w-full">
       <div className="flex items-center justify-between py-4">
@@ -80,9 +83,7 @@ export function DataTable<TData, TValue>({
           className="max-w-sm"
         />
         <div className="flex items-center gap-3">
-          <Button className="font-medium bg-red-500 text-white hover:bg-red-600 transition-colors duration-200">
-            Delete
-          </Button>
+          <SelectedDelete selectedCount={selectedCount} table={table} />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" className="ml-auto">

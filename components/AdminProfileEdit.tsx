@@ -95,7 +95,7 @@ const AdminProfileEdit = ({ user }: Props) => {
             </div>
           </div>
           <DialogFooter>
-            <DialogClose asChild>
+            <DialogClose asChild className="mt-4 sm:mt-0">
               <Button variant="outline">Cancel</Button>
             </DialogClose>
             <Button onClick={handleSubmit} disabled={loading}>
