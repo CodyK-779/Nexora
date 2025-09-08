@@ -1,7 +1,6 @@
 "use client";
 
-import { Loader2, Trash2Icon } from "lucide-react";
-import { DropdownMenuItem } from "./ui/dropdown-menu";
+import { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,43 +12,35 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
-import { useState } from "react";
-import { deleteUser } from "@/actions/user-action";
+import { Button } from "./ui/button";
+import { Loader2 } from "lucide-react";
+import { Table } from "@tanstack/react-table";
+import { selectedProductsDelete } from "@/actions/product-action";
 import { toast } from "sonner";
-import { useSession } from "@/app/lib/auth-client";
-import { creatorId } from "@/app/(dashboard)/dashboard/users/page";
 
-interface Props {
-  id: string;
+interface Props<TData> {
+  selectedCount: number;
+  table: Table<TData>;
 }
 
-const DeleteUser = ({ id }: Props) => {
+export default function SelectedProductDelete<TData>({
+  selectedCount,
+  table,
+}: Props<TData>) {
   const [loading, setLoading] = useState(false);
-  const { data: session } = useSession();
 
-  if (!session) return;
-
-  const handleDelete = async () => {
-    if (id === session.user.id) {
-      toast.error("You cannot delete yourself");
-      return;
-    }
-
-    if (id === creatorId) {
-      toast.error("You cannot delete the creator of this domain");
-      return;
-    }
-
+  const handleDelete = async (ids: string[]) => {
     setLoading(true);
 
     try {
-      const results = await deleteUser(id);
-
-      if (results?.success) {
-        toast.success("User Deleted Successfully!");
+      const result = await selectedProductsDelete(ids);
+      if (result.success) {
+        toast.success("Selected Products Deleted Successfully!");
+      } else {
+        toast.error("Failed to delete selected products");
       }
     } catch (error) {
-      toast.error("Failed to delete user");
+      toast.error("Failed to delete selected products");
     } finally {
       setLoading(false);
     }
@@ -58,20 +49,19 @@ const DeleteUser = ({ id }: Props) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <DropdownMenuItem
-          className="flex items-center gap-2.5 cursor-pointer"
-          onSelect={(e) => e.preventDefault()}
+        <Button
+          disabled={selectedCount === 0 || loading}
+          className="flex items-center gap-2 font-medium bg-red-500 text-white hover:bg-red-600 transition-colors duration-200"
         >
-          <Trash2Icon />
-          Delete User
-        </DropdownMenuItem>
+          {selectedCount > 0 ? `Delete (${selectedCount})` : "Delete"}
+        </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Delete Confirmation</AlertDialogTitle>
           <AlertDialogDescription>
-            Are you sure you want to delete this user? This action cannot be
-            undone.
+            Are you sure you want to delete these products? This action cannot
+            be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
@@ -79,8 +69,15 @@ const DeleteUser = ({ id }: Props) => {
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction
+            onClick={() => {
+              const selectedRows = table.getFilteredSelectedRowModel().rows;
+              const ids = selectedRows.map(
+                (row) => (row.original as { id: string }).id
+              );
+              handleDelete(ids);
+            }}
+            disabled={loading}
             className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white transition-colors ease-in"
-            onClick={handleDelete}
           >
             {loading ? (
               <>
@@ -95,6 +92,4 @@ const DeleteUser = ({ id }: Props) => {
       </AlertDialogContent>
     </AlertDialog>
   );
-};
-
-export default DeleteUser;
+}

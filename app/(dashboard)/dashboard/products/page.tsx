@@ -2,9 +2,11 @@ import { getAllProducts, getPopularProducts } from "@/actions/product-action";
 import MobileProductList from "@/components/MobileProductList";
 import { columns, Payment } from "./columns";
 import { DataTable } from "./data-table";
+import { getAllCategories } from "@/actions/category-action";
 
 export default async function Products() {
   const products = await getAllProducts();
+  const categories = await getAllCategories();
 
   return (
     <section className="pt-2 px-2">
@@ -13,7 +15,7 @@ export default async function Products() {
         <span className="text-blue-700 dark:text-blue-600">Products</span>
       </h1>
 
-      <div className="hidden sm:block container mx-auto py-10">
+      <div className="hidden sm:block container mx-auto py-6">
         <DataTable columns={columns} data={products} />
       </div>
 

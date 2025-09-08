@@ -164,7 +164,7 @@ const AddProduct = ({ categories }: Props) => {
           {loading ? (
             <>
               <Loader2 className="animate-spin" />
-              <p>Adding...</p>
+              <p>Publishing...</p>
             </>
           ) : (
             <p>Publish Product</p>

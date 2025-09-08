@@ -47,7 +47,7 @@ const ChangeRoles = ({ userId, role }: Props) => {
 
   return (
     <DropdownMenuSub>
-      <DropdownMenuSubTrigger className="flex items-center gap-3 cursor-pointer">
+      <DropdownMenuSubTrigger className="flex items-center gap-2.5 cursor-pointer">
         <UserCheck2 />
         Change Roles
       </DropdownMenuSubTrigger>

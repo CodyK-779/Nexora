@@ -52,7 +52,7 @@ export default function SelectedDelete<TData>({
     if (result.success) {
       toast.success("Selected Users Deleted Successfully!");
     } else {
-      toast.success("Failed to delete selected users, something went wrong.");
+      toast.error("Failed to delete selected users, something went wrong.");
     }
 
     setLoading(false);

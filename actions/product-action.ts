@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/app/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function getAllProducts() {
   try {
@@ -70,6 +71,29 @@ export async function getPopularProducts() {
 
     return products;
   } catch (error) {
-    
+    console.error("Error getting popular products:", error);
+    return { success: false, error: "Failed to get popular products" };
+  }
+}
+
+export async function selectedProductsDelete(ids: string[]) {
+  try {
+    if (!ids || ids.length === 0) {
+      return { error: "No product ids provided" }
+    }
+
+    await prisma.product.deleteMany({
+      where: {
+        id: {
+          in: ids
+        }
+      }
+    });
+
+    revalidatePath("/dashboard/products");
+    return { success: true }
+  } catch (error) {
+    console.error("Error deleting selected products:", error);
+    return { success: false, error: "Failed to delete selected products" };
   }
 }

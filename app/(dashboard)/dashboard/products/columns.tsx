@@ -15,10 +15,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import EditProduct from "@/components/EditProduct";
+import ChangeProductStatus from "@/components/ChangeProductStatus";
+import DeleteProduct from "@/components/DeleteProduct";
 
 export type Payment = {
   id: string;
   name: string;
+  description: string;
   images: string[];
   status: Status;
   price: number;
@@ -73,8 +77,9 @@ export const columns: ColumnDef<Payment>[] = [
             <Image
               src={product.images[0]}
               alt="category image"
-              width={25}
-              height={25}
+              width={28}
+              height={28}
+              className="rounded"
             />
           </div>
           <span className="whitespace-nowrap">{product.name}</span>
@@ -132,7 +137,7 @@ export const columns: ColumnDef<Payment>[] = [
     header: "Actions",
     id: "actions",
     cell: ({ row }) => {
-      const payment = row.original;
+      const product = row.original;
 
       return (
         <DropdownMenu>
@@ -144,11 +149,9 @@ export const columns: ColumnDef<Payment>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
+            <EditProduct product={product} />
+            <ChangeProductStatus />
+            <DeleteProduct />
             <DropdownMenuSeparator />
             <DropdownMenuItem>View customer</DropdownMenuItem>
             <DropdownMenuItem>View payment details</DropdownMenuItem>

@@ -65,7 +65,7 @@ const AdminProfileEdit = ({ user }: Props) => {
   return (
     <>
       <DropdownMenuItem
-        className="flex items-center gap-3 cursor-pointer"
+        className="flex items-center gap-2.5 cursor-pointer"
         onClick={(e) => {
           e.preventDefault();
           setShowEditForm(true);
@@ -85,7 +85,7 @@ const AdminProfileEdit = ({ user }: Props) => {
             <div className="flex flex-col gap-2 py-3">
               <Label htmlFor="name">Name</Label>
               <Input
-                name="name"
+                id="name"
                 value={editForm.name}
                 onChange={(e) =>
                   setEditForm({ ...editForm, name: e.target.value })
@@ -95,6 +95,7 @@ const AdminProfileEdit = ({ user }: Props) => {
             <div className="flex flex-col gap-2 py-3">
               <Label htmlFor="bio">Bio</Label>
               <Textarea
+                id="bio"
                 value={editForm.bio}
                 onChange={(e) =>
                   setEditForm({ ...editForm, bio: e.target.value })
