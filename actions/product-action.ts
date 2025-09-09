@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/app/lib/prisma";
+import { number } from "better-auth";
 import { revalidatePath } from "next/cache";
 
 export async function getAllProducts() {
@@ -103,13 +104,16 @@ export async function updateProduct(id: string, formData: FormData) {
     const name = formData.get("name") as string;
     const description = formData.get("description") as string;
     const categoryId = formData.get("categoryId") as string;
+    const rawPrice = formData.get("price") as string;
     const rawImages = formData.getAll("images") as string[];
     const images = rawImages.filter((img) => img && typeof img === "string");
+    const price = parseFloat(rawPrice);
 
     const dataToUpdate: any = {
       name,
       description,
       categoryId,
+      price
     };
 
     if (images.length > 0) {

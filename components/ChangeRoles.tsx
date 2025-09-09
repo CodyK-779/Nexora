@@ -54,11 +54,16 @@ const ChangeRoles = ({ userId, role }: Props) => {
       <DropdownMenuSubContent>
         <DropdownMenuItem
           disabled={role === "ADMIN"}
+          className="cursor-pointer"
           onClick={handleRoleChange}
         >
           Admin
         </DropdownMenuItem>
-        <DropdownMenuItem disabled={role === "USER"} onClick={handleRoleChange}>
+        <DropdownMenuItem
+          disabled={role === "USER"}
+          className="cursor-pointer"
+          onClick={handleRoleChange}
+        >
           User
         </DropdownMenuItem>
       </DropdownMenuSubContent>

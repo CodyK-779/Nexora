@@ -6,6 +6,7 @@ interface EditFormType {
   description: string;
   categoryId: string;
   category: string;
+  price: number;
   images: string[];
 }
 

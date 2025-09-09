@@ -34,12 +34,14 @@ const ChangeProductStatus = ({ id, status }: Props) => {
       <DropdownMenuSubContent>
         <DropdownMenuItem
           disabled={status === "Popular"}
+          className="cursor-pointer"
           onClick={handleRoleChange}
         >
           Popular
         </DropdownMenuItem>
         <DropdownMenuItem
           disabled={status === "Normal"}
+          className="cursor-pointer"
           onClick={handleRoleChange}
         >
           Normal

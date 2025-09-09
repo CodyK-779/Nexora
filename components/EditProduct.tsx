@@ -45,6 +45,7 @@ const EditProduct = ({ product, categories }: Props) => {
     description: product.description || "",
     categoryId: product.categoryId || "",
     category: product.category.name || "",
+    price: product.price || 0,
     images: product.images || [],
   });
 
@@ -121,32 +122,49 @@ const EditProduct = ({ product, categories }: Props) => {
                 className="h-32"
               />
             </div>
-            <div className="flex flex-col gap-2.5 py-4">
-              <Label htmlFor="category">Category</Label>
-              <Select
-                value={editForm.categoryId}
-                onValueChange={(value: string) =>
-                  setEditForm({ ...editForm, categoryId: value })
-                }
-              >
-                <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Select a category" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectGroup>
-                    <SelectLabel>Categories</SelectLabel>
-                    {categories.map((cat) => (
-                      <SelectItem
-                        key={cat.id}
-                        value={cat.id}
-                        disabled={editForm.category === cat.name}
-                      >
-                        {cat.name}
-                      </SelectItem>
-                    ))}
-                  </SelectGroup>
-                </SelectContent>
-              </Select>
+            <div className="flex items-center gap-3 py-4">
+              <div className="flex flex-col gap-2.5 w-full">
+                <Label htmlFor="category">Category</Label>
+                <Select
+                  value={editForm.categoryId}
+                  onValueChange={(value: string) =>
+                    setEditForm({ ...editForm, categoryId: value })
+                  }
+                >
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select a category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel>Categories</SelectLabel>
+                      {categories.map((cat) => (
+                        <SelectItem
+                          key={cat.id}
+                          value={cat.id}
+                          disabled={editForm.category === cat.name}
+                        >
+                          {cat.name}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+              <div className="flex flex-col gap-2.5 w-full">
+                <Label htmlFor="price">Price</Label>
+                <Input
+                  type="number"
+                  value={editForm.price}
+                  className="w-full"
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setEditForm({
+                      ...editForm,
+                      price: value === "" ? 0 : parseFloat(value),
+                    });
+                  }}
+                />
+              </div>
             </div>
             <div className="flex flex-col gap-2.5 py-4">
               <Label>Product Images</Label>
