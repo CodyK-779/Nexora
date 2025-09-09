@@ -128,3 +128,44 @@ export async function updateProduct(id: string, formData: FormData) {
     return { success: false, error: "Failed to update product" };
   }
 }
+
+export async function updateStatus(id: string) {
+  try {
+    const product = await prisma.product.findUnique({
+      where: { id }
+    });
+
+    if (!product) return { error: "This product doesn't exist" };
+
+    const updatedStatus = product.status === "Popular" ? "Normal" : "Popular";
+
+    await prisma.product.update({
+      where: { id },
+      data: {
+        status: updatedStatus
+      }
+    });
+
+    revalidatePath("/dashboard/products");
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating status:", error);
+    return { success: false, error: "Failed to update status of this product" };
+  }
+}
+
+export async function deleteProduct(id: string) {
+  try {
+    if (!id) return;
+
+    await prisma.product.delete({
+      where: { id }
+    });
+
+    revalidatePath("/dashboard/products");
+    return { success: true }
+  } catch (error) {
+    console.error("Error deleting this product:", error);
+    return { success: false, error: "Failed to delete this product" };
+  }
+}

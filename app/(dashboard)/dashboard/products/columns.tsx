@@ -160,8 +160,8 @@ export function getColumns(categories: Category[]): ColumnDef<Payment>[] {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <EditProduct product={product} categories={categories} />
-              <ChangeProductStatus />
-              <DeleteProduct />
+              <ChangeProductStatus id={product.id} status={product.status} />
+              <DeleteProduct id={product.id} />
               <DropdownMenuSeparator />
               <DropdownMenuItem>View customer</DropdownMenuItem>
               <DropdownMenuItem>View payment details</DropdownMenuItem>
