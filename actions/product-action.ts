@@ -97,3 +97,34 @@ export async function selectedProductsDelete(ids: string[]) {
     return { success: false, error: "Failed to delete selected products" };
   }
 }
+
+export async function updateProduct(id: string, formData: FormData) {
+  try {
+    const name = formData.get("name") as string;
+    const description = formData.get("description") as string;
+    const categoryId = formData.get("categoryId") as string;
+    const rawImages = formData.getAll("images") as string[];
+    const images = rawImages.filter((img) => img && typeof img === "string");
+
+    const dataToUpdate: any = {
+      name,
+      description,
+      categoryId,
+    };
+
+    if (images.length > 0) {
+      dataToUpdate.images = images;
+    }
+
+    await prisma.product.update({
+      where: { id },
+      data: dataToUpdate,
+    });
+
+    revalidatePath("/dashboard/products");
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating product:", error);
+    return { success: false, error: "Failed to update product" };
+  }
+}

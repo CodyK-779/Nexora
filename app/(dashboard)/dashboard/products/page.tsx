@@ -1,6 +1,6 @@
-import { getAllProducts, getPopularProducts } from "@/actions/product-action";
+import { getAllProducts } from "@/actions/product-action";
 import MobileProductList from "@/components/MobileProductList";
-import { columns, Payment } from "./columns";
+
 import { DataTable } from "./data-table";
 import { getAllCategories } from "@/actions/category-action";
 
@@ -16,7 +16,7 @@ export default async function Products() {
       </h1>
 
       <div className="hidden sm:block container mx-auto py-6">
-        <DataTable columns={columns} data={products} />
+        <DataTable data={products} categories={categories} />
       </div>
 
       <div className="sm:hidden">

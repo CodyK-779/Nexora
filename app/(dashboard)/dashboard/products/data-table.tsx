@@ -33,16 +33,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import SelectedProductDelete from "@/components/SelectedProductDelete";
 import { Category } from "@/app/generated/prisma";
+import { getColumns, Payment } from "./columns";
 
-interface DataTableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
-  data: TData[];
+interface DataTableProps {
+  data: Payment[];
+  categories: Category[];
 }
 
-export function DataTable<TData, TValue>({
-  columns,
-  data,
-}: DataTableProps<TData, TValue>) {
+export function DataTable({ data, categories }: DataTableProps) {
+  const columns = React.useMemo(() => getColumns(categories), [categories]);
+
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
