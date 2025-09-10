@@ -4,9 +4,9 @@ import {
   Home,
   ShoppingBag,
   Users,
-  Settings,
   PlusSquare,
   LayoutDashboard,
+  CheckSquareIcon,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,7 +36,7 @@ const DashSidebar = ({
       icon: LayoutDashboard,
       link: "/dashboard/manage-categories",
     },
-    { name: "Orders", icon: Settings, link: "/dashboard/settings" },
+    { name: "Orders", icon: CheckSquareIcon, link: "/dashboard/settings" },
   ];
 
   const pathname = usePathname();

@@ -74,7 +74,7 @@ export function DataTable({ data, categories }: DataTableProps) {
 
   return (
     <div className="max-w-[900px]">
-      <div className="flex items-center justify-between py-4">
+      <div className="flex max-[450px]:flex-col items-center justify-between py-4 max-[450px]:gap-4">
         <Input
           placeholder="Filter Product Names..."
           value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}

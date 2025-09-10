@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
-import { Heart, ShoppingCart } from "lucide-react";
+import { ExternalLink, Heart, ShoppingCart } from "lucide-react";
 import { getPopularProducts } from "@/actions/product-action";
+import Link from "next/link";
+import HeartIcon from "./HeartIcon";
 
 const PopularProducts = async () => {
   const products = await getPopularProducts();
@@ -40,7 +42,7 @@ const PopularProducts = async () => {
                 className="group relative rounded-2xl shadow-sm hover:shadow-lg transition-shadow border-2"
               >
                 {/* Product Image */}
-                <div className="relative w-full aspect-video overflow-hidden rounded-t-2xl border-b">
+                <div className="relative w-full size-48 overflow-hidden rounded-t-2xl border-b">
                   <Image
                     src={p.images[0]}
                     alt="Product Image"
@@ -55,25 +57,40 @@ const PopularProducts = async () => {
                     </div>
                   )}
                 </div>
-
                 {/* Product Info */}
                 <CardContent className="p-4">
                   <h3 className="font-semibold text-lg truncate">{p.name}</h3>
                   <p className="text-sm text-gray-500 line-clamp-2">
                     {p.description}
                   </p>
-                  <p className="mt-2 font-bold text-xl">
-                    {formattedPrice(p.price)}
-                  </p>
+                  <div className="flex items-center justify-between mt-1.5">
+                    <p className="mt-2 font-bold text-xl">
+                      {formattedPrice(p.price)}
+                    </p>
+                    <HeartIcon />
+                  </div>
                 </CardContent>
-
                 {/* Actions */}
                 <CardFooter className="flex justify-between items-center p-4">
-                  <Button size="sm" className="gap-2">
-                    <ShoppingCart size={16} /> Add to Cart
+                  <Button
+                    size="sm"
+                    className="flex items-center gap-2 font-medium"
+                  >
+                    <ShoppingCart size={16} />
+                    <p>Add to Cart</p>
                   </Button>
-                  <Button size="icon" variant="ghost">
-                    <Heart className="w-5 h-5 text-gray-500 hover:text-red-500 transition-colors" />
+                  <Button
+                    asChild
+                    size="sm"
+                    className="border bg-white text-black dark:bg-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-100 ease-in"
+                  >
+                    <Link
+                      href={`/product/${p.id}`}
+                      className="flex items-center gap-2.5 font-medium"
+                    >
+                      <ExternalLink />
+                      <p>View Details</p>
+                    </Link>
                   </Button>
                 </CardFooter>
               </Card>

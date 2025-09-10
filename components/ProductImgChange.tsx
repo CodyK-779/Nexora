@@ -1,5 +1,8 @@
+"use client";
+
 import { Camera } from "lucide-react";
 import Image from "next/image";
+import { useState } from "react";
 
 interface EditFormType {
   name: string;
@@ -7,7 +10,7 @@ interface EditFormType {
   categoryId: string;
   category: string;
   price: number;
-  images: string[];
+  images: string[]; // always Cloudinary URLs
 }
 
 interface Props {
@@ -16,9 +19,57 @@ interface Props {
 }
 
 const ProductImgChange = ({ editForm, setEditForm }: Props) => {
+  // keep local previews separate
+  const [previewImages, setPreviewImages] = useState<string[]>(editForm.images);
+
+  const handleImageChange = async (file: File, idx: number) => {
+    // create preview blob
+    const previewUrl = URL.createObjectURL(file);
+    setPreviewImages((prev) => {
+      const updated = [...prev];
+      updated[idx] = previewUrl;
+      return updated;
+    });
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append(
+      "upload_preset",
+      process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
+    );
+
+    try {
+      const res = await fetch(
+        `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      if (!res.ok) throw new Error("Upload failed");
+      const data = await res.json();
+
+      // replace preview with Cloudinary URL in both preview + editForm
+      setPreviewImages((prev) => {
+        const updated = [...prev];
+        updated[idx] = data.secure_url;
+        return updated;
+      });
+
+      setEditForm((prev) => {
+        const updated = [...prev.images];
+        updated[idx] = data.secure_url;
+        return { ...prev, images: updated };
+      });
+    } catch (err) {
+      console.error("Cloudinary upload error:", err);
+    }
+  };
+
   return (
     <div className="flex items-center justify-center gap-4">
-      {editForm.images.map((image, idx) => (
+      {previewImages.map((image, idx) => (
         <div key={idx}>
           <label
             htmlFor={`image-upload-${idx}`}
@@ -43,45 +94,9 @@ const ProductImgChange = ({ editForm, setEditForm }: Props) => {
             type="file"
             accept="image/*"
             className="hidden"
-            onChange={async (e) => {
+            onChange={(e) => {
               const file = e.target.files?.[0];
-              if (!file) return;
-
-              // Preview first
-              const previewUrl = URL.createObjectURL(file);
-              setEditForm((prev) => {
-                const updatedImages = [...prev.images];
-                updatedImages[idx] = previewUrl;
-                return { ...prev, images: updatedImages };
-              });
-
-              const formData = new FormData();
-              formData.append("file", file);
-              formData.append(
-                "upload_preset",
-                process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET as string
-              );
-
-              try {
-                const res = await fetch(
-                  `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
-                  {
-                    method: "POST",
-                    body: formData,
-                  }
-                );
-
-                if (!res.ok) throw new Error("Upload failed");
-                const data = await res.json();
-                setEditForm((prev) => ({
-                  ...prev,
-                  images: prev.images.map((img, i) =>
-                    i === idx ? data.secure_url : img
-                  ),
-                }));
-              } catch (err) {
-                console.error("Cloudinary upload error:", err);
-              }
+              if (file) handleImageChange(file, idx);
             }}
           />
         </div>

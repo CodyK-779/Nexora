@@ -178,7 +178,7 @@ const EditProduct = ({ product, categories }: Props) => {
             <Button
               onClick={handleSubmit}
               disabled={loading}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 mb-4 sm:mb-0"
             >
               {loading ? (
                 <>

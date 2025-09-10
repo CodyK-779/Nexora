@@ -1,6 +1,4 @@
 import { getAllProducts } from "@/actions/product-action";
-import MobileProductList from "@/components/MobileProductList";
-
 import { DataTable } from "./data-table";
 import { getAllCategories } from "@/actions/category-action";
 
@@ -15,12 +13,8 @@ export default async function Products() {
         <span className="text-blue-700 dark:text-blue-600">Products</span>
       </h1>
 
-      <div className="hidden sm:block container mx-auto py-6">
+      <div className="container mx-auto py-6">
         <DataTable data={products} categories={categories} />
-      </div>
-
-      <div className="sm:hidden">
-        <MobileProductList products={products} />
       </div>
     </section>
   );

@@ -76,6 +76,21 @@ export async function getPopularProducts() {
   }
 }
 
+export async function getProductDetails(id: string) {
+  try {
+    if (!id) return;
+
+    const product = await prisma.product.findUnique({
+      where: { id }
+    });
+
+    return product;
+  } catch (error) {
+    console.error("Error getting product details:", error);
+    throw new Error("Failed to get product details");
+  }
+}
+
 export async function selectedProductsDelete(ids: string[]) {
   try {
     if (!ids || ids.length === 0) {
