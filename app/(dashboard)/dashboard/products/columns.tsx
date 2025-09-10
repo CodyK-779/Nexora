@@ -18,6 +18,7 @@ import Image from "next/image";
 import EditProduct from "@/components/EditProduct";
 import ChangeProductStatus from "@/components/ChangeProductStatus";
 import DeleteProduct from "@/components/DeleteProduct";
+import ManageStock from "@/components/ManageStock";
 
 interface Category {
   id: string;
@@ -83,16 +84,18 @@ export function getColumns(categories: Category[]): ColumnDef<Payment>[] {
         const product = row.original;
         return (
           <div className="flex items-center gap-3 ml-2">
-            <div className="bg-white w-fit rounded">
+            <div className="size-10 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm bg-white">
               <Image
                 src={product.images[0]}
-                alt="category image"
-                width={28}
-                height={28}
-                className="rounded"
+                alt="Product image"
+                width={100}
+                height={100}
+                className="w-full h-full object-cover"
               />
             </div>
-            <span className="whitespace-nowrap">{product.name}</span>
+            <span className="whitespace-nowrap font-medium">
+              {product.name}
+            </span>
           </div>
         );
       },
@@ -160,10 +163,11 @@ export function getColumns(categories: Category[]): ColumnDef<Payment>[] {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <EditProduct product={product} categories={categories} />
+              <ManageStock id={product.id} inventory={product.inventory} />
               <ChangeProductStatus id={product.id} status={product.status} />
               <DeleteProduct id={product.id} />
               <DropdownMenuSeparator />
-              <DropdownMenuItem>View customer</DropdownMenuItem>
+              <DropdownMenuItem>View Product Details</DropdownMenuItem>
               <DropdownMenuItem>View payment details</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

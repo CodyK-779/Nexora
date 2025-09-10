@@ -1,7 +1,6 @@
 "use server";
 
 import { prisma } from "@/app/lib/prisma";
-import { number } from "better-auth";
 import { revalidatePath } from "next/cache";
 
 export async function getAllProducts() {
@@ -73,7 +72,7 @@ export async function getPopularProducts() {
     return products;
   } catch (error) {
     console.error("Error getting popular products:", error);
-    return { success: false, error: "Failed to get popular products" };
+    throw new Error("Failed to get popular products");
   }
 }
 
@@ -155,6 +154,25 @@ export async function updateStatus(id: string) {
   } catch (error) {
     console.error("Error updating status:", error);
     return { success: false, error: "Failed to update status of this product" };
+  }
+}
+
+export async function updateInventory(id: string, inventory: number) {
+  try {
+    if (!id) return;
+
+    await prisma.product.update({
+      where: { id },
+      data: {
+        inventory
+      }
+    });
+
+    revalidatePath("/dashboard/products");
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating inventory:", error);
+    return { success: false, error: "Failed to update the inventory of this product" };
   }
 }
 

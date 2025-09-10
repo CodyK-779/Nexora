@@ -3,10 +3,18 @@ import { Card, CardContent, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
 import { Heart, ShoppingCart } from "lucide-react";
 import { getPopularProducts } from "@/actions/product-action";
-import { Badge } from "./ui/badge";
 
 const PopularProducts = async () => {
   const products = await getPopularProducts();
+
+  const formattedPrice = (price: number) => {
+    const formatted = new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(price);
+
+    return formatted;
+  };
 
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-12">
@@ -54,7 +62,9 @@ const PopularProducts = async () => {
                   <p className="text-sm text-gray-500 line-clamp-2">
                     {p.description}
                   </p>
-                  <p className="mt-2 font-bold text-xl">${p.price}</p>
+                  <p className="mt-2 font-bold text-xl">
+                    {formattedPrice(p.price)}
+                  </p>
                 </CardContent>
 
                 {/* Actions */}
