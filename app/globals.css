@@ -88,6 +88,26 @@
   .max-container {
     @apply max-w-7xl mx-auto px-4
   }
+
+  .add-to-cart-btn {
+    @apply w-full flex items-center justify-center min-[420px]:large-btn max-[350px]:small-btn bg-blue-600 hover:bg-blue-700 text-white gap-2 transition-colors ease-in duration-150
+  }
+
+  .heart-icon {
+    @apply p-3 rounded-lg bg-white dark:bg-neutral-950 min-[420px]:large-btn max-[350px]:small-btn border border-gray-500 dark:border-gray-600 hover:bg-white dark:hover:bg-neutral-950 transition
+  }
+
+  .small-btn {
+    @apply h-8 rounded-md px-3 text-xs
+  }
+
+  .large-btn {
+    @apply h-10 rounded-md px-8
+  }
+
+  .icon-btn {
+    @apply h-9 w-9
+  }
 }
 
 .swiper-pagination-bullet {

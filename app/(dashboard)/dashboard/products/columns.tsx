@@ -19,6 +19,7 @@ import EditProduct from "@/components/EditProduct";
 import ChangeProductStatus from "@/components/ChangeProductStatus";
 import DeleteProduct from "@/components/DeleteProduct";
 import ManageStock from "@/components/ManageStock";
+import Link from "next/link";
 
 interface Category {
   id: string;
@@ -167,7 +168,11 @@ export function getColumns(categories: Category[]): ColumnDef<Payment>[] {
               <ChangeProductStatus id={product.id} status={product.status} />
               <DeleteProduct id={product.id} />
               <DropdownMenuSeparator />
-              <DropdownMenuItem>View Product Details</DropdownMenuItem>
+              <Link href={`/product/${product.id}`}>
+                <DropdownMenuItem className="cursor-pointer">
+                  View Product Details
+                </DropdownMenuItem>
+              </Link>
               <DropdownMenuItem>View payment details</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

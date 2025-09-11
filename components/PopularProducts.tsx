@@ -1,22 +1,22 @@
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
-import { ExternalLink, Heart, ShoppingCart } from "lucide-react";
+import { ExternalLink, ShoppingCart } from "lucide-react";
 import { getPopularProducts } from "@/actions/product-action";
 import Link from "next/link";
 import HeartIcon from "./HeartIcon";
 
+export const formattedPrice = (price: number) => {
+  const formatted = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(price);
+
+  return formatted;
+};
+
 const PopularProducts = async () => {
   const products = await getPopularProducts();
-
-  const formattedPrice = (price: number) => {
-    const formatted = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-    }).format(price);
-
-    return formatted;
-  };
 
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-12">

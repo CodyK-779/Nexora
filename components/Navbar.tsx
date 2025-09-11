@@ -30,7 +30,7 @@ const Navbar = () => {
               height={70}
               className="hidden dark:block"
             />
-            <p className="text-[22px] font-bold -ml-3 text-black dark:text-neutral-50">
+            <p className="min-[400px]:text-[22px] text-[20px] font-bold -ml-3 text-black dark:text-neutral-50">
               Nexora
             </p>
           </Link>
