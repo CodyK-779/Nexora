@@ -5,6 +5,7 @@ import { ExternalLink, ShoppingCart } from "lucide-react";
 import { getPopularProducts } from "@/actions/product-action";
 import Link from "next/link";
 import HeartIcon from "./HeartIcon";
+import { getCurrentUserWishlist } from "@/actions/user-action";
 
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {
@@ -17,6 +18,7 @@ export const formattedPrice = (price: number) => {
 
 const PopularProducts = async () => {
   const products = await getPopularProducts();
+  const wishList = await getCurrentUserWishlist();
 
   return (
     <section className="px-4 py-12 sm:px-6 lg:px-12">
@@ -67,7 +69,7 @@ const PopularProducts = async () => {
                     <p className="mt-2 font-bold text-xl">
                       {formattedPrice(p.price)}
                     </p>
-                    <HeartIcon />
+                    <HeartIcon productId={p.id} wishList={wishList} />
                   </div>
                 </CardContent>
                 {/* Actions */}

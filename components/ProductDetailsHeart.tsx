@@ -2,19 +2,19 @@
 
 import { Heart } from "lucide-react";
 import { Button } from "./ui/button";
+import { useState } from "react";
 import { WishListType } from "./InterfaceTypes";
+import { toggleWishList } from "@/actions/product-action";
+import { toast } from "sonner";
 import { useSession } from "@/app/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
-import { toggleWishList } from "@/actions/product-action";
 
 interface Props {
   productId: string;
   wishList: WishListType | undefined;
 }
 
-const HeartIcon = ({ productId, wishList }: Props) => {
+const ProductDetailsHeart = ({ productId, wishList }: Props) => {
   const { data: session } = useSession();
   const router = useRouter();
   const [isLiking, setIsLiking] = useState(false);
@@ -22,7 +22,7 @@ const HeartIcon = ({ productId, wishList }: Props) => {
     wishList?.items.some((item) => item.productId === productId) || false
   );
 
-  const handleLike = async () => {
+  const handleWishList = async () => {
     if (!session) {
       toast.error(
         "You need an account in order to add this product to wishlist"
@@ -34,7 +34,7 @@ const HeartIcon = ({ productId, wishList }: Props) => {
     setIsLiking(true);
 
     try {
-      const result = await toggleWishList(productId, "/");
+      const result = await toggleWishList(productId, `/product/${productId}`);
 
       if (result.success) {
         setHasLiked(!hasLiked);
@@ -53,14 +53,9 @@ const HeartIcon = ({ productId, wishList }: Props) => {
   };
 
   return (
-    <Button
-      size="icon"
-      variant="ghost"
-      disabled={isLiking}
-      onClick={handleLike}
-    >
+    <Button className="heart-icon" onClick={handleWishList} disabled={isLiking}>
       <Heart
-        className={`w-5 h-5 text-gray-500 transition-colors duration-150 ease-in ${
+        className={`min-[400px]:size-5 size-4 text-pink-500 transition-colors duration-150 ease-in ${
           hasLiked && "text-red-500 fill-red-500"
         }`}
       />
@@ -68,4 +63,4 @@ const HeartIcon = ({ productId, wishList }: Props) => {
   );
 };
 
-export default HeartIcon;
+export default ProductDetailsHeart;

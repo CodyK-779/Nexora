@@ -1,29 +1,17 @@
-import { $Enums } from "@/app/generated/prisma";
-import { Heart, ShoppingBag, ShoppingCart, Star } from "lucide-react";
+import { ShoppingBag, ShoppingCart, Star } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import DescTextExtend from "./DescTextExtend";
 import { formattedPrice } from "./PopularProducts";
+import ProductDetailsHeart from "./ProductDetailsHeart";
+import { ProductDetailsType, WishListType } from "./InterfaceTypes";
 
 interface Props {
-  product: {
-    name: string;
-    id: string;
-    description: string;
-    price: number;
-    images: string[];
-    categoryId: string;
-    status: $Enums.Status;
-    inventory: number;
-    createdAt: Date;
-    updatedAt: Date;
-    category: {
-      name: string;
-    };
-  };
+  product: ProductDetailsType;
+  wishList: WishListType | undefined;
 }
 
-const ProductDetails = ({ product }: Props) => {
+const ProductDetails = ({ product, wishList }: Props) => {
   return (
     <div className="flex flex-col gap-6">
       {/* Title + Category */}
@@ -92,9 +80,11 @@ const ProductDetails = ({ product }: Props) => {
           <ShoppingBag className="size-6" />
           <p className="font-medium">Buy now</p>
         </Button>
-        <Button className="heart-icon">
-          <Heart className="size-5 text-pink-500" />
-        </Button>
+        <ProductDetailsHeart
+          productId={product.id}
+          wishList={wishList}
+          // wishListItems={product.wishListItems}
+        />
       </div>
     </div>
   );

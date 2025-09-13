@@ -90,11 +90,15 @@
   }
 
   .add-to-cart-btn {
-    @apply w-full flex items-center justify-center min-[420px]:large-btn max-[350px]:small-btn bg-blue-600 hover:bg-blue-700 text-white gap-2 transition-colors ease-in duration-150
+    @apply w-full flex items-center justify-center min-[420px]:large-btn max-[350px]:small-btn bg-blue-600 hover:bg-blue-700 dark:hover:bg-blue-700 text-white gap-2 transition-colors ease-in duration-150
+  }
+
+  .heart-large {
+    @apply h-10 rounded-md px-3
   }
 
   .heart-icon {
-    @apply p-3 rounded-lg bg-white dark:bg-neutral-950 min-[420px]:large-btn max-[350px]:small-btn border border-gray-500 dark:border-gray-600 hover:bg-white dark:hover:bg-neutral-950 transition
+    @apply p-3 rounded-lg bg-white dark:bg-neutral-950 min-[420px]:heart-large max-[350px]:small-btn border border-gray-500 dark:border-gray-600 hover:bg-white dark:hover:bg-neutral-950 transition
   }
 
   .small-btn {
