@@ -7,7 +7,7 @@ import { useSession } from "@/app/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { toggleWishList } from "@/actions/product-action";
+import { toggleWishList } from "@/actions/wishlist-action";
 
 interface Props {
   productId: string;

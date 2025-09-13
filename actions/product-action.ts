@@ -26,7 +26,7 @@ export async function getAllProducts() {
 
 export async function addProduct(name: string, description: string, price: number, inventory: number, category: string, images: string[]) {
   try {
-    const exisitingProduct = await prisma.product.findFirst({
+    const existingProduct = await prisma.product.findFirst({
       where: {
         name,
         description,
@@ -39,7 +39,7 @@ export async function addProduct(name: string, description: string, price: numbe
       }
     });
 
-    if (exisitingProduct) {
+    if (existingProduct) {
       return { error: "This product already exists." }
     }
 
@@ -198,49 +198,6 @@ export async function updateInventory(id: string, inventory: number) {
   } catch (error) {
     console.error("Error updating inventory:", error);
     return { success: false, error: "Failed to update the inventory of this product" };
-  }
-}
-
-export async function toggleWishList(productId: string, path: string) {
-  try {
-    const session = await auth.api.getSession({
-      headers: await headers()
-    });
-
-    if (!session) throw new Error("Unauthorized");
-
-    const wishlist = await prisma.wishList.upsert({
-      where: { userId: session.user.id },
-      update: {},
-      create: { userId: session.user.id },
-      include: { items: true }
-    });
-
-    const existingProduct = wishlist.items.find(item => item.productId === productId);
-
-    if (existingProduct) {
-      await prisma.wishListItem.delete({
-        where: {
-          id: existingProduct.id
-        }
-      });
-    } else {
-      await prisma.wishListItem.create({
-        data: {
-          productId,
-          wishListId: wishlist.id,
-        }
-      })
-    }
-
-    revalidatePath(path);
-    return { success: true };
-  } catch (error) {
-    console.error("Error toggling wishlist:", error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : "Failed to update wishlist" 
-    };
   }
 }
 

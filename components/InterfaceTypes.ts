@@ -1,4 +1,4 @@
-import { $Enums, WishListItem } from "@/app/generated/prisma";
+import { $Enums, CartItem, WishListItem } from "@/app/generated/prisma";
 
 export interface WishListType {
   id: string;
@@ -13,6 +13,14 @@ export interface WishListItemType {
   updatedAt: Date;
   productId: string;
   wishListId: string;
+}
+
+export interface CartType {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string;
+  cartItem: CartItem[];
 }
 
 export interface ProductDetailsType {

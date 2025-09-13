@@ -72,28 +72,6 @@ export async function currentUserDetails() {
   }
 }
 
-export async function getCurrentUserWishlist() {
-  try {
-    const session = await auth.api.getSession({
-      headers: await headers()
-    });
-
-    if (!session) return;
-
-    const wishList = await prisma.wishList.upsert({
-      where: { userId: session.user.id },
-      update: {},
-      create: { userId: session.user.id },
-      include: { items: true }
-    });
-
-    return wishList;
-  } catch (error) {
-    console.error("Failed to get user's wishlisted products", error);
-    throw new Error("Failed to get user's wishlisted products");
-  }
-}
-
 export async function changeRole(userId: string) {
   try {
     const user = await prisma.user.findUnique({

@@ -5,7 +5,8 @@ import { ExternalLink, ShoppingCart } from "lucide-react";
 import { getPopularProducts } from "@/actions/product-action";
 import Link from "next/link";
 import HeartIcon from "./HeartIcon";
-import { getCurrentUserWishlist } from "@/actions/user-action";
+import { getCurrentUserWishlist } from "@/actions/wishlist-action";
+import PopularAddToCart from "./PopularAddToCart";
 
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {
@@ -74,13 +75,7 @@ const PopularProducts = async () => {
                 </CardContent>
                 {/* Actions */}
                 <CardFooter className="flex justify-between items-center p-4">
-                  <Button
-                    size="sm"
-                    className="flex items-center gap-2 font-medium"
-                  >
-                    <ShoppingCart size={16} />
-                    <p>Add to Cart</p>
-                  </Button>
+                  <PopularAddToCart productId={p.id} />
                   <Button
                     asChild
                     size="sm"

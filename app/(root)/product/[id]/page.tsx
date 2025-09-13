@@ -1,5 +1,6 @@
+import { getCurrentUserCart } from "@/actions/cart-action";
 import { getProductDetails } from "@/actions/product-action";
-import { getCurrentUserWishlist } from "@/actions/user-action";
+import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import BackButton from "@/components/BackButton";
 import ImageDetailSection from "@/components/ImageDetailSection";
 import ProductDetails from "@/components/ProductDetails";

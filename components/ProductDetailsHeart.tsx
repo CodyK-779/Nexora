@@ -4,10 +4,10 @@ import { Heart } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
 import { WishListType } from "./InterfaceTypes";
-import { toggleWishList } from "@/actions/product-action";
 import { toast } from "sonner";
 import { useSession } from "@/app/lib/auth-client";
 import { useRouter } from "next/navigation";
+import { toggleWishList } from "@/actions/wishlist-action";
 
 interface Props {
   productId: string;
