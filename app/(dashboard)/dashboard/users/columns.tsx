@@ -18,6 +18,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import AdminProfileEdit from "@/components/AdminProfileEdit";
 import ChangeRoles from "@/components/ChangeRoles";
 import DeleteUser from "@/components/DeleteUser";
+import Link from "next/link";
 
 export type Payment = {
   id: string;
@@ -126,7 +127,16 @@ export const columns: ColumnDef<Payment>[] = [
             <ChangeRoles userId={user.id} role={user.role} />
             <DeleteUser id={user.id} />
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View Profile</DropdownMenuItem>
+            <Link href={`/profile/${user.id}`}>
+              <DropdownMenuItem className="cursor-pointer">
+                View Profile
+              </DropdownMenuItem>
+            </Link>
+            <Link href="/">
+              <DropdownMenuItem className="cursor-pointer">
+                View Wishlists
+              </DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>View Orders</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

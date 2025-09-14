@@ -55,7 +55,7 @@ const ProductDetailsHeart = ({ productId, wishList }: Props) => {
   return (
     <Button className="heart-icon" onClick={handleWishList} disabled={isLiking}>
       <Heart
-        className={`min-[400px]:size-5 size-4 text-pink-500 transition-colors duration-150 ease-in ${
+        className={`min-[400px]:size-5 size-4 text-red-500 transition-colors duration-150 ease-in ${
           hasLiked && "text-red-500 fill-red-500"
         }`}
       />

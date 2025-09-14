@@ -55,7 +55,8 @@ const HeartIcon = ({ productId, wishList }: Props) => {
   return (
     <Button
       size="icon"
-      variant="ghost"
+      variant="outline"
+      className="border-2 dark:border"
       disabled={isLiking}
       onClick={handleLike}
     >

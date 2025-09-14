@@ -26,12 +26,12 @@ const PopularProducts = async () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-bold tracking-tight sm:text-4xl">
             Most{" "}
             <span className="text-blue-700 dark:text-blue-600">Popular</span>{" "}
             Items
           </h2>
-          <p className="mt-2 text-gray-500 dark:text-gray-400">
+          <p className="mt-2 min-[350px]:text-base text-sm text-gray-500 dark:text-gray-400">
             Discover the best-selling products loved by our customers
           </p>
         </div>
@@ -45,13 +45,13 @@ const PopularProducts = async () => {
                 className="group relative rounded-2xl shadow-sm hover:shadow-lg transition-shadow border-2"
               >
                 {/* Product Image */}
-                <div className="relative w-full size-48 overflow-hidden rounded-t-2xl border-b">
+                <div className="relative w-full size-48 overflow-hidden rounded-t-2xl border-b dark:bg-white">
                   <Image
                     src={p.images[0]}
                     alt="Product Image"
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 768px, 1024px"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                   {p.images.length > 1 && (
                     <div className="absolute top-2 right-2 flex items-center gap-1 bg-neutral-800 text-white px-2.5 rounded-full">
@@ -85,7 +85,7 @@ const PopularProducts = async () => {
                       href={`/product/${p.id}`}
                       className="flex items-center gap-2.5 font-medium"
                     >
-                      <ExternalLink />
+                      <ExternalLink size={16} />
                       <p>View Details</p>
                     </Link>
                   </Button>

@@ -21,7 +21,7 @@ const FeaturedCategories = async () => {
       <div className="max-container flex flex-col items-center justify-center">
         {/* Title */}
         <div className="text-center mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-2">
+          <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-bold mb-2">
             Featured{" "}
             <span className="text-blue-700 dark:text-blue-600">Categories</span>
           </h2>

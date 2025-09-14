@@ -4,7 +4,7 @@ import { Button } from "./ui/button";
 import DescTextExtend from "./DescTextExtend";
 import { formattedPrice } from "./PopularProducts";
 import ProductDetailsHeart from "./ProductDetailsHeart";
-import { CartType, ProductDetailsType, WishListType } from "./InterfaceTypes";
+import { ProductDetailsType, WishListType } from "./InterfaceTypes";
 import ProductDetailsCart from "./ProductDetailsCart";
 
 interface Props {
@@ -12,7 +12,24 @@ interface Props {
   wishList: WishListType | undefined;
 }
 
+const nikeId = "73520229-db86-41aa-9a0c-b7fe11cf2c3e";
+const macId = "90bea6ab-a640-414e-86f9-ca349ec6646e";
+const hoodieId = "cfa7be9d-7657-4298-9a4c-828df9a094eb";
+const ps5Id = "";
+
 const ProductDetails = ({ product, wishList }: Props) => {
+  const discountedIds = [nikeId, macId, hoodieId, ps5Id];
+  const existingIds = discountedIds.find((dis) => dis === product.id);
+
+  const displayDiscount = (id: string) => {
+    if (!existingIds) return;
+
+    if (id === nikeId) return "$15,000,00";
+    if (id === macId) return "$1.199.99";
+    if (id === hoodieId) return "$35.99";
+    if (id === ps5Id) return "";
+  };
+
   return (
     <div className="flex flex-col gap-6">
       {/* Title + Category */}
@@ -43,15 +60,20 @@ const ProductDetails = ({ product, wishList }: Props) => {
               }`}
             />
           ))}
-          <span className="text-sm text-gray-400 ml-2">(4.5)</span>
+          <span className="text-sm text-gray-400 ml-2">(4.5) Reviews</span>
         </div>
       </div>
 
       {/* Price + Stock */}
       <div className="flex items-center justify-between">
-        <p className="min-[420px]:text-2xl text-xl font-semibold text-blue-600 dark:text-blue-500">
-          {formattedPrice(product.price)}
-        </p>
+        <div className="flex items-center gap-2.5">
+          <p className="min-[420px]:text-2xl text-xl font-semibold text-blue-600 dark:text-blue-500">
+            {formattedPrice(product.price)}
+          </p>
+          <p className="min-[420px]:text-base text-xs font-medium line-through text-gray-400">
+            {displayDiscount(product.id)}
+          </p>
+        </div>
         <span
           className={`min-[420px]:text-sm text-xs font-semibold px-3 py-1 rounded-full ${
             product.inventory > 0
@@ -76,7 +98,7 @@ const ProductDetails = ({ product, wishList }: Props) => {
         <ProductDetailsCart productId={product.id} />
         <Button className="w-full flex items-center justify-center font-medium gap-2 min-[420px]:large-btn max-[350px]:small-btn">
           <ShoppingBag className="size-6" />
-          <p className="font-medium">Buy now</p>
+          <p className="font-semibold">Buy Now</p>
         </Button>
         <ProductDetailsHeart productId={product.id} wishList={wishList} />
       </div>

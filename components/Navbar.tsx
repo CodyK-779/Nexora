@@ -39,7 +39,7 @@ const Navbar = () => {
             {navLinks.map((nav) => (
               <li
                 key={nav.link}
-                className="cursor-pointer hover:text-purple-700 transition-colors duration-200 ease-in"
+                className="cursor-pointer hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-200 ease-in"
               >
                 <Link href={nav.link}>{nav.title}</Link>
               </li>
