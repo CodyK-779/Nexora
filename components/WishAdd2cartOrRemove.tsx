@@ -57,7 +57,7 @@ const WishAdd2cartOrRemove = ({ userId, productId, wishlistItemId }: Props) => {
   };
 
   return (
-    <div className="flex items-center gap-2 mt-1.5 mx-1 w-full">
+    <div className="flex items-center gap-2 mt-1.5 w-full">
       <Button
         size="sm"
         className="flex items-center gap-1.5 font-medium w-full"
@@ -79,7 +79,7 @@ const WishAdd2cartOrRemove = ({ userId, productId, wishlistItemId }: Props) => {
 
       <Button
         size="sm"
-        className="flex items-center gap-1.5 font-medium w-full bg-red-500 text-white hover:bg-red-600 transition-colors"
+        className="flex items-center gap-1.5 font-medium w-full border bg-white text-black dark:bg-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
         onClick={removeWishlist}
         disabled={removing}
       >

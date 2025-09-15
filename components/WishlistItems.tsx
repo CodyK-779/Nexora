@@ -15,8 +15,8 @@ const WishlistItems = async ({ userId, search, wishlistId }: Props) => {
   const wishListItems = await getFilteredWishlistItems(wishlistId!, search);
 
   return (
-    <section className="max-container pt-20 pb-60">
-      <div className="grid grid-cols-5 gap-6">
+    <section className="max-container sm:pt-20 pt-16 pb-60">
+      <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1 lg:gap-6 min-[500px]:gap-4 gap-8">
         {wishListItems.map((item) => (
           <div key={item.id} className="flex flex-col">
             <Link href={`/product/${item.product.id}`}>
@@ -33,14 +33,14 @@ const WishlistItems = async ({ userId, search, wishlistId }: Props) => {
               </div>
             </Link>
 
-            <p className="mt-2 ml-1 text-sm font-semibold line-clamp-1">
+            <p className="mt-2 mx-1 text-sm font-semibold line-clamp-1">
               {item.product.name}
             </p>
-            <p className="mt-1 ml-1 text-xs font-medium text-neutral-500 dark:text-neutral-400 line-clamp-1">
+            <p className="mt-1 mx-1 text-xs font-medium text-neutral-500 dark:text-neutral-400 line-clamp-1">
               {item.product.description}
             </p>
-            <div className="flex items-center justify-between mt-1 ml-1">
-              <p className="text-xs">
+            <div className="flex items-center justify-between mt-1 mx-1">
+              <p className="text-xs font-medium text-neutral-500 dark:text-neutral-300">
                 <span className="text-yellow-400">★</span> 4.5 reviews
               </p>
               <p className="text-sm font-semibold">

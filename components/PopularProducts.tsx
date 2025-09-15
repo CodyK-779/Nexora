@@ -38,7 +38,7 @@ const PopularProducts = async () => {
 
         {/* Product Grid */}
         {products.length > 0 ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 lg:gap-6 gap-4">
             {products.map((p) => (
               <Card
                 key={p.id}
@@ -62,24 +62,26 @@ const PopularProducts = async () => {
                 </div>
                 {/* Product Info */}
                 <CardContent className="p-4">
-                  <h3 className="font-semibold text-lg truncate">{p.name}</h3>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2">
+                  <h3 className="font-semibold sm:text-lg text-base line-clamp-1">
+                    {p.name}
+                  </h3>
+                  <p className="min-[350px]:text-sm text-xs text-neutral-500 dark:text-neutral-400 line-clamp-2">
                     {p.description}
                   </p>
                   <div className="flex items-center justify-between mt-1.5">
-                    <p className="mt-2 font-bold text-xl">
+                    <p className="mt-2 font-bold min-[350px]:text-xl text-lg">
                       {formattedPrice(p.price)}
                     </p>
                     <HeartIcon productId={p.id} wishList={wishList} />
                   </div>
                 </CardContent>
                 {/* Actions */}
-                <CardFooter className="flex justify-between items-center p-4">
+                <CardFooter className="flex min-[350px]:justify-between items-center p-4 max-[350px]:gap-2">
                   <PopularAddToCart productId={p.id} />
                   <Button
                     asChild
                     size="sm"
-                    className="border bg-white text-black dark:bg-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-100 ease-in"
+                    className="border max-[350px]:w-full bg-white text-black dark:bg-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-100 ease-in"
                   >
                     <Link
                       href={`/product/${p.id}`}

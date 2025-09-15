@@ -49,16 +49,16 @@ const WishlistSearch = ({ userId, user }: Props) => {
   const selectedSearch = searchParams.get("search") || "";
 
   return (
-    <section className="w-full pt-40 pb-20 bg-neutral-100 dark:bg-neutral-900">
-      <div className="max-w-3xl mx-auto px-2 flex flex-col justify-center gap-2">
-        <h1 className="sm:text-5xl text-4xl font-semibold text-center px-2">
-          <span>{currentUser ? "Your" : user.name + "'s"}</span>{" "}
+    <section className="w-full sm:pt-40 pt-32 pb-14 bg-neutral-100 dark:bg-neutral-900">
+      <div className="max-w-5xl mx-auto px-2 flex flex-col justify-center gap-2">
+        <h1 className="sm:text-5xl min-[425px]:text-3xl min-[350px]:text-[26px] text-xl font-semibold text-center px-2">
+          <span>{currentUser ? "Your" : user.name.split(" ")[0] + "'s"}</span>{" "}
           <span className="text-blue-600 dark:text-blue-500">wishlisted</span>{" "}
           items
         </h1>
         <form
           onSubmit={handleSubmit}
-          className="relative mt-4 w-full px-2 sm:px-0"
+          className="relative max-w-3xl mx-auto sm:mt-4 mt-2 w-full px-2 sm:px-0"
         >
           <input
             ref={inputRef}
@@ -66,13 +66,13 @@ const WishlistSearch = ({ userId, user }: Props) => {
             onChange={(e) => setSearch(e.target.value)}
             enterKeyHint="search"
             placeholder="Search by product name"
-            className="w-full flex items-center justify-center shadow rounded-full py-3 px-12 focus:outline-none"
+            className="w-full flex items-center sm:text-base text-sm justify-center shadow rounded-full sm:py-3 py-2.5 sm:px-12 px-10 focus:outline-none"
           />
-          <div className="absolute top-3.5 left-6 sm:left-4">
-            <SearchIcon className="size-5 text-gray-500 dark:text-neutral-200" />
+          <div className="absolute sm:top-3.5 top-3 left-6 sm:left-4">
+            <SearchIcon className="sm:size-5 size-4 text-gray-500 dark:text-neutral-200" />
           </div>
-          <div className="absolute top-3.5 right-7 sm:right-5">
-            <FilterIcon className="size-5 text-gray-500 dark:text-neutral-200" />
+          <div className="absolute sm:top-3.5 top-3 right-7 sm:right-5">
+            <FilterIcon className="sm:size-5 size-4 text-gray-500 dark:text-neutral-200" />
           </div>
           {search && (
             <button
