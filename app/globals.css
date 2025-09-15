@@ -98,7 +98,7 @@
   }
 
   .heart-icon {
-    @apply p-3 rounded-lg bg-white dark:bg-neutral-950 min-[420px]:heart-large max-[350px]:small-btn border border-gray-500 dark:border-gray-600 hover:bg-white dark:hover:bg-neutral-950 transition
+    @apply p-3 rounded-lg min-[420px]:heart-large max-[350px]:small-btn border-2 dark:border border-gray-300 dark:border-neutral-700 transition
   }
 
   .small-btn {

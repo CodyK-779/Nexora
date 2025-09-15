@@ -28,7 +28,7 @@ const ImageDetailSection = ({ images }: Props) => {
 
   return (
     <>
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-5">
         {/* Main Image Container */}
         <div className="relative w-full aspect-square rounded-xl overflow-hidden border-2 border-neutral-300 bg-gray-50 group cursor-zoom-in">
           <Image
@@ -36,7 +36,7 @@ const ImageDetailSection = ({ images }: Props) => {
             alt="Selected product image"
             fill
             className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-105"
-            // sizes="(max-width: 768px) 100vw, 50vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority
             onClick={() => setShowZoomModal(true)}
           />
@@ -46,7 +46,6 @@ const ImageDetailSection = ({ images }: Props) => {
             <ZoomIn size={20} className="text-gray-700" />
           </div>
 
-          {/* Navigation arrows (only show if multiple images) */}
           {images.length > 1 && (
             <>
               <button
@@ -70,7 +69,7 @@ const ImageDetailSection = ({ images }: Props) => {
         {/* Thumbnails */}
         {images.length > 1 && (
           <div className="relative w-full">
-            <div ref={thumbnailsRef} className="flex items-center gap-4 pb-2">
+            <div ref={thumbnailsRef} className="grid grid-cols-4 gap-4 w-full">
               {images.map((image, idx) => {
                 const isActive = currentImg === image;
                 return (
@@ -78,7 +77,7 @@ const ImageDetailSection = ({ images }: Props) => {
                     key={idx}
                     onClick={() => setCurrentImg(image)}
                     className={cn(
-                      "relative flex-shrink-0 min-[400px]:size-20 min-[350px]:size-16 size-14 rounded-lg overflow-hidden border-2 transition-all hover:scale-105",
+                      "relative w-full aspect-square rounded-lg overflow-hidden border-2 transition-all hover:scale-105",
                       isActive
                         ? "border-blue-500 ring-2 ring-blue-400 shadow-md"
                         : "border-gray-300 hover:border-gray-500"
@@ -90,8 +89,8 @@ const ImageDetailSection = ({ images }: Props) => {
                       src={image}
                       alt={`Thumbnail ${idx + 1}`}
                       fill
-                      sizes="80px"
-                      className="object-cover w-full h-auto"
+                      sizes="(max-width: 768px) 25vw, 80px"
+                      className="object-cover"
                     />
                   </button>
                 );

@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { toggleWishList } from "@/actions/wishlist-action";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface Props {
   productId: string;
@@ -53,19 +54,28 @@ const HeartIcon = ({ productId, wishList }: Props) => {
   };
 
   return (
-    <Button
-      size="icon"
-      variant="outline"
-      className="border-2 dark:border"
-      disabled={isLiking}
-      onClick={handleLike}
-    >
-      <Heart
-        className={`w-5 h-5 text-gray-500 transition-colors duration-150 ease-in ${
-          hasLiked && "text-red-500 fill-red-500"
-        }`}
-      />
-    </Button>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          size="icon"
+          variant="outline"
+          className="border-2 dark:border"
+          disabled={isLiking}
+          onClick={handleLike}
+        >
+          <Heart
+            className={`w-5 h-5 text-gray-500 transition-colors duration-150 ease-in ${
+              hasLiked && "text-red-500 fill-red-500"
+            }`}
+          />
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <p className="font-medium">
+          {hasLiked ? "Remove from Wishlist" : "Add to Wishlist"}
+        </p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 

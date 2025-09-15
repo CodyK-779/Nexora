@@ -126,7 +126,7 @@ export function RegisterForm({
                   )}
                 </Button>
               </div>
-              <div className="text-center text-sm">
+              <div className="text-center min-[335px]:text-sm text-xs">
                 Already have an account?{" "}
                 <Link href="/login" className="underline underline-offset-4">
                   Sign In

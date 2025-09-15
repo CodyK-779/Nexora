@@ -132,7 +132,7 @@ export const columns: ColumnDef<Payment>[] = [
                 View Profile
               </DropdownMenuItem>
             </Link>
-            <Link href="/">
+            <Link href={`/wishlist/${user.id}`}>
               <DropdownMenuItem className="cursor-pointer">
                 View Wishlists
               </DropdownMenuItem>

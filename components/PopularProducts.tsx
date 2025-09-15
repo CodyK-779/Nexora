@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
-import { ExternalLink, ShoppingCart } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { getPopularProducts } from "@/actions/product-action";
 import Link from "next/link";
 import HeartIcon from "./HeartIcon";
@@ -63,7 +63,7 @@ const PopularProducts = async () => {
                 {/* Product Info */}
                 <CardContent className="p-4">
                   <h3 className="font-semibold text-lg truncate">{p.name}</h3>
-                  <p className="text-sm text-gray-500 line-clamp-2">
+                  <p className="text-sm text-neutral-500 dark:text-neutral-400 line-clamp-2">
                     {p.description}
                   </p>
                   <div className="flex items-center justify-between mt-1.5">

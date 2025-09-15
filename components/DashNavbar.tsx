@@ -39,7 +39,11 @@ const DashNavbar = ({ isMobileOpen, setIsMobileOpen }: Props) => {
           </div>
           <div className="lg:hidden">
             <button onClick={() => setIsMobileOpen(!isMobileOpen)}>
-              {isMobileOpen ? <X /> : <Menu />}
+              {isMobileOpen ? (
+                <X className="size-7" />
+              ) : (
+                <Menu className="size-7" />
+              )}
             </button>
           </div>
         </div>

@@ -32,7 +32,6 @@ export async function getUserDetails(userId: string) {
     });
 
     if (!session) return;
-    if (session.user.id !== userId) return;
 
     const user = await prisma.user.findUnique({
       where: { id: userId },

@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { useState } from "react";
 
 interface Props {
@@ -7,26 +8,31 @@ interface Props {
 }
 
 const DescTextExtend = ({ description }: Props) => {
-  const [extended, setExtended] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
+  const shouldTruncate = description.length > 300;
 
   return (
-    <>
+    <div className="space-y-2">
       <p
-        className={`max-[420px]:text-sm leading-relaxed font-medium text-neutral-600 dark:text-gray-300 ${
-          (!extended || description.length > 300) && "lg:line-clamp-5"
-        }`}
+        className={clsx(
+          "max-[420px]:text-sm leading-relaxed font-medium text-neutral-600 dark:text-gray-300 transition-all duration-300",
+          !expanded && shouldTruncate && "line-clamp-5"
+        )}
       >
         {description}
       </p>
-      {description.length > 300 && (
-        <p
-          className="text-sm font-medium cursor-pointer text-neutral-600 dark:text-gray-300 hover:text-black dark:hover:text-white"
-          onClick={() => setExtended(!extended)}
+
+      {shouldTruncate && (
+        <button
+          type="button"
+          onClick={() => setExpanded(!expanded)}
+          className="text-sm font-medium text-blue-600 dark:text-blue-500 hover:underline"
         >
-          {extended ? "Show less" : "...Show more"}
-        </p>
+          {expanded ? "Show less" : "Show more"}
+        </button>
       )}
-    </>
+    </div>
   );
 };
 

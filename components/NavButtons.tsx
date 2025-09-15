@@ -18,8 +18,10 @@ const NavButtons = async () => {
       {!session ? (
         <button>
           <Link href="/login" className="flex items-center gap-1.5">
-            <User className="size-5 font-medium" />
-            <p className="text-sm font-semibold">Account</p>
+            <User className="min-[340px]:size-5 size-[18px] font-medium" />
+            <p className="min-[340px]:text-sm text-[13px] font-semibold">
+              Account
+            </p>
           </Link>
         </button>
       ) : (
