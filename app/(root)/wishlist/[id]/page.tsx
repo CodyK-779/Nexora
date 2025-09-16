@@ -1,5 +1,4 @@
 import { getUserDetails } from "@/actions/user-action";
-import { getFilteredWishlistItems } from "@/actions/wishlist-action";
 import WishlistItems from "@/components/WishlistItems";
 import WishlistSearch from "@/components/WishlistSearch";
 
@@ -19,11 +18,7 @@ export default async function WishListPage({
   return (
     <>
       <WishlistSearch userId={userId} user={user} />
-      <WishlistItems
-        userId={userId}
-        search={search}
-        wishlistId={user.wishList?.id}
-      />
+      <WishlistItems userId={userId} search={search} />
     </>
   );
 }

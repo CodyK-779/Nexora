@@ -6,6 +6,7 @@ import { Loader2, ShoppingCart, Trash2 } from "lucide-react";
 import { addProductToCart } from "@/actions/cart-action";
 import { toast } from "sonner";
 import { removeWishlistItem } from "@/actions/wishlist-action";
+import { useSession } from "@/app/lib/auth-client";
 
 interface Props {
   userId: string;
@@ -14,10 +15,16 @@ interface Props {
 }
 
 const WishAdd2cartOrRemove = ({ userId, productId, wishlistItemId }: Props) => {
+  const { data: session } = useSession();
   const [isAdding, setIsAdding] = useState(false);
   const [removing, setRemoving] = useState(false);
 
   const handleAddToCart = async () => {
+    if (userId !== session?.user.id) {
+      toast.error("You are not the current user");
+      return;
+    }
+
     setIsAdding(true);
 
     try {
@@ -36,6 +43,11 @@ const WishAdd2cartOrRemove = ({ userId, productId, wishlistItemId }: Props) => {
   };
 
   const removeWishlist = async () => {
+    if (userId !== session?.user.id) {
+      toast.error("You are not the current user");
+      return;
+    }
+
     setRemoving(true);
 
     try {

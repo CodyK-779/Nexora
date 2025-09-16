@@ -49,11 +49,20 @@ export async function getCurrentUserWishlist() {
   }
 }
 
-export async function getFilteredWishlistItems(wishListId: string, search: string) {
+export async function getFilteredWishlistItems( userId: string, search: string) {
   try {
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      include: {
+        wishList: true
+      }
+    });
+
+    if (!user?.wishList) return [];
+
     const items = await prisma.wishListItem.findMany({
       where: {
-        wishListId,
+        wishListId: user.wishList.id,
         product: {
           name: {
             contains: search,

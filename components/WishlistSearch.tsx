@@ -66,21 +66,21 @@ const WishlistSearch = ({ userId, user }: Props) => {
             onChange={(e) => setSearch(e.target.value)}
             enterKeyHint="search"
             placeholder="Search by product name"
-            className="w-full flex items-center sm:text-base text-sm justify-center shadow rounded-full sm:py-3 py-2.5 sm:px-12 px-10 focus:outline-none"
+            className="w-full flex items-center sm:text-base text-sm justify-center shadow rounded-full sm:py-3 min-[350px]:py-2.5 py-2 sm:px-12 px-10 focus:outline-none"
           />
-          <div className="absolute sm:top-3.5 top-3 left-6 sm:left-4">
+          <div className="absolute sm:top-3.5 min-[350px]:top-3 top-2.5 left-6 sm:left-4">
             <SearchIcon className="sm:size-5 size-4 text-gray-500 dark:text-neutral-200" />
           </div>
-          <div className="absolute sm:top-3.5 top-3 right-7 sm:right-5">
+          <div className="absolute sm:top-3.5 min-[350px]:top-3 top-2.5 right-7 sm:right-5">
             <FilterIcon className="sm:size-5 size-4 text-gray-500 dark:text-neutral-200" />
           </div>
           {search && (
             <button
               type="button"
               onClick={clearSearch}
-              className="absolute top-3 right-12 text-gray-500 dark:text-neutral-200"
+              className="absolute sm:top-3.5 top-[9px] right-12 text-gray-500 dark:text-neutral-200"
             >
-              <XIcon />
+              <XIcon className="max-[350px]:size-5" />
             </button>
           )}
         </form>
