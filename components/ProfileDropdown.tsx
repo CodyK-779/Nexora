@@ -68,12 +68,14 @@ const ProfileDropdown = async () => {
               </DropdownMenuItem>
             </Link>
           )}
-          <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
-            <i className="ri-shopping-cart-line text-[16px] font-medium"></i>
-            <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
-              Cart
-            </p>
-          </DropdownMenuItem>
+          <Link href={`/cart/${user.id}`}>
+            <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
+              <i className="ri-shopping-cart-line text-[16px] font-medium"></i>
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
+                Cart
+              </p>
+            </DropdownMenuItem>
+          </Link>
           <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
             <i className="ri-shopping-bag-line text-[16px] font-medium"></i>
             <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">

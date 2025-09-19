@@ -122,7 +122,6 @@ model Order {
   userId    String
   addressId String
   total     Float
-  status    OrderStatus @default(PENDING)
   orderItem OrderItem[]
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
@@ -213,12 +212,6 @@ model Verification {
 enum Role {
   ADMIN
   USER
-}
-
-enum OrderStatus {
-  PENDING
-  CONFIRMED
-  CANCELLED
 }
 
 enum Status {

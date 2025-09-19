@@ -6,6 +6,7 @@ import { formattedPrice } from "./PopularProducts";
 import ProductDetailsHeart from "./ProductDetailsHeart";
 import { ProductDetailsType, WishListType } from "./InterfaceTypes";
 import ProductDetailsCart from "./ProductDetailsCart";
+import BuyNowBtn from "./BuyNowBtn";
 
 interface Props {
   product: ProductDetailsType;
@@ -96,10 +97,7 @@ const ProductDetails = ({ product, wishList }: Props) => {
       {/* Action Buttons */}
       <div className="flex items-center gap-3 w-full mt-4">
         <ProductDetailsCart productId={product.id} />
-        <Button className="w-full flex items-center justify-center font-medium gap-2 min-[420px]:large-btn max-[350px]:small-btn">
-          <ShoppingBag className="size-6" />
-          <p className="font-semibold">Buy Now</p>
-        </Button>
+        <BuyNowBtn productId={product.id} />
         <ProductDetailsHeart productId={product.id} wishList={wishList} />
       </div>
     </div>
