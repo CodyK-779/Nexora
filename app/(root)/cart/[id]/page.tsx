@@ -4,6 +4,7 @@ import { columns } from "./columns";
 import { DataTable } from "./data-table";
 import OrderSummary from "@/components/OrderSummary";
 import { getCartItems } from "@/actions/cart-action";
+import { prisma } from "@/app/lib/prisma";
 
 export default async function CartPage({
   params,

@@ -3,7 +3,6 @@
 import { auth } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { Are_You_Serious } from "next/font/google";
 import { headers } from "next/headers";
 
 export async function getCurrentUserCart() {
@@ -84,8 +83,8 @@ export async function getCartItems(userId: string) {
     const items = await prisma.cartItem.findMany({
       where: { cardId: user.cart.id },
       include: {
-        product: true
-      }
+        product: true,
+      },
     });
 
     return items;

@@ -150,11 +150,12 @@ model OrderItem {
 model Address {
   id         String  @id @default(uuid())
   userId     String
+  title      String
   street     String
-  City       String
-  State      String
+  city       String
+  state      String
   postalCode String
-  Country    String
+  country    String
   order      Order[]
   isDefault  Boolean @default(false)
 
@@ -218,3 +219,6 @@ enum Status {
   Popular
   Normal
 }
+
+/**
+ */
