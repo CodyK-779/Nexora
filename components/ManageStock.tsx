@@ -85,7 +85,7 @@ const ManageStock = ({ id, inventory }: Props) => {
                 onClick={() =>
                   setEditForm((prev) => ({
                     ...prev,
-                    inventory: Math.max(0, prev.inventory - 1),
+                    inventory: Math.max(1, prev.inventory - 1),
                   }))
                 }
               >

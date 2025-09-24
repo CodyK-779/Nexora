@@ -4,9 +4,11 @@ import { useState } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Button } from "./ui/button";
-import { Loader2 } from "lucide-react";
+import { ArrowLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { addNewAddress } from "@/actions/order-action";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 interface Props {
   userId: string;
@@ -20,6 +22,7 @@ const AddressForm = ({ userId }: Props) => {
   const [postal, setPostal] = useState("");
   const [country, setCountry] = useState("");
   const [saving, setSaving] = useState(false);
+  const router = useRouter();
 
   const resetForm = () => {
     setTitle("");
@@ -131,6 +134,13 @@ const AddressForm = ({ userId }: Props) => {
           <>SAVE ADDRESS</>
         )}
       </Button>
+      <button
+        className="flex items-center gap-2 text-sm font-medium mt-4"
+        onClick={() => router.back()}
+      >
+        <ArrowLeft className="size-4" />
+        Back
+      </button>
     </div>
   );
 };

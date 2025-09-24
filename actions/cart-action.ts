@@ -154,3 +154,25 @@ export async function deleteCartItem(cartItemId: string, path: string) {
     };
   }
 }
+
+export async function getTotalCartItems(userId: string) {
+  try {
+    const results = await prisma.cartItem.aggregate({
+      _sum: {
+        quantity: true
+      },
+      where: {
+        cart: {
+          userId
+        }
+      }
+    });
+
+    const totalCount = results._sum.quantity || 0;
+
+    return totalCount;
+  } catch (error) {
+    console.error("Failed to get total cartItem count", error);
+    throw new Error("Failed to get total cartItem count");
+  }
+}

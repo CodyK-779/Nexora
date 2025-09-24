@@ -1,4 +1,3 @@
-import { getSavedAddress } from "@/actions/order-action";
 import { auth } from "@/app/lib/auth";
 import AddressForm from "@/components/AddressForm";
 import { headers } from "next/headers";
@@ -10,10 +9,6 @@ export default async function AddressPage() {
   });
 
   if (!session) return;
-
-  const addresses = await getSavedAddress(session.user.id);
-
-  console.log(addresses);
 
   return (
     <section className="max-w-6xl px-4 mx-auto min-[370px]:pt-36 pt-32 flex flex-col min-[940px]:flex-row justify-between  gap-10">

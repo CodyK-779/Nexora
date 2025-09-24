@@ -123,6 +123,7 @@ model Order {
   addressId String
   total     Float
   orderItem OrderItem[]
+  status    OrderStatus @default(PENDING)
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
 
@@ -220,5 +221,8 @@ enum Status {
   Normal
 }
 
-/**
- */
+enum OrderStatus {
+  PENDING
+  PAID
+  CANCELLED
+}

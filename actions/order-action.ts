@@ -48,3 +48,54 @@ export async function getSavedAddress(userId: string) {
     throw new Error("Failed to get saved addresses");
   }
 }
+
+export async function createOrder(userId: string, addressId: string, total: number, path: string) {
+  try {
+    const cart = await prisma.cart.findUnique({
+      where: { userId },
+      include: {
+        cartItem: {
+          include: {
+            product: true
+          }
+        }
+      }
+    });
+
+    if (!cart || cart.cartItem.length === 0) {
+      return { success: false, error: "Cart is empty" }
+    }
+
+    await prisma.$transaction([
+      prisma.order.create({
+        data: {
+          userId,
+          addressId,
+          total,
+          orderItem: {
+            create: cart.cartItem.map(item => ({
+              productId: item.product.id,
+              quantity: item.quantity,
+              price: item.product.price
+            }))
+          }
+        }
+      }),
+      prisma.cartItem.deleteMany({
+        where: { cardId: cart.id }
+      })
+    ]);
+
+    revalidatePath(path);
+    return { success: true }
+  } catch (error) {
+    console.error("Error creating order:", error);
+    return {
+      success: false,
+      error:
+        error instanceof Error
+          ? error.message
+          : "Failed to create order",
+    };
+  }
+}
