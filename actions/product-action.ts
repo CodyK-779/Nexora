@@ -66,7 +66,8 @@ export async function getPopularProducts() {
     const products = prisma.product.findMany({
       where: {
         status: "Popular"
-      }
+      },
+      take: 4
     });
 
     return products;
