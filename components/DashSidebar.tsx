@@ -36,7 +36,7 @@ const DashSidebar = ({
       icon: LayoutDashboard,
       link: "/dashboard/manage-categories",
     },
-    { name: "Orders", icon: CheckSquareIcon, link: "/dashboard/settings" },
+    { name: "Orders", icon: CheckSquareIcon, link: "/dashboard/orders" },
   ];
 
   const pathname = usePathname();
@@ -106,7 +106,7 @@ const DashSidebar = ({
                 href={item.link}
                 onClick={() => setIsMobileOpen(false)}
                 className={`flex items-center gap-4 px-4 py-3 ${
-                  isActive && "bg-neutral-200 dark:bg-neutral-700"
+                  isActive && "bg-neutral-100 dark:bg-neutral-700"
                 }  transition-colors`}
               >
                 <item.icon className="w-6 h-6" />

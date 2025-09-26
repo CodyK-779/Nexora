@@ -27,7 +27,7 @@ const WishlistItems = async ({ userId, search }: Props) => {
                     fill
                     className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300 ease-in"
                   />
-                  <Badge className="absolute top-2 right-2 text-[10px] bg-black text-white rounded-full">
+                  <Badge className="absolute top-2 right-2 text-[10px] bg-black text-white hover:bg-black rounded-full">
                     {item.product.category.name}
                   </Badge>
                 </div>

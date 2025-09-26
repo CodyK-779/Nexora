@@ -99,3 +99,24 @@ export async function createOrder(userId: string, addressId: string, total: numb
     };
   }
 }
+
+export async function getAllOrders() {
+  try {
+    const orders = await prisma.order.findMany({
+      include: {
+        user: true,
+        address: true,
+        orderItem: {
+          include: {
+            product: true
+          }
+        }
+      }
+    });
+
+    return orders;
+  } catch (error) {
+    console.error("Failed to get all orders", error);
+    throw new Error("Failed to get all orders");
+  }
+}

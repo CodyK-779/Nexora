@@ -137,7 +137,11 @@ export const columns: ColumnDef<Payment>[] = [
                 View Wishlists
               </DropdownMenuItem>
             </Link>
-            <DropdownMenuItem>View Orders</DropdownMenuItem>
+            <Link href={`/order/${user.id}`}>
+              <DropdownMenuItem className="cursor-pointer">
+                View Orders
+              </DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       );

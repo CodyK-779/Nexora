@@ -7,7 +7,6 @@ import { Button } from "./ui/button";
 import { ArrowLeft, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { addNewAddress } from "@/actions/order-action";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 interface Props {
