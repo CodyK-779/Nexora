@@ -1,26 +1,25 @@
 "use client";
 
 import { Heart } from "lucide-react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { WishListType } from "./InterfaceTypes";
 import { useSession } from "@/app/lib/auth-client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { toast } from "sonner";
 import { toggleWishList } from "@/actions/wishlist-action";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface Props {
   productId: string;
-  wishList: WishListType | undefined;
+  wishlist: WishListType | undefined;
 }
 
-const HeartIcon = ({ productId, wishList }: Props) => {
+const ProductSecLike = ({ productId, wishlist }: Props) => {
   const { data: session } = useSession();
   const router = useRouter();
-  const [isLiking, setIsLiking] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [hasLiked, setHasLiked] = useState(
-    wishList?.items.some((item) => item.productId === productId) || false
+    wishlist?.items.some((item) => item.productId === productId) || false
   );
 
   const handleLike = async () => {
@@ -32,7 +31,7 @@ const HeartIcon = ({ productId, wishList }: Props) => {
       return;
     }
 
-    setIsLiking(true);
+    setLoading(true);
 
     try {
       const result = await toggleWishList(productId, "/");
@@ -46,37 +45,28 @@ const HeartIcon = ({ productId, wishList }: Props) => {
     } catch (error) {
       console.error("Error updating wishlist:", error);
       setHasLiked(
-        wishList?.items.some((item) => item.productId === productId) || false
+        wishlist?.items.some((item) => item.productId === productId) || false
       );
     } finally {
-      setIsLiking(false);
+      setLoading(false);
     }
   };
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button
-          size="icon"
-          variant="outline"
-          className="border-2 dark:border"
-          disabled={isLiking}
-          onClick={handleLike}
-        >
-          <Heart
-            className={`size-5 text-gray-500 transition-colors duration-150 ease-in ${
-              hasLiked && "text-red-500 fill-red-500"
-            }`}
-          />
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p className="font-medium">
-          {hasLiked ? "Remove from Wishlist" : "Add to Wishlist"}
-        </p>
-      </TooltipContent>
-    </Tooltip>
+    <Button
+      className="absolute top-2 right-2.5 border rounded-full border-neutral-300 hover:bg-neutral-100 transition-colors ease-in"
+      variant="ghost"
+      size="icon"
+      disabled={loading}
+      onClick={handleLike}
+    >
+      <Heart
+        className={`size-5 text-gray-500 transition-colors duration-150 ease-in ${
+          hasLiked && "text-red-500 fill-red-500"
+        }`}
+      />
+    </Button>
   );
 };
 
-export default HeartIcon;
+export default ProductSecLike;

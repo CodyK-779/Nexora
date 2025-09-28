@@ -38,6 +38,7 @@ const SideSignout = () => {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button
+          size="lg"
           className="flex items-center gap-2 w-full bg-red-600 hover:bg-red-700 text-white transition-colors ease-in"
           disabled={pending}
         >

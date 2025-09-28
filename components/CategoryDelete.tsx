@@ -14,7 +14,6 @@ import {
 } from "./ui/alert-dialog";
 import { DropdownMenuItem } from "./ui/dropdown-menu";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { deleteCategory } from "@/actions/category-action";
 import { toast } from "sonner";
 
@@ -24,7 +23,6 @@ interface Props {
 
 const CategoryDelete = ({ id }: Props) => {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleDelete = async () => {
     setLoading(true);
@@ -34,7 +32,6 @@ const CategoryDelete = ({ id }: Props) => {
 
       if (results?.success) {
         toast.success("Category deleted successfully!");
-        router.push("/dashboard/manage-categories", { scroll: false });
       }
     } catch (error) {
       toast.error("Failed to delete category.");

@@ -15,8 +15,8 @@ interface Props {
 }
 
 const ChangeProductStatus = ({ id, status }: Props) => {
-  const handleRoleChange = async () => {
-    const result = await updateStatus(id);
+  const handleRoleChange = async (productStatus: Status) => {
+    const result = await updateStatus(id, productStatus);
 
     if (result.success) {
       toast.success("Status Updated Successfully!");
@@ -35,14 +35,28 @@ const ChangeProductStatus = ({ id, status }: Props) => {
         <DropdownMenuItem
           disabled={status === "Popular"}
           className="cursor-pointer"
-          onClick={handleRoleChange}
+          onClick={() => handleRoleChange("Popular")}
         >
           Popular
         </DropdownMenuItem>
         <DropdownMenuItem
+          disabled={status === "New"}
+          className="cursor-pointer"
+          onClick={() => handleRoleChange("New")}
+        >
+          New
+        </DropdownMenuItem>
+        <DropdownMenuItem
+          disabled={status === "BestSeller"}
+          className="cursor-pointer"
+          onClick={() => handleRoleChange("BestSeller")}
+        >
+          Best Seller
+        </DropdownMenuItem>
+        <DropdownMenuItem
           disabled={status === "Normal"}
           className="cursor-pointer"
-          onClick={handleRoleChange}
+          onClick={() => handleRoleChange("Normal")}
         >
           Normal
         </DropdownMenuItem>

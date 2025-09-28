@@ -1,6 +1,7 @@
 "use server";
 
 import { prisma } from "@/app/lib/prisma";
+import { revalidatePath } from "next/cache";
 
 export async function createCategory(name: string, image: string) {
   try {
@@ -26,17 +27,10 @@ export async function createCategory(name: string, image: string) {
   }
 }
 
-export async function updateCategory(id: string, name: string, image: string) {
+export async function updateCategory(id: string, formData: FormData) {
   try {
-    const category = await prisma.category.findUnique({
-      where: { id }
-    });
-
-    if (!category) return;
-
-    if (category.name === name && category.image === image) {
-      return { error: "You still haven't made any changes yet." }
-    }
+    const name = formData.get("name") as string;
+    const image = formData.get("image") as string;
 
     await prisma.category.update({
       where: { id },
@@ -46,10 +40,11 @@ export async function updateCategory(id: string, name: string, image: string) {
       }
     });
 
-    return { success: true };
+    revalidatePath("/dashboard/manage-categories");
+    return { success: true }
   } catch (error) {
-    console.error("Failed to update category.", error);
-    throw new Error("Failed to update category.")
+    console.error("Error updating category:", error);
+    return { success: false, error: "Failed to update category" };
   }
 }
 
@@ -61,6 +56,7 @@ export async function deleteCategory(id: string) {
       where: { id }
     });
 
+    revalidatePath("/dashboard/manage-categories");
     return { success: true }
   } catch (error) {
     console.error("Failed to delete category", error);

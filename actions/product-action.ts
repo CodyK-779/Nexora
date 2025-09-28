@@ -1,5 +1,6 @@
 "use server";
 
+import { Status } from "@/app/generated/prisma";
 import { prisma } from "@/app/lib/prisma";
 import { revalidatePath } from "next/cache";
 
@@ -7,11 +8,7 @@ export async function getAllProducts() {
   try {
     const products = await prisma.product.findMany({
       include: {
-        category: {
-          select: {
-            name: true
-          }
-        }
+        category: true
       }
     });
 
@@ -156,7 +153,7 @@ export async function updateProduct(id: string, formData: FormData) {
   }
 }
 
-export async function updateStatus(id: string) {
+export async function updateStatus(id: string, status: Status) {
   try {
     const product = await prisma.product.findUnique({
       where: { id }
@@ -164,12 +161,10 @@ export async function updateStatus(id: string) {
 
     if (!product) return { error: "This product doesn't exist" };
 
-    const updatedStatus = product.status === "Popular" ? "Normal" : "Popular";
-
     await prisma.product.update({
       where: { id },
       data: {
-        status: updatedStatus
+        status
       }
     });
 

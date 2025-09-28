@@ -10,7 +10,7 @@ interface EditFormType {
   categoryId: string;
   category: string;
   price: number;
-  images: string[]; // always Cloudinary URLs
+  images: string[];
 }
 
 interface Props {
@@ -19,11 +19,9 @@ interface Props {
 }
 
 const ProductImgChange = ({ editForm, setEditForm }: Props) => {
-  // keep local previews separate
   const [previewImages, setPreviewImages] = useState<string[]>(editForm.images);
 
   const handleImageChange = async (file: File, idx: number) => {
-    // create preview blob
     const previewUrl = URL.createObjectURL(file);
     setPreviewImages((prev) => {
       const updated = [...prev];
@@ -50,7 +48,6 @@ const ProductImgChange = ({ editForm, setEditForm }: Props) => {
       if (!res.ok) throw new Error("Upload failed");
       const data = await res.json();
 
-      // replace preview with Cloudinary URL in both preview + editForm
       setPreviewImages((prev) => {
         const updated = [...prev];
         updated[idx] = data.secure_url;

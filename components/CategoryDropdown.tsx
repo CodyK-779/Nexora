@@ -12,9 +12,11 @@ import CategoryDelete from "./CategoryDelete";
 
 interface Props {
   id: string;
+  name: string;
+  image: string;
 }
 
-const CategoryDropdown = ({ id }: Props) => {
+const CategoryDropdown = ({ id, name, image }: Props) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -22,7 +24,7 @@ const CategoryDropdown = ({ id }: Props) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          <CategoryEdit id={id} />
+          <CategoryEdit id={id} name={name} image={image} />
           <CategoryDelete id={id} />
         </DropdownMenuGroup>
       </DropdownMenuContent>

@@ -218,7 +218,9 @@ enum Role {
 
 enum Status {
   Popular
+  New
   Normal
+  BestSeller
 }
 
 enum OrderStatus {

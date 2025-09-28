@@ -81,6 +81,18 @@ export async function createOrder(userId: string, addressId: string, total: numb
           }
         }
       }),
+
+      ...cart.cartItem.map(item => 
+        prisma.product.update({
+          where: { id: item.product.id },
+          data: {
+            inventory: {
+              decrement: item.quantity
+            }
+          }
+        })
+      ),
+
       prisma.cartItem.deleteMany({
         where: { cardId: cart.id }
       })

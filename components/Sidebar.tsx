@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useSession } from "@/app/lib/auth-client";
 import { usePathname } from "next/navigation";
 import SideSignout from "./SideSignout";
+import { Button } from "./ui/button";
 
 const navLinks = [
   { title: "Home", link: "/" },
@@ -88,7 +89,7 @@ const Sidebar = () => {
             {navLinks.map((item) => {
               const isActive = pathname === item.link;
               return (
-                <li key={item.title}>
+                <li key={item.title} onClick={handleClose}>
                   <Link
                     href={item.link}
                     className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
@@ -107,18 +108,16 @@ const Sidebar = () => {
         <div className="absolute bottom-6 left-4 right-4">
           {!session ? (
             <div className="space-y-3">
-              <Link
-                href="/login"
-                className="block w-full text-center px-4 py-2 bg-black text-white rounded-lg text-sm font-medium hover:bg-neutral-800 dark:bg-white dark:text-black dark:hover:bg-neutral-200 transition-colors"
+              <Button asChild className="w-full" size="lg">
+                <Link href="/login">Sign In</Link>
+              </Button>
+              <Button
+                asChild
+                className="w-full bg-white dark:bg-black dark:border border-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-900 text-black dark:text-white transition-colors ease-in"
+                size="lg"
               >
-                Sign In
-              </Link>
-              <Link
-                href="/register"
-                className="block w-full text-center px-4 py-2 border border-neutral-300 dark:border-neutral-600 rounded-lg text-sm font-medium hover:bg-neutral-50 dark:hover:bg-neutral-800 transition-colors"
-              >
-                Create Account
-              </Link>
+                <Link href="/register">Create Account</Link>
+              </Button>
             </div>
           ) : (
             <SideSignout />

@@ -49,7 +49,7 @@ const WishlistSearch = ({ userId, user }: Props) => {
   const selectedSearch = searchParams.get("search") || "";
 
   return (
-    <section className="w-full sm:pt-40 pt-32 pb-14 bg-neutral-100 dark:bg-neutral-900">
+    <section className="w-full pt-32 pb-14 bg-neutral-100 dark:bg-neutral-900">
       <div className="max-w-5xl mx-auto px-2 flex flex-col justify-center gap-2">
         <h1 className="sm:text-5xl min-[425px]:text-3xl min-[350px]:text-[26px] text-xl font-semibold text-center px-2">
           <span>{currentUser ? "Your" : user.name.split(" ")[0] + "'s"}</span>{" "}

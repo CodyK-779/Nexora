@@ -43,7 +43,11 @@ const CategoryTable = ({ categories }: Props) => {
               </TableCell>
               <TableCell>{cat.name}</TableCell>
               <TableCell>
-                <CategoryDropdown id={cat.id} />
+                <CategoryDropdown
+                  id={cat.id}
+                  name={cat.name}
+                  image={cat.image}
+                />
               </TableCell>
             </TableRow>
           ))}
