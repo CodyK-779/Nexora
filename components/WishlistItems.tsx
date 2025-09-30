@@ -14,7 +14,7 @@ const WishlistItems = async ({ userId, search }: Props) => {
   const wishListItems = await getFilteredWishlistItems(userId, search);
 
   return (
-    <section className="max-container sm:pt-20 pt-16 ">
+    <section className="max-container sm:pt-20 pt-16">
       {wishListItems.length > 0 ? (
         <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1 lg:gap-6 min-[500px]:gap-4 gap-8">
           {wishListItems.map((item) => (
@@ -56,7 +56,7 @@ const WishlistItems = async ({ userId, search }: Props) => {
           ))}
         </div>
       ) : (
-        <h1 className="sm:text-3xl min-[400px]:text-2xl min-[350px]:text-xl text-lg font-medium text-center">
+        <h1 className="sm:text-3xl min-[400px]:text-2xl min-[350px]:text-xl text-lg font-medium text-center pt-[140px]">
           No wishlist items found
         </h1>
       )}

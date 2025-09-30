@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 import SideSignout from "./SideSignout";
 import { Button } from "./ui/button";
 
-const navLinks = [
+export const navLinks = [
   { title: "Home", link: "/" },
   { title: "Shop", link: "/shop" },
   { title: "About", link: "/about" },

@@ -69,7 +69,7 @@ const ProductSecButtons = ({ productId }: Props) => {
   const route = session ? `/cart/${session.user.id}` : "/login";
 
   return (
-    <div className="flex items-center gap-1.5 mt-1.5 w-full">
+    <div className="flex items-center min-[500px]:gap-1.5 gap-2 mt-1.5 w-full">
       <Button
         size="sm"
         disabled={adding}

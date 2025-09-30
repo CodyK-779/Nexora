@@ -4,7 +4,7 @@ import { Status } from "@/app/generated/prisma";
 import { prisma } from "@/app/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-export async function getAllProducts() {
+export async function getAllProducts(search?: string) {
   try {
     const products = await prisma.product.findMany({
       include: {

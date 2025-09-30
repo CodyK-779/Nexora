@@ -16,9 +16,9 @@ export default async function WishListPage({
   if (!user) return;
 
   return (
-    <>
+    <section className="min-h-screen">
       <WishlistSearch userId={userId} user={user} />
       <WishlistItems userId={userId} search={search} />
-    </>
+    </section>
   );
 }

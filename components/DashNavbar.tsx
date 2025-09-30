@@ -28,7 +28,7 @@ const DashNavbar = ({ isMobileOpen, setIsMobileOpen }: Props) => {
             height={70}
             className="hidden dark:block"
           />
-          <p className="text-[22px] font-bold -ml-3 text-gray-700 dark:text-neutral-50">
+          <p className="text-[22px] font-semibold -ml-3 text-gray-700 dark:text-neutral-50">
             Nexora
           </p>
         </Link>

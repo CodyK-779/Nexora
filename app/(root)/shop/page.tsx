@@ -3,13 +3,18 @@ import { getAllProducts } from "@/actions/product-action";
 import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import ShopSection from "@/components/ShopSection";
 
-export default async function ShopPage() {
-  const products = await getAllProducts();
+export default async function ShopPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ product: string }>;
+}) {
+  const productSearch = (await searchParams).product;
+  const products = await getAllProducts(productSearch);
   const categories = await getAllCategories();
   const wishlist = await getCurrentUserWishlist();
 
   return (
-    <section>
+    <section className="min-h-screen">
       <ShopSection
         products={products}
         categories={categories}

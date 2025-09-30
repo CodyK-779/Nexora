@@ -2,8 +2,11 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+// @ts-ignore
 import "swiper/css";
+// @ts-ignore
 import "swiper/css/navigation";
+// @ts-ignore
 import "swiper/css/pagination";
 import Image from "next/image";
 import { Button } from "./ui/button";
@@ -13,7 +16,7 @@ const slides = [
   {
     image: "/nike.png",
     category: "Shoes",
-    title: "Nike Air High x Dior",
+    title: "Nike Air x Dior",
     desc: "Luxury meets legendary comfort - limited stock!",
     promo: "Sale Up to 33% OFF",
     linePrice: "$15,000,00",
@@ -52,7 +55,7 @@ const slides = [
     linePrice: "$749.99",
     discount: "$649,99",
     margin: "mb-8",
-    link: "/",
+    link: "/product/a74b3fb2-b43d-4fb6-9f89-f1dd42c11cf0",
   },
 ];
 
@@ -60,7 +63,6 @@ const HeroSection = () => {
   return (
     <div className="max-container py-10 cm:py-4 mt-[70px] cm:mt-20 relative w-full lg:rounded-xl bg-gradient-to-r from-gray-900 to-gray-800">
       <Swiper
-        // navigation
         modules={[Navigation, Pagination, Autoplay]}
         pagination={{ clickable: true }}
         autoplay={{ delay: 2500 }}
@@ -75,14 +77,14 @@ const HeroSection = () => {
                 <span className="inline-block px-3 py-1 text-xs font-semibold tracking-widest text-yellow-400 uppercase bg-gray-700 rounded-full">
                   {slide.category}
                 </span>
-                <h2 className="max-[450px]:text-2xl text-4xl lg:text-5xl font-bold leading-tight">
+                <h2 className="max-[450px]:text-2xl text-4xl lg:text-5xl font-semibold leading-tight">
                   {slide.title}
                 </h2>
                 <p className="lg:text-xl min-[350px]:text-base text-sm text-gray-300">
                   {slide.desc}
                 </p>
                 <div className="flex items-center justify-center cm:justify-start gap-4">
-                  <span className="sn:text-2xl min-[400px]:text-lg min-[360px]:text-base text-sm font-bold text-yellow-400">
+                  <span className="sn:text-2xl min-[400px]:text-lg min-[360px]:text-base text-sm font-semibold text-yellow-400">
                     {slide.promo}
                   </span>
                   <span className="font-medium min-[400px]:text-base text-sm">

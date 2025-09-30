@@ -26,7 +26,7 @@ const PopularProducts = async () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-10">
-          <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-semibold tracking-tight sm:text-4xl">
             Most{" "}
             <span className="text-blue-700 dark:text-blue-600">Popular</span>{" "}
             Items

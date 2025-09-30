@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import MenuProvider from "@/components/MenuProvider";
 import Navbar from "@/components/Navbar";
 import Overlay from "@/components/Overlay";
@@ -16,6 +17,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <main className="pb-20">{children}</main>
         </TooltipProvider>
       </MenuProvider>
+      <Footer />
     </div>
   );
 }
