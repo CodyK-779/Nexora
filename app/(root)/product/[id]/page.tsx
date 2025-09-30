@@ -16,7 +16,7 @@ export default async function ProductDetailsPage({
   if (!product) return null;
 
   return (
-    <section className="max-w-6xl mx-auto px-4 pt-28">
+    <section className="max-w-6xl mx-auto min-h-screen px-4 pt-28">
       <BackButton />
       <div className="grid min-[864px]:grid-cols-2 w-full gap-12 mt-6">
         <ImageDetailSection images={product.images} />

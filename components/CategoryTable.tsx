@@ -32,7 +32,7 @@ const CategoryTable = ({ categories }: Props) => {
             <TableRow key={cat.id}>
               <TableCell>{idx + 1}</TableCell>
               <TableCell>
-                <div className="bg-white w-fit rounded">
+                <div className="bg-white w-fit rounded border shadow border-neutral-300">
                   <Image
                     src={cat.image}
                     alt="category image"

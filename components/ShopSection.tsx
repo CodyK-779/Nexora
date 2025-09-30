@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { ProductsType, WishListType } from "./InterfaceTypes";
 import ProductFilter from "./ProductFilter";
 import ProductSection from "./ProductSection";
 import { Category } from "@/app/generated/prisma";
+import { useSearchParams } from "next/navigation";
 
 interface Props {
   categories: Category[];
@@ -17,6 +18,12 @@ export default function ShopSection({ products, categories, wishlist }: Props) {
   const [category, setCategory] = useState<string>("all");
   const [status, setStatus] = useState<string>("all");
   const [sortBy, setSortBy] = useState<string>("name");
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const q = searchParams.get("product") || "";
+    setSearch(q);
+  }, [searchParams]);
 
   const filteredProducts = useMemo(() => {
     let filtered = products.filter((product) => {
@@ -42,11 +49,11 @@ export default function ShopSection({ products, categories, wishlist }: Props) {
     });
 
     return filtered;
-  }, [search, category, status, sortBy]);
+  }, [search, category, status, sortBy, products]);
 
   return (
     <>
-      {/* Enhanced Filters Bar */}
+      {/* Filters Bar */}
       <ProductFilter
         search={search}
         category={category}

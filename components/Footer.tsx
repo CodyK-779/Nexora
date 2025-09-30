@@ -79,7 +79,8 @@ const Footer = async () => {
           </div>
         </div>
       </div>
-      <hr className="border mb-10" />
+      <hr className="border border-neutral-300 dark:border-neutral-800 mb-8" />
+      {/* Footer */}
       <div className="max-container font-medium text-neutral-600 dark:text-neutral-300 flex md:flex-row flex-col gap-1.5 items-center justify-center">
         <p className="min-[350px]:text-base text-sm">
           © 2025 Nexora All rights reserved.{" "}

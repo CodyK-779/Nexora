@@ -56,7 +56,7 @@
     --chart-5: 340 75% 55%}
 }
 
-@layer base {
+/* @layer base {
   :root {
     --chart-1: oklch(0.488 0.243 264.376);
     --chart-2: oklch(0.6 0.118 184.704);
@@ -72,7 +72,26 @@
     --chart-4: oklch(0.627 0.265 303.9);
     --chart-5: oklch(0.646 0.222 41.116);
   }
+} */
+
+@layer base {
+  :root {
+    --chart-1: oklch(0.55 0.25 250); 
+    --chart-2: oklch(0.7 0.15 190);
+    --chart-3: oklch(0.55 0.22 305);
+    --chart-4: oklch(0.68 0.25 25);
+    --chart-5: oklch(0.78 0.18 80);
+  }
+
+  .dark {
+    --chart-1: oklch(0.48 0.22 250);
+    --chart-2: oklch(0.65 0.18 190);
+    --chart-3: oklch(0.58 0.25 305);
+    --chart-4: oklch(0.62 0.22 25);
+    --chart-5: oklch(0.72 0.20 80);
+  }
 }
+
 
 @layer base {
   * {
@@ -141,3 +160,9 @@
 .cloudinary-widget * {
   z-index: 9999 !important;
 }
+
+/*
+
+
+
+*/

@@ -85,7 +85,7 @@ export function getColumns(categories: Category[]): ColumnDef<Payment>[] {
         const product = row.original;
         return (
           <div className="flex items-center gap-3 ml-2">
-            <div className="size-10 rounded-md overflow-hidden border border-gray-200 dark:border-gray-700 shadow-sm bg-white">
+            <div className="size-10 rounded-md overflow-hidden border border-neutral-300 dark:border-gray-700 shadow bg-white">
               <Image
                 src={product.images[0]}
                 alt="Product image"

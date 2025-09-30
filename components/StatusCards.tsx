@@ -9,6 +9,7 @@ import {
 const StatusCards = async () => {
   const products = await prisma.product.count();
   const users = await prisma.user.count();
+  const orderItems = await prisma.orderItem.count();
 
   return (
     <div className="mt-6 flex flex-wrap items-center px-2 gap-4">
@@ -55,7 +56,7 @@ const StatusCards = async () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <h3 className="font-semibold">100</h3>
+          <h3 className="font-semibold">{orderItems}</h3>
           <div className="flex items-center">
             <i className="ri-arrow-right-down-line font-medium"></i>
             <p className="text-sm font-semibold ml-1">+2.1%</p>
