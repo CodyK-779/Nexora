@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import React, { createContext, ReactNode, useContext, useState } from "react";
 
 interface Props {

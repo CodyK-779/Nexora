@@ -70,6 +70,9 @@ export async function getPopularProducts() {
       where: {
         status: "Popular"
       },
+      include: {
+        category: true
+      },
       take: 4
     });
 

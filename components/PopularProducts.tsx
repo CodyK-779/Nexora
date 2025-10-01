@@ -7,6 +7,7 @@ import Link from "next/link";
 import HeartIcon from "./HeartIcon";
 import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import PopularAddToCart from "./PopularAddToCart";
+import { Badge } from "./ui/badge";
 
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {
@@ -53,12 +54,17 @@ const PopularProducts = async () => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 768px, 1024px"
                     className="object-contain group-hover:scale-105 transition-transform duration-300"
                   />
-                  {p.images.length > 1 && (
+                  {/* {p.images.length > 1 && (
                     <div className="absolute top-2 right-2 flex items-center gap-1 bg-neutral-800 text-white px-2.5 rounded-full">
                       <i className="ri-multi-image-line"></i>
                       <p className="text-xs font-medium">{p.images.length}</p>
                     </div>
-                  )}
+                  )} */}
+                  <div className="absolute top-2 right-2.5">
+                    <Badge className="rounded-full bg-black hover:bg-black text-white">
+                      {p.category.name}
+                    </Badge>
+                  </div>
                 </div>
                 {/* Product Info */}
                 <CardContent className="p-4">

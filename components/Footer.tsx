@@ -1,10 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { navLinks } from "./Navbar";
 import { getAllCategories } from "@/actions/category-action";
 
 const Footer = async () => {
   const categories = await getAllCategories();
+
+  const navLinks = [
+    { title: "Home", link: "/" },
+    { title: "Shop", link: "/shop" },
+    { title: "About", link: "/about" },
+    { title: "Contact", link: "/contact" },
+  ];
 
   return (
     <section className="w-full border-t-2 py-8 border-neutral-300 dark:border-neutral-800 bg-neutral-100 dark:bg-black">

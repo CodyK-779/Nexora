@@ -1,13 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavButtons from "./NavButtons";
-
-export const navLinks = [
-  { title: "Home", link: "/" },
-  { title: "Shop", link: "/shop" },
-  { title: "About", link: "/about" },
-  { title: "Contact", link: "/contact" },
-];
+import NavLinks from "./NavLinks";
 
 const Navbar = () => {
   return (
@@ -30,21 +24,12 @@ const Navbar = () => {
               height={70}
               className="hidden dark:block"
             />
-            <p className="min-[400px]:text-[22px] text-[20px] font-bold -ml-3 text-black dark:text-neutral-50">
+            <p className="min-[400px]:text-[22px] text-[20px] font-bold min-[340px]:-ml-3 -ml-3.5 text-black dark:text-neutral-50">
               Nexora
             </p>
           </Link>
           {/* Second Row */}
-          <ul className="hidden cm:flex items-center gap-8 lg:gap-12 font-semibold">
-            {navLinks.map((nav) => (
-              <li
-                key={nav.link}
-                className="cursor-pointer hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-200 ease-in"
-              >
-                <Link href={nav.link}>{nav.title}</Link>
-              </li>
-            ))}
-          </ul>
+          <NavLinks />
         </div>
         {/* Third Row */}
         <NavButtons />
