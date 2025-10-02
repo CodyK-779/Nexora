@@ -18,12 +18,12 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white sm:py-20 py-16">
         <div className="absolute inset-0 bg-black/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 text-center">
+        <div className="relative max-container text-center">
           <Badge
             variant="secondary"
             className="min-[450px]:mb-6 mb-4 bg-white/20 text-white border-none"
           >
-            Since 2024
+            About Nexora
           </Badge>
           <h1 className="md:text-6xl min-[450px]:text-4xl min-[360px]:text-3xl text-2xl font-semibold mb-6 leading-tight">
             We're Revolutionizing
@@ -60,7 +60,7 @@ export default function AboutPage() {
 
       {/* Stats Section */}
       <section className="py-16 bg-neutral-100 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-container">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             {stats.map((s) => (
               <div key={s.stat} className="space-y-2">
@@ -80,7 +80,7 @@ export default function AboutPage() {
 
       {/* Our Story Section */}
       <section className="py-20 ">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-container">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="min-[450px]:space-y-6 space-y-4">
               <Badge
@@ -178,7 +178,7 @@ export default function AboutPage() {
 
       {/* Values Section */}
       <section className="py-20 bg-neutral-100 dark:bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-container">
           <div className="text-center min-[350px]:mb-14 mb-10">
             <Badge
               variant="outline"
@@ -222,7 +222,7 @@ export default function AboutPage() {
 
       {/* Team Section */}
       <section className="py-20">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="max-container">
           <div className="text-center min-[400px]:mb-16 mb-12">
             <Badge
               variant="outline"
