@@ -5,6 +5,7 @@ const HeroContact = () => {
     <section className="bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white py-16 lg:py-24">
       <div className="max-container text-center">
         <Badge
+          textSize="text-[11px]"
           variant="secondary"
           className="min-[450px]:mb-6 mb-4 bg-white/20 text-white border-none"
         >

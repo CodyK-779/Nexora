@@ -3,15 +3,24 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 import { getAllCategories } from "@/actions/category-action";
 
-const gradientBgClasses = [
-  "bg-gradient-to-br from-purple-900 via-violet-800 to-indigo-900",
-  "bg-gradient-to-br from-rose-900 via-pink-800 to-red-900",
-  "bg-gradient-to-br from-emerald-900 via-teal-800 to-cyan-900",
-  "bg-gradient-to-br from-amber-900 via-orange-800 to-yellow-900",
-  "bg-gradient-to-br from-sky-900 via-blue-800 to-indigo-900",
-  "bg-gradient-to-br from-lime-900 via-green-800 to-emerald-900",
-  "bg-gradient-to-br from-fuchsia-900 via-purple-800 to-violet-900",
-];
+const gradientBgClasses = (category: string) => {
+  switch (category) {
+    case "Electronics":
+      return "bg-gradient-to-bl from-slate-900 via-blue-900 via-purple-800 to-fuchsia-700";
+    case "Clothings":
+      return "bg-gradient-to-br from-purple-900 via-fuchsia-800 via-pink-700 to-orange-500";
+    case "Household":
+      return "bg-gradient-to-l from-[#e966a0] via-[#2b2730] to-[#6554af]";
+    case "Furniture":
+      return "bg-gradient-to-t from-[#10a19d] via-[#540375] to-[#ff7000]";
+
+    case "Sports":
+      return "bg-gradient-to-t from-[#0a1931] via-[#185adb] to-[#ffc947]";
+    case "Collectables":
+      // return "bg-gradient-to-t from-[#4b4c7a] via-[#eb92fb] to-[#c855bc]";
+      return "bg-gradient-to-br from-indigo-900 via-purple-800 via-fuchsia-700 to-cyan-500";
+  }
+};
 
 const FeaturedCategories = async () => {
   const categories = await getAllCategories();
@@ -34,9 +43,9 @@ const FeaturedCategories = async () => {
           {categories.map((cat, index) => (
             <div
               key={cat.id}
-              className={`flex flex-col items-center max-[328px]:w-full w-[140px] p-4 rounded-xl ${
-                gradientBgClasses[index % gradientBgClasses.length]
-              } shadow-md hover:-translate-y-1 hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in cursor-pointer`}
+              className={`flex flex-col items-center max-[328px]:w-full w-[140px] p-4 rounded-xl ${gradientBgClasses(
+                cat.name
+              )} shadow-md hover:-translate-y-1 hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in cursor-pointer`}
             >
               <div className="p-3.5 bg-neutral-50 rounded-full mb-4">
                 <Image

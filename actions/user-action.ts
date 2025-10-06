@@ -37,7 +37,23 @@ export async function getUserDetails(userId: string) {
       where: { id: userId },
       include: {
         cart: true,
-        wishList: true,
+        wishList: {
+          include: {
+            items: {
+              include: {
+                product: {
+                  include: {
+                    category: {
+                      select: {
+                        name: true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         order: {
           include: {
             orderItem: {

@@ -8,15 +8,9 @@ import { Payment } from "@/app/(dashboard)/dashboard/products/columns";
 
 interface MobileProductListProps {
   products: Payment[];
-  // onEdit: (id: string) => void;
-  // onDelete: (id: string) => void;
 }
 
-const MobileProductList = ({
-  products,
-}: // onEdit,
-// onDelete,
-MobileProductListProps) => {
+const MobileProductList = ({ products }: MobileProductListProps) => {
   if (!products.length) {
     return (
       <p className="text-center text-muted-foreground mt-6">
@@ -51,8 +45,11 @@ MobileProductListProps) => {
 
             {/* Category + Status */}
             <div className="flex items-center gap-2 flex-wrap">
-              <Badge variant="outline">{product.category.name}</Badge>
+              <Badge textSize="text-[10px]" variant="outline">
+                {product.category.name}
+              </Badge>
               <Badge
+                textSize="text-[10px]"
                 className={
                   product.status === "Normal"
                     ? "bg-green-100 text-green-800"

@@ -2,17 +2,25 @@
 
 import { Heart } from "lucide-react";
 import { Button } from "./ui/button";
-import { WishListType } from "./InterfaceTypes";
 import { useSession } from "@/app/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 import { toggleWishList } from "@/actions/wishlist-action";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import { WishListItem } from "@/app/generated/prisma";
 
 interface Props {
   productId: string;
-  wishList: WishListType | undefined;
+  wishList:
+    | {
+        id: string;
+        userId: string;
+        createdAt: Date;
+        updatedAt: Date;
+        items: WishListItem[];
+      }
+    | undefined;
 }
 
 const HeartIcon = ({ productId, wishList }: Props) => {

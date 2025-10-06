@@ -13,6 +13,24 @@ interface Props {
 const WishlistItems = async ({ userId, search }: Props) => {
   const wishListItems = await getFilteredWishlistItems(userId, search);
 
+  const categoryColors = (category: string) => {
+    switch (category) {
+      case "Electronics":
+        return "bg-gradient-to-r from-gray-900 via-purple-900 to-violet-900";
+
+      case "Clothings":
+        return "bg-gradient-to-r from-purple-500 via-pink-500 to-red-500";
+      case "Household":
+        return "bg-gradient-to-bl from-emerald-400 via-teal-500 to-green-700";
+      case "Furniture":
+        return "bg-gradient-to-t from-[#10a19d] via-[#540375] to-[#ff7000]";
+      case "Sports":
+        return "bg-gradient-to-br from-sky-900 via-blue-800 to-indigo-900";
+      case "Collectables":
+        return "bg-gradient-to-br from-indigo-900 via-purple-800 via-fuchsia-700 to-cyan-500";
+    }
+  };
+
   return (
     <section className="max-container sm:pt-20 pt-16">
       {wishListItems.length > 0 ? (
@@ -27,7 +45,12 @@ const WishlistItems = async ({ userId, search }: Props) => {
                     fill
                     className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300 ease-in"
                   />
-                  <Badge className="absolute top-2 right-2 text-[10px] bg-black text-white hover:bg-black rounded-full">
+                  <Badge
+                    textSize="text-[10px]"
+                    className={`absolute top-2 right-2 text-[10px] ${categoryColors(
+                      item.product.category.name
+                    )} text-white rounded-full`}
+                  >
                     {item.product.category.name}
                   </Badge>
                 </div>

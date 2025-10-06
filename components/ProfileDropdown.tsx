@@ -52,12 +52,14 @@ const ProfileDropdown = async () => {
         </DropdownMenuItem>
         <DropdownMenuSeparator className="border border-neutral-100 dark:border-neutral-800" />
         <DropdownMenuGroup className="pt-2">
-          <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
-            <Settings className="size-8" />
-            <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
-              Manage account
-            </p>
-          </DropdownMenuItem>
+          <Link href={`/profile/${session.user.id}`}>
+            <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
+              <Settings className="size-8" />
+              <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
+                Manage account
+              </p>
+            </DropdownMenuItem>
+          </Link>
           {user.role === "ADMIN" && (
             <Link href="/dashboard">
               <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">

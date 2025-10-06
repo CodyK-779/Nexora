@@ -20,6 +20,7 @@ export default function AboutPage() {
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative max-container text-center">
           <Badge
+            textSize="text-[11px]"
             variant="secondary"
             className="min-[450px]:mb-6 mb-4 bg-white/20 text-white border-none"
           >
@@ -84,6 +85,7 @@ export default function AboutPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="min-[450px]:space-y-6 space-y-4">
               <Badge
+                textSize="text-[11px]"
                 variant="outline"
                 className="text-blue-600 border-blue-200"
               >
@@ -181,6 +183,7 @@ export default function AboutPage() {
         <div className="max-container">
           <div className="text-center min-[350px]:mb-14 mb-10">
             <Badge
+              textSize="text-[11px]"
               variant="outline"
               className="text-purple-600 border-purple-200 mb-4"
             >
@@ -225,6 +228,7 @@ export default function AboutPage() {
         <div className="max-container">
           <div className="text-center min-[400px]:mb-16 mb-12">
             <Badge
+              textSize="text-[11px]"
               variant="outline"
               className="text-yellow-600 border-yellow-200 mb-4"
             >

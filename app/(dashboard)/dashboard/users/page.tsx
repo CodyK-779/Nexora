@@ -2,7 +2,7 @@ import { getAllUsers } from "@/actions/user-action";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
 
-export const creatorId = "89nUHGBsm0qVXKXSL0KpJpmvJ2J3BPPJ";
+export const creatorId = "9a45ASFRxYfeQRskZjC2kCCEWTtMIS8e";
 
 export default async function DashboardUsers() {
   const users = await getAllUsers();

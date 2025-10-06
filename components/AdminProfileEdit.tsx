@@ -35,6 +35,7 @@ const AdminProfileEdit = ({ user }: Props) => {
     bio: user.bio || "",
     image: user.image || "",
   });
+  const [previewImage, setPreviewImage] = useState<string>(editForm.image);
 
   if (!session) return;
 
@@ -81,7 +82,12 @@ const AdminProfileEdit = ({ user }: Props) => {
             <DialogTitle>Edit User Profile</DialogTitle>
           </DialogHeader>
           <div className="py-4">
-            <UserImgChange editForm={editForm} setEditForm={setEditForm} />
+            <UserImgChange
+              editForm={editForm}
+              setEditForm={setEditForm}
+              previewImage={previewImage}
+              setPreviewImage={setPreviewImage}
+            />
             <div className="flex flex-col gap-2 py-3">
               <Label htmlFor="name">Name</Label>
               <Input

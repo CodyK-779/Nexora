@@ -59,7 +59,6 @@ const DashOrderTable = ({ orders }: Props) => {
                       <p>
                         {order.address.state}, {order.address.postalCode}
                       </p>
-                      <p>{order.address.street}</p>
                     </div>
                   </TableCell>
                   {/* Third Cell */}

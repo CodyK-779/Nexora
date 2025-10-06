@@ -1,5 +1,6 @@
 import { Camera } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Dispatch, SetStateAction } from "react";
 
 interface EditFormType {
   name: string;
@@ -9,16 +10,23 @@ interface EditFormType {
 
 interface Props {
   editForm: EditFormType;
+  previewImage: string;
+  setPreviewImage: (prev: string) => void;
   setEditForm: React.Dispatch<React.SetStateAction<EditFormType>>;
 }
 
-const UserImgChange = ({ editForm, setEditForm }: Props) => {
+const UserImgChange = ({
+  editForm,
+  setEditForm,
+  previewImage,
+  setPreviewImage,
+}: Props) => {
   return (
     <>
       <div className="flex items-center justify-center">
         <label htmlFor="image-upload" className="relative cursor-pointer">
-          <Avatar className="size-16">
-            <AvatarImage src={editForm.image} />
+          <Avatar className="size-20">
+            <AvatarImage src={previewImage} />
             <AvatarFallback>
               {editForm.name.charAt(0).toUpperCase()}
             </AvatarFallback>
@@ -38,7 +46,7 @@ const UserImgChange = ({ editForm, setEditForm }: Props) => {
             if (!file) return;
 
             const previewUrl = URL.createObjectURL(file);
-            setEditForm((prev) => ({ ...prev, image: previewUrl }));
+            setPreviewImage(previewUrl);
 
             const formData = new FormData();
             formData.append("file", file);
@@ -59,6 +67,7 @@ const UserImgChange = ({ editForm, setEditForm }: Props) => {
               if (!res.ok) throw new Error("Upload failed");
               const data = await res.json();
 
+              setPreviewImage(data.secure_url);
               setEditForm((prev) => ({ ...prev, image: data.secure_url }));
             } catch (err) {
               console.error("Cloudinary upload error:", err);
@@ -72,3 +81,9 @@ const UserImgChange = ({ editForm, setEditForm }: Props) => {
 };
 
 export default UserImgChange;
+
+/*
+
+
+
+*/

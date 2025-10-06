@@ -44,7 +44,7 @@ const PopularAddToCart = ({ productId }: Props) => {
   return (
     <Button
       size="sm"
-      className="flex items-center gap-2 font-medium max-[350px]:w-full"
+      className="flex w-full items-center gap-2 font-medium max-[350px]:w-full"
       disabled={isAdding}
       onClick={handleAddToCart}
     >

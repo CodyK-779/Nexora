@@ -18,6 +18,24 @@ export const formattedPrice = (price: number) => {
   return formatted;
 };
 
+const categoryColors = (category: string) => {
+  switch (category) {
+    case "Electronics":
+      return "bg-gradient-to-r from-gray-900 via-purple-900 to-violet-900 text-white rounded-full";
+
+    case "Clothings":
+      return "bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white rounded-full";
+    case "Household":
+      return "bg-gradient-to-bl from-emerald-400 via-teal-500 to-green-700 text-white rounded-full";
+    case "Furniture":
+      return "bg-gradient-to-t from-[#10a19d] via-[#540375] to-[#ff7000] text-white rounded-full";
+    case "Sports":
+      return "bg-gradient-to-br from-sky-900 via-blue-800 to-indigo-900 text-white rounded-full";
+    case "Collectables":
+      return "bg-gradient-to-br from-indigo-900 via-purple-800 via-fuchsia-700 to-cyan-500 text-white rounded-full";
+  }
+};
+
 const PopularProducts = async () => {
   const products = await getPopularProducts();
   const wishList = await getCurrentUserWishlist();
@@ -54,14 +72,11 @@ const PopularProducts = async () => {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 768px, 1024px"
                     className="object-contain group-hover:scale-105 transition-transform duration-300"
                   />
-                  {/* {p.images.length > 1 && (
-                    <div className="absolute top-2 right-2 flex items-center gap-1 bg-neutral-800 text-white px-2.5 rounded-full">
-                      <i className="ri-multi-image-line"></i>
-                      <p className="text-xs font-medium">{p.images.length}</p>
-                    </div>
-                  )} */}
                   <div className="absolute top-2 right-2.5">
-                    <Badge className="rounded-full bg-black hover:bg-black text-white">
+                    <Badge
+                      textSize="text-[10px]"
+                      className={categoryColors(p.category.name)}
+                    >
                       {p.category.name}
                     </Badge>
                   </div>
@@ -82,12 +97,12 @@ const PopularProducts = async () => {
                   </div>
                 </CardContent>
                 {/* Actions */}
-                <CardFooter className="flex min-[350px]:justify-between items-center p-4 max-[350px]:gap-2">
+                <CardFooter className="flex min-[350px]:justify-between items-center p-4 gap-2">
                   <PopularAddToCart productId={p.id} />
                   <Button
                     asChild
                     size="sm"
-                    className="border max-[350px]:w-full bg-white text-black dark:bg-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-100 ease-in"
+                    className="border w-full bg-white text-black dark:bg-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors duration-100 ease-in"
                   >
                     <Link
                       href={`/product/${p.id}`}

@@ -35,11 +35,17 @@ const ProductDetails = ({ product, wishList }: Props) => {
       {/* Title + Category */}
       <div>
         <div className="flex items-center gap-3">
-          <Badge className="bg-purple-600 text-white hover:bg-purple-600">
+          <Badge
+            textSize="text-[11px]"
+            className="bg-purple-600 text-white hover:bg-purple-600"
+          >
             {product.category.name}
           </Badge>
           {product.status === "Popular" && (
-            <Badge className="bg-yellow-400 text-white hover:bg-yellow-400">
+            <Badge
+              textSize="text-[11px]"
+              className="bg-yellow-400 text-white hover:bg-yellow-400"
+            >
               {product.status}
             </Badge>
           )}
