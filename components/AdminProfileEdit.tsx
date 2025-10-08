@@ -30,12 +30,13 @@ const AdminProfileEdit = ({ user }: Props) => {
   const { data: session } = useSession();
   const [loading, setLoading] = useState(false);
   const [showEditForm, setShowEditForm] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [editForm, setEditForm] = useState({
     name: user.name || "",
     bio: user.bio || "",
     image: user.image || "",
   });
-  const [previewImage, setPreviewImage] = useState<string>(editForm.image);
 
   if (!session) return;
 
@@ -83,10 +84,12 @@ const AdminProfileEdit = ({ user }: Props) => {
           </DialogHeader>
           <div className="py-4">
             <UserImgChange
+              uploading={uploading}
+              uploadProgress={uploadProgress}
+              setUploadProgress={setUploadProgress}
+              setUploading={setUploading}
               editForm={editForm}
               setEditForm={setEditForm}
-              previewImage={previewImage}
-              setPreviewImage={setPreviewImage}
             />
             <div className="flex flex-col gap-2 py-3">
               <Label htmlFor="name">Name</Label>
@@ -115,7 +118,7 @@ const AdminProfileEdit = ({ user }: Props) => {
             <DialogClose asChild className="mt-4 sm:mt-0">
               <Button variant="outline">Cancel</Button>
             </DialogClose>
-            <Button onClick={handleSubmit} disabled={loading}>
+            <Button onClick={handleSubmit} disabled={loading || uploading}>
               {loading ? (
                 <>
                   <Loader2 className="animate-spin" />

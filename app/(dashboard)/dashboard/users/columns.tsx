@@ -2,7 +2,7 @@
 
 import { Role } from "@/app/generated/prisma";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { MoreHorizontal, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -19,6 +19,7 @@ import AdminProfileEdit from "@/components/AdminProfileEdit";
 import ChangeRoles from "@/components/ChangeRoles";
 import DeleteUser from "@/components/DeleteUser";
 import Link from "next/link";
+import Image from "next/image";
 
 export type Payment = {
   id: string;
@@ -63,10 +64,20 @@ export const columns: ColumnDef<Payment>[] = [
       const user = row.original;
       return (
         <div className="flex items-center gap-3">
-          <Avatar className="size-8">
-            <AvatarImage src={user.image!} />
-            <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
-          </Avatar>
+          <div className="relative size-8 rounded-full overflow-hidden bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center">
+            {user.image ? (
+              <Image
+                src={user.image}
+                alt={user.name}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <div className="absolute flex items-center justify-center">
+                <User className="size-4 text-blue-600 dark:text-blue-400" />
+              </div>
+            )}
+          </div>
           <span className="whitespace-nowrap">{user.name}</span>
         </div>
       );

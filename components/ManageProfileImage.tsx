@@ -26,8 +26,8 @@ const ManageProfileImage = ({ user }: Props) => {
   const [image, setImage] = useState(user.image);
   const [showEdit, setShowEdit] = useState(false);
   const [loading, setLoading] = useState(false);
-
-  console.log(image);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const userValidate = () => {
     if (session?.user.id !== user.id) {
@@ -41,8 +41,7 @@ const ManageProfileImage = ({ user }: Props) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    const previewUrl = URL.createObjectURL(file);
-    // setImage(previewUrl);
+    setUploading(true);
 
     const formData = new FormData();
     formData.append("file", file);
@@ -52,6 +51,16 @@ const ManageProfileImage = ({ user }: Props) => {
     );
 
     try {
+      const progressInterval = setInterval(() => {
+        setUploadProgress((prev) => {
+          if (prev >= 90) {
+            clearInterval(progressInterval);
+            return 90;
+          }
+          return prev + 10;
+        });
+      }, 200);
+
       const res = await fetch(
         `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/image/upload`,
         {
@@ -60,10 +69,18 @@ const ManageProfileImage = ({ user }: Props) => {
         }
       );
 
+      clearInterval(progressInterval);
+      setUploadProgress(100);
+
       const data = await res.json();
       setImage(data.secure_url);
+
+      setTimeout(() => setUploading(false), 500);
     } catch (error) {
       console.error("Upload failed:", error);
+    } finally {
+      setUploading(false);
+      setUploadProgress(0);
     }
   };
 
@@ -96,9 +113,9 @@ const ManageProfileImage = ({ user }: Props) => {
 
   return (
     <div className="relative min-[450px]:size-24 size-20 inline-block mb-4">
-      {image ? (
+      {user.image ? (
         <Image
-          src={image}
+          src={user.image}
           alt={user.name}
           fill
           className="object-cover rounded-full"
@@ -149,13 +166,21 @@ const ManageProfileImage = ({ user }: Props) => {
               className="hidden"
               onChange={handleImageChange}
             />
+            {uploading && (
+              <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+                <div
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${uploadProgress}%` }}
+                ></div>
+              </div>
+            )}
           </div>
           <DialogFooter>
             <DialogClose asChild>
               <Button variant="outline">Cancel</Button>
             </DialogClose>
             <Button
-              disabled={loading}
+              disabled={loading || uploading}
               onClick={handleUpdate}
               className="flex items-center gap-2"
             >
