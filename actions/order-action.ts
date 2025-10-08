@@ -49,6 +49,31 @@ export async function getSavedAddress(userId: string) {
   }
 }
 
+export async function setDefaultAddress(userId: string, addressId: string, path: string) {
+  try {
+    await prisma.$transaction([
+      prisma.address.updateMany({
+        where: { userId },
+        data: { isDefault: false }
+      }),
+
+      prisma.address.update({
+        where: { id: addressId },
+        data: { isDefault: true }
+      })
+    ])
+
+    revalidatePath(path);
+    return { success: true }
+  } catch (error) {
+    console.error("Failed set Default Address", error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : "Failed to set default address" 
+    };
+  }
+}
+
 export async function createOrder(userId: string, addressId: string, total: number, path: string) {
   try {
     const cart = await prisma.cart.findUnique({
@@ -130,5 +155,37 @@ export async function getAllOrders() {
   } catch (error) {
     console.error("Failed to get all orders", error);
     throw new Error("Failed to get all orders");
+  }
+}
+
+export async function updateAddress(id: string, formData: FormData, path: string) {
+  try {
+    const title = formData.get("title") as string;
+    const street = formData.get("street") as string;
+    const city = formData.get("city") as string;
+    const state = formData.get("state") as string;
+    const postalCode = formData.get("postalCode") as string;
+    const country = formData.get("country") as string;
+
+    await prisma.address.update({
+      where: { id },
+      data: {
+        title,
+        street,
+        city,
+        state,
+        postalCode,
+        country
+      }
+    });
+
+    revalidatePath(path);
+    return { success: true }
+  } catch (error) {
+    console.error("Failed to update address", error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : "Failed to update address" 
+    };
   }
 }

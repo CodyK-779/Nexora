@@ -1,10 +1,17 @@
-import { CheckCircle2, Clock, Package, Star, User } from "lucide-react";
+import {
+  CheckCircle2,
+  Clock,
+  Loader2,
+  Package,
+  Star,
+  User,
+} from "lucide-react";
 import { TabsContent } from "./ui/tabs";
 import { Input } from "./ui/input";
 import { UserDetailsType } from "./InterfaceTypes";
 import { Badge } from "./ui/badge";
 import { Textarea } from "./ui/textarea";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "./ui/button";
 import {
   Card,
@@ -13,6 +20,8 @@ import {
   CardDescription,
   CardContent,
 } from "./ui/card";
+import { toast } from "sonner";
+import { editProfileOverview } from "@/actions/user-action";
 
 interface Props {
   user: UserDetailsType;
@@ -21,6 +30,44 @@ interface Props {
 }
 
 const OverviewTab = ({ isEditing, setIsEditing, user }: Props) => {
+  const [loading, setLoading] = useState(false);
+  const [editForm, setEditForm] = useState({
+    name: user.name || "",
+    bio: user.bio || "",
+  });
+
+  const handleUpdate = async () => {
+    if (!editForm.name.trim()) {
+      return toast.error("Name cannot be empty.");
+    }
+
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      Object.entries(editForm).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
+      const result = await editProfileOverview(
+        user.id,
+        formData,
+        `/profile/${user.id}`
+      );
+
+      if (result.success) {
+        toast.success("Profile edited successfully!");
+      } else {
+        toast.error("Failed to update profile");
+      }
+    } catch (error) {
+      console.error("Failed to update profile", error);
+    } finally {
+      setLoading(false);
+      setIsEditing(false);
+    }
+  };
+
   return (
     <TabsContent value="overview" className="space-y-6">
       <Card className="border-0 shadow-lg dark:bg-gray-900">
@@ -40,11 +87,13 @@ const OverviewTab = ({ isEditing, setIsEditing, user }: Props) => {
                 <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
                   Full Name
                 </label>
-                {/* {user.role === "ADMIN" && <Badge>Admin</Badge>} */}
               </div>
               {isEditing ? (
                 <Input
-                  defaultValue={user.name}
+                  value={editForm.name}
+                  onChange={(e) =>
+                    setEditForm({ ...editForm, name: e.target.value })
+                  }
                   className="border-neutral-300 dark:border-gray-700"
                 />
               ) : (
@@ -81,7 +130,10 @@ const OverviewTab = ({ isEditing, setIsEditing, user }: Props) => {
             </label>
             {isEditing ? (
               <Textarea
-                defaultValue={user.bio || ""}
+                value={editForm.bio || ""}
+                onChange={(e) =>
+                  setEditForm({ ...editForm, bio: e.target.value })
+                }
                 placeholder="Tell us about yourself..."
                 className="min-h-28 shadow border-neutral-300 dark:border-gray-700"
               />
@@ -94,7 +146,20 @@ const OverviewTab = ({ isEditing, setIsEditing, user }: Props) => {
 
           {isEditing && (
             <div className="flex gap-3 pt-4">
-              <Button>Save Changes</Button>
+              <Button
+                disabled={loading}
+                onClick={handleUpdate}
+                className="flex items-center gap-2"
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="animate-spin" />
+                    Updating...
+                  </>
+                ) : (
+                  <p>Save Changes</p>
+                )}
+              </Button>
               <Button variant="outline" onClick={() => setIsEditing(false)}>
                 Cancel
               </Button>

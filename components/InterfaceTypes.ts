@@ -125,6 +125,7 @@ export interface UserDetailsType {
   role: $Enums.Role;
   createdAt: Date;
   updatedAt: Date;
+  address: Address[];
   order: OrdersType[];
   cart: Cart | null;
   wishList: WishListType | null;

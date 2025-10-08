@@ -1,9 +1,9 @@
 import { User, Camera } from "lucide-react";
-import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { UserDetailsType } from "./InterfaceTypes";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import Image from "next/image";
+import { useState } from "react";
+import ManageProfileImage from "./ManageProfileImage";
 
 export interface MockUserType {
   id: string;
@@ -28,26 +28,7 @@ const ProfileCard = ({ user }: Props) => {
         <CardContent className="py-6 px-5">
           {/* Profile Summary */}
           <div className="text-center mb-6">
-            <div className="relative min-[450px]:size-24 size-20 inline-block mb-4">
-              {user.image ? (
-                <Image
-                  src={user.image}
-                  alt={user.name}
-                  fill
-                  className="object-cover rounded-full"
-                />
-              ) : (
-                <div className="min-[450px]:size-24 size-20 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center">
-                  <User className="h-12 w-12 text-blue-600 dark:text-blue-400" />
-                </div>
-              )}
-              <Button
-                size="icon"
-                className="absolute bottom-0 right-0 min-[450px]:size-8 size-6 rounded-full"
-              >
-                <Camera className="min-[450px]:size-4 size-3" />
-              </Button>
-            </div>
+            <ManageProfileImage user={user} />
             <h2 className="min-[450px]:text-xl text-lg font-semibold text-gray-900 dark:text-white">
               {user.name}
             </h2>

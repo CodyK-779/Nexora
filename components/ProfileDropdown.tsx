@@ -1,5 +1,4 @@
 import { Heart, LayoutDashboard, Settings } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,6 +12,7 @@ import { auth } from "@/app/lib/auth";
 import { headers } from "next/headers";
 import { getUserDetails } from "@/actions/user-action";
 import Link from "next/link";
+import Image from "next/image";
 
 const ProfileDropdown = async () => {
   const session = await auth.api.getSession({
@@ -28,21 +28,35 @@ const ProfileDropdown = async () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Avatar className="size-9 cursor-pointer">
-          <AvatarImage src={session.user.image!} />
-          <AvatarFallback className="bg-black text-white dark:bg-neutral-800 font-medium">
-            {session.user.name.charAt(0).toUpperCase()}
-          </AvatarFallback>
-        </Avatar>
+        <div className="relative size-9 rounded-full overflow-hidden cursor-pointer flex items-center justify-center bg-black text-white">
+          {user.image ? (
+            <Image
+              src={user.image}
+              alt={user.name}
+              fill
+              className="object-cover"
+            />
+          ) : (
+            <p className="font-medium">{user.name.charAt(0).toUpperCase()}</p>
+          )}
+        </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="min-w-72 py-2.5 rounded-xl mr-4 lg:mr-0">
         <DropdownMenuItem className="px-4 flex items-center gap-3 hover:bg-white">
-          <Avatar className="size-11">
-            <AvatarImage src={session.user.image!} />
-            <AvatarFallback className="bg-black text-white text-lg dark:bg-neutral-800 font-medium">
-              {session.user.name.charAt(0).toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
+          <div className="relative size-11 rounded-full overflow-hidden cursor-pointer flex items-center justify-center bg-black text-white">
+            {user.image ? (
+              <Image
+                src={user.image}
+                alt={user.name}
+                fill
+                className="object-cover"
+              />
+            ) : (
+              <p className="font-medium text-lg">
+                {user.name.charAt(0).toUpperCase()}
+              </p>
+            )}
+          </div>
           <div className="flex flex-col gap-0.5">
             <p className="text-sm font-medium">{session.user.name}</p>
             <p className="text-xs font-medium text-neutral-500 dark:text-neutral-300">

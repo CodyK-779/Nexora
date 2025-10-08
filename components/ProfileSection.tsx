@@ -1,8 +1,7 @@
 "use client";
 
-import { use, useState } from "react";
+import { useState } from "react";
 import ProfileHeader from "./ProfileHeader";
-import { mockUser } from "./ProfileData";
 import ProfileCard from "./ProfileCard";
 import ProfileMain from "./ProfileMain";
 import { UserDetailsType } from "./InterfaceTypes";
@@ -24,6 +23,7 @@ export default function ProfileSection({ user }: Props) {
       <div className="max-container">
         {/* Header */}
         <ProfileHeader
+          id={user.id}
           name={user.name}
           currentUser={currentUser}
           isEditing={isEditing}

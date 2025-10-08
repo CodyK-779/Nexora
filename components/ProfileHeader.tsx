@@ -1,8 +1,11 @@
-import { Edit, Edit3, Settings } from "lucide-react";
+import { Edit, Settings } from "lucide-react";
 import { Button } from "./ui/button";
 import { Dispatch, SetStateAction } from "react";
+import { useSession } from "@/app/lib/auth-client";
+import { toast } from "sonner";
 
 interface Props {
+  id: string;
   name: string;
   currentUser: boolean;
   isEditing: boolean;
@@ -10,11 +13,14 @@ interface Props {
 }
 
 const ProfileHeader = ({
+  id,
   name,
   currentUser,
   isEditing,
   setIsEditing,
 }: Props) => {
+  const { data: session } = useSession();
+
   return (
     <div className="flex flex-col md:flex-row justify-between items-start lg:items-center gap-6 mb-8">
       <div>
@@ -29,7 +35,15 @@ const ProfileHeader = ({
       <div className="flex gap-3">
         <Button
           variant="outline"
-          onClick={() => setIsEditing(!isEditing)}
+          onClick={() => {
+            if (session?.user.id !== id) {
+              return toast.error(
+                "Profile editing is restricted to account owners only."
+              );
+            }
+
+            setIsEditing(!isEditing);
+          }}
           className="max-[450px]:small-btn flex items-center gap-2 dark:bg-black"
         >
           <Edit className="size-4" />

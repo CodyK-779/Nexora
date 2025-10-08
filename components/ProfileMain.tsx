@@ -74,7 +74,7 @@ const ProfileMain = ({
         <WishListTab userId={user.id} wishlist={user.wishList} />
 
         {/* Addresses Tab */}
-        <AddressTab />
+        <AddressTab userId={user.id} address={user.address} />
       </Tabs>
     </div>
   );

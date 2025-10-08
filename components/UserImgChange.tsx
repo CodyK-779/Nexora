@@ -1,6 +1,5 @@
 import { Camera } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Dispatch, SetStateAction } from "react";
 
 interface EditFormType {
   name: string;

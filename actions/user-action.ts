@@ -36,6 +36,7 @@ export async function getUserDetails(userId: string) {
     const user = await prisma.user.findUnique({
       where: { id: userId },
       include: {
+        address: true,
         cart: true,
         wishList: {
           include: {
@@ -181,5 +182,41 @@ export async function selectedUserDelete(ids: string[]) {
   } catch (error) {
     console.error("Error deleting users:", error);
     return { success: false, error: "Failed to delete users" };
+  }
+}
+
+export async function editProfileOverview(id: string, formData: FormData, path: string) {
+  try {
+    const name = formData.get("name") as string;
+    const bio = formData.get("bio") as string;
+
+    await prisma.user.update({
+      where: { id },
+      data: {
+        name,
+        bio
+      }
+    });
+
+    revalidatePath(path);
+    return { success: true };
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    return { success: false, error: "Failed to update profile" };
+  }
+}
+
+export async function updateProfileImage(id: string, image: string, path: string) {
+  try {
+    await prisma.user.update({
+      where: { id },
+      data: { image }
+    });
+
+    revalidatePath(path);
+    return { success: true }
+  } catch (error) {
+    console.error("Error updating profile image:", error);
+    return { success: false, error: "Failed to update profile image" };
   }
 }
