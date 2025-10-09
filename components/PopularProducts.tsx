@@ -8,6 +8,7 @@ import HeartIcon from "./HeartIcon";
 import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import PopularAddToCart from "./PopularAddToCart";
 import { Badge } from "./ui/badge";
+import { BoxReveal } from "./ui/box-reveal";
 
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {
@@ -43,17 +44,20 @@ const PopularProducts = async () => {
     <section className="py-12 ">
       <div className="max-container">
         {/* Section Header */}
-        <div className="text-center mb-10">
-          <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-semibold tracking-tight sm:text-4xl">
-            Most{" "}
-            <span className="text-blue-700 dark:text-blue-600">Popular</span>{" "}
-            Items
-          </h2>
-          <p className="mt-2 min-[350px]:text-base text-sm text-gray-500 dark:text-gray-400">
-            Discover the best-selling products loved by our customers
-          </p>
+        <div className="flex flex-col items-center justify-center text-center mb-10">
+          <BoxReveal boxColor={"#5046e6"} duration={1}>
+            <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-semibold tracking-tight sm:text-4xl">
+              Most{" "}
+              <span className="text-blue-700 dark:text-blue-600">Popular</span>{" "}
+              Items
+            </h2>
+          </BoxReveal>
+          <BoxReveal boxColor={"#5046e6"} duration={1}>
+            <p className="mt-2 min-[350px]:text-base text-sm text-gray-500 dark:text-gray-400">
+              Discover the best-selling products loved by our customers
+            </p>
+          </BoxReveal>
         </div>
-        {/*  */}
         {/* Product Grid */}
         {products.length > 0 ? (
           <div className="flex sm:grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 sm:gap-5 gap-4 overflow-x-auto sm:overflow-visible no-scrollbar pb-2">

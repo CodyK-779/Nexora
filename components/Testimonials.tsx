@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Marquee } from "./ui/marquee";
 import { testimonials } from "./testimonialData";
+import { BoxReveal } from "./ui/box-reveal";
 
 interface Props {
   name: string;
@@ -49,19 +50,25 @@ const ReviewCard = ({ name, email, img, review, stars }: Props) => {
 const Testimonials = () => {
   return (
     <div className="py-16 bg-neutral-100 dark:bg-black">
-      <div className="flex flex-col items-center justify-center px-3">
+      <div className="flex flex-col items-center justify-center text-center px-3  mb-8">
         <div className="border-2 border-yellow-400 dark:border-yellow-500 px-3 py-0.5 rounded-full text-xs font-medium">
           Testimonials
         </div>
-        <h1 className="sm:text-4xl min-[350px]:text-3xl text-2xl font-semibold mt-2">
-          Our{" "}
-          <span className="text-blue-600 dark:text-blue-500">Testimonials</span>
-        </h1>
-        <p className="min-[350px]:text-base text-sm text-center mt-1 font-medium text-gray-600 dark:text-neutral-300 mb-8">
-          Hear what our happy customers are saying about their shopping
-          experience. <br className="max-[664px]:hidden" /> Real stories, real
-          satisfaction.
-        </p>
+        <BoxReveal boxColor={"#5046e6"} duration={1}>
+          <h1 className="sm:text-4xl min-[350px]:text-3xl text-2xl font-semibold mt-2">
+            Our{" "}
+            <span className="text-blue-600 dark:text-blue-500">
+              Testimonials
+            </span>
+          </h1>
+        </BoxReveal>
+        <BoxReveal boxColor={"#5046e6"} duration={1}>
+          <p className="min-[350px]:text-base text-sm text-center mt-1 font-medium text-gray-600 dark:text-neutral-300">
+            Hear what our happy customers are saying about their shopping
+            experience. <br className="max-[664px]:hidden" /> Real stories, real
+            satisfaction.
+          </p>
+        </BoxReveal>
       </div>
       <div className="max-w-6xl mx-auto px-4 w-full relative flex-col items-center justify-center overflow-hidden">
         <Marquee reverse pauseOnHover className="[--duration:35s]">

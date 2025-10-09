@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { getAllCategories } from "@/actions/category-action";
+import { BoxReveal } from "./ui/box-reveal";
 
 const gradientBgClasses = (category: string) => {
   switch (category) {
@@ -27,14 +28,21 @@ const FeaturedCategories = async () => {
     <section className="py-16 cm:mt-10 bg-gray-100 dark:bg-neutral-900">
       <div className="max-container flex flex-col items-center justify-center">
         {/* Title */}
-        <div className="text-center mb-10">
-          <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-semibold mb-2">
-            Featured{" "}
-            <span className="text-blue-700 dark:text-blue-600">Categories</span>
-          </h2>
-          <p className="text-gray-500 dark:text-neutral-300">
-            Browse our most popular collections
-          </p>
+        <div className="flex flex-col items-center justify-center mb-10">
+          <BoxReveal boxColor={"#5046e6"} duration={1}>
+            <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-semibold mb-2">
+              Featured{" "}
+              <span className="text-blue-700 dark:text-blue-600">
+                Categories
+              </span>
+            </h2>
+          </BoxReveal>
+
+          <BoxReveal boxColor={"#5046e6"} duration={1}>
+            <p className="text-gray-500 dark:text-neutral-300">
+              Browse our most popular collections
+            </p>
+          </BoxReveal>
         </div>
         {/* Categories */}
         <div className="grid lg:grid-cols-6 min-[401px]:grid-cols-3 grid-cols-2 max-[401px]:w-full items-center justify-center min-[454px]:gap-4 gap-3">

@@ -35,7 +35,7 @@ export function NewsLetter() {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="sm:py-5 max-[500px]:placeholder:text-sm bg-white text-gray-900"
+            className="sm:py-5 max-[500px]:placeholder:text-sm bg-white text-gray-900 text-sm"
           />
           <Button
             className="sm:py-5 bg-neutral-950 text-white dark:hover:bg-neutral-900"
