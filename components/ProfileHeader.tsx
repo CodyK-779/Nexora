@@ -33,22 +33,16 @@ const ProfileHeader = ({
         </p>
       </div>
       <div className="flex gap-3">
-        <Button
-          variant="outline"
-          onClick={() => {
-            if (session?.user.id !== id) {
-              return toast.error(
-                "Profile editing is restricted to account owners only."
-              );
-            }
-
-            setIsEditing(!isEditing);
-          }}
-          className="max-[450px]:small-btn flex items-center gap-2 dark:bg-black"
-        >
-          <Edit className="size-4" />
-          {isEditing ? "Cancel Editing" : "Edit Profile"}
-        </Button>
+        {currentUser && (
+          <Button
+            variant="outline"
+            onClick={() => setIsEditing(!isEditing)}
+            className="max-[450px]:small-btn flex items-center gap-2 dark:bg-black"
+          >
+            <Edit className="size-4" />
+            {isEditing ? "Cancel Editing" : "Edit Profile"}
+          </Button>
+        )}
         <Button className="max-[450px]:small-btn flex items-center gap-2">
           <Settings className="size-4" />
           Settings

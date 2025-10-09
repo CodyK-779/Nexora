@@ -39,8 +39,8 @@ const PopularItemList = () => {
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         {items.map((item, index) => (
-          <div key={index + 1} className="flex items-center gap-4">
-            <div className="p-1 rounded-md bg-white border border-neutral-300 shadow">
+          <div key={index + 1} className="flex items-center gap-3">
+            <div className="relative size-11 p-1 rounded-md bg-white border border-neutral-300 shadow overflow-hidden">
               <Image
                 src={item.img}
                 alt={item.name}
@@ -50,8 +50,10 @@ const PopularItemList = () => {
               />
             </div>
             <div className="flex flex-col items-start">
-              <p className="text-sm font-semibold">{item.name}</p>
-              <p className="text-sm font-medium text-neutral-500 dark:text-neutral-300">
+              <p className="min-[350px]:text-sm text-[13px] font-semibold">
+                {item.name}
+              </p>
+              <p className="min-[350px]:text-sm text-[13px] font-medium text-neutral-500 dark:text-neutral-300">
                 {item.orders} Orders
               </p>
             </div>

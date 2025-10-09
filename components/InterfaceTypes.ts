@@ -1,4 +1,4 @@
-import { $Enums, Address, Cart, CartItem, Category, Product, User, WishList, WishListItem } from "@/app/generated/prisma";
+import { $Enums, Address, Cart, CartItem, Category, Product, User } from "@/app/generated/prisma";
 
 export interface ProductType {
   name: string;

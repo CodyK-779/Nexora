@@ -8,6 +8,7 @@ import HeartIcon from "./HeartIcon";
 import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import PopularAddToCart from "./PopularAddToCart";
 import { Badge } from "./ui/badge";
+import PopularProductCarousel from "./PopularProductCarousel";
 
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {
@@ -18,11 +19,10 @@ export const formattedPrice = (price: number) => {
   return formatted;
 };
 
-const categoryColors = (category: string) => {
+export const categoryColors = (category: string) => {
   switch (category) {
     case "Electronics":
       return "bg-gradient-to-r from-gray-900 via-purple-900 to-violet-900 text-white rounded-full";
-
     case "Clothings":
       return "bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white rounded-full";
     case "Household":
@@ -30,7 +30,7 @@ const categoryColors = (category: string) => {
     case "Furniture":
       return "bg-gradient-to-t from-[#10a19d] via-[#540375] to-[#ff7000] text-white rounded-full";
     case "Sports":
-      return "bg-gradient-to-br from-sky-900 via-blue-800 to-indigo-900 text-white rounded-full";
+      return "bg-gradient-to-l from-[#e966a0] via-[#2b2730] to-[#6554af] text-white rounded-full";
     case "Collectables":
       return "bg-gradient-to-br from-indigo-900 via-purple-800 via-fuchsia-700 to-cyan-500 text-white rounded-full";
   }
@@ -117,6 +117,7 @@ const PopularProducts = async () => {
             ))}
           </div>
         ) : (
+          // <PopularProductCarousel products={products} wishList={wishList} />
           <p className="text-lg font-semibold pt-10 text-center">
             No Popular Products Available
           </p>

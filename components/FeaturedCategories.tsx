@@ -13,11 +13,9 @@ const gradientBgClasses = (category: string) => {
       return "bg-gradient-to-l from-[#e966a0] via-[#2b2730] to-[#6554af]";
     case "Furniture":
       return "bg-gradient-to-t from-[#10a19d] via-[#540375] to-[#ff7000]";
-
     case "Sports":
       return "bg-gradient-to-t from-[#0a1931] via-[#185adb] to-[#ffc947]";
     case "Collectables":
-      // return "bg-gradient-to-t from-[#4b4c7a] via-[#eb92fb] to-[#c855bc]";
       return "bg-gradient-to-br from-indigo-900 via-purple-800 via-fuchsia-700 to-cyan-500";
   }
 };

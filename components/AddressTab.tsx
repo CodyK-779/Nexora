@@ -12,6 +12,7 @@ import { TabsContent } from "./ui/tabs";
 import Link from "next/link";
 import { Address } from "@/app/generated/prisma";
 import AddressTabBtns from "./AddressTabBtns";
+import { useSession } from "@/app/lib/auth-client";
 
 interface Props {
   userId: string;
@@ -19,6 +20,8 @@ interface Props {
 }
 
 const AddressTab = ({ userId, address }: Props) => {
+  const { data: session } = useSession();
+
   return (
     <TabsContent value="addresses" className="space-y-6">
       <Card className="border-0 shadow-lg dark:bg-gray-900">
@@ -81,12 +84,14 @@ const AddressTab = ({ userId, address }: Props) => {
             </div>
           )}
 
-          <Button className="mt-6 max-[400px]:small-btn" asChild>
-            <Link href="/address" className="flex items-center  gap-2">
-              <MapPin className="size-4" />
-              Add New Address
-            </Link>
-          </Button>
+          {session?.user.id === userId && (
+            <Button className="mt-6 max-[400px]:small-btn" asChild>
+              <Link href="/address" className="flex items-center  gap-2">
+                <MapPin className="size-4" />
+                Add New Address
+              </Link>
+            </Button>
+          )}
         </CardContent>
       </Card>
     </TabsContent>
@@ -94,9 +99,3 @@ const AddressTab = ({ userId, address }: Props) => {
 };
 
 export default AddressTab;
-
-/*
-
-
-
-*/

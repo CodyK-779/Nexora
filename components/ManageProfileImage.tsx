@@ -29,14 +29,6 @@ const ManageProfileImage = ({ user }: Props) => {
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
 
-  const userValidate = () => {
-    if (session?.user.id !== user.id) {
-      return toast.error("This action is restricted to account owners only.");
-    }
-
-    setShowEdit(true);
-  };
-
   const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -125,13 +117,15 @@ const ManageProfileImage = ({ user }: Props) => {
           <User className="h-12 w-12 text-blue-600 dark:text-blue-400" />
         </div>
       )}
-      <Button
-        size="icon"
-        onClick={userValidate}
-        className="absolute bottom-0 right-0 min-[450px]:size-8 size-6 rounded-full"
-      >
-        <Camera className="min-[450px]:size-4 size-3" />
-      </Button>
+      {session?.user.id === user.id && (
+        <Button
+          size="icon"
+          onClick={() => setShowEdit(true)}
+          className="absolute bottom-0 right-0 min-[450px]:size-8 size-6 rounded-full"
+        >
+          <Camera className="min-[450px]:size-4 size-3" />
+        </Button>
+      )}
 
       <Dialog open={showEdit} onOpenChange={setShowEdit}>
         <DialogContent className="sm:max-w-[425px]">

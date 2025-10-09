@@ -95,7 +95,7 @@ export function getColumns(categories: Category[]): ColumnDef<Payment>[] {
               />
             </div>
             <span className="whitespace-nowrap font-medium">
-              {product.name}
+              {product.name.slice(0, 30)}
             </span>
           </div>
         );

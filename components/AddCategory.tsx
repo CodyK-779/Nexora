@@ -66,7 +66,6 @@ const AddCategory = () => {
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="border-2 border-neutral-200 dark:border-neutral-700"
-              required
             />
           </div>
 

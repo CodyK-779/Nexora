@@ -21,7 +21,7 @@ const WishAdd2cartOrRemove = ({ userId, productId, wishlistItemId }: Props) => {
 
   const handleAddToCart = async () => {
     if (userId !== session?.user.id) {
-      toast.error("You are not the current user");
+      toast.error("This action is restricted to account owners only.");
       return;
     }
 
@@ -44,7 +44,7 @@ const WishAdd2cartOrRemove = ({ userId, productId, wishlistItemId }: Props) => {
 
   const removeWishlist = async () => {
     if (userId !== session?.user.id) {
-      toast.error("You are not the current user");
+      toast.error("This action is restricted to account owners only.");
       return;
     }
 

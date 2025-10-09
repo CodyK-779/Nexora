@@ -42,9 +42,7 @@ const AddressTabBtns = ({ userId, address }: Props) => {
 
   const handleDefault = async () => {
     if (session?.user.id !== userId) {
-      return toast.error(
-        "Address management is restricted to account owners only."
-      );
+      return toast.error("This action is restricted to account owners only.");
     }
 
     setLoading(true);
@@ -96,9 +94,7 @@ const AddressTabBtns = ({ userId, address }: Props) => {
 
   const currentUser = () => {
     if (session?.user.id !== userId) {
-      return toast.error(
-        "Address management is restricted to account owners only."
-      );
+      return toast.error("This action is restricted to account owners only.");
     }
 
     setShowEditForm(true);

@@ -1,8 +1,5 @@
-import { User, Camera } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { UserDetailsType } from "./InterfaceTypes";
-import Image from "next/image";
-import { useState } from "react";
 import ManageProfileImage from "./ManageProfileImage";
 
 export interface MockUserType {
@@ -44,7 +41,7 @@ const ProfileCard = ({ user }: Props) => {
                 Orders
               </span>
               <span className="font-semibold text-gray-900 dark:text-white">
-                {/* 12 */} {user.order.length}
+                {user.order.length}
               </span>
             </div>
             <div className="flex justify-between items-center">
@@ -52,7 +49,7 @@ const ProfileCard = ({ user }: Props) => {
                 Wishlist
               </span>
               <span className="font-semibold text-gray-900 dark:text-white">
-                {/* 8 */} {user.wishList?.items.length}
+                {user.wishList?.items.length}
               </span>
             </div>
             <div className="flex justify-between items-center">

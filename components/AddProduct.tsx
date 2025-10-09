@@ -155,9 +155,9 @@ const AddProduct = ({ categories }: Props) => {
           setImages={setImages}
         />
       </div>
-      <div className="grid place-content-center md:place-content-start">
+      <div className="grid sm:place-content-center md:place-content-start">
         <Button
-          className="flex items-center gap-2 font-medium py-2 mt-7 text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 ease-in"
+          className="w-full min-[375px]:large-btn flex items-center gap-2 font-medium py-2 mt-7 text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 ease-in"
           disabled={loading}
           onClick={handleUpload}
         >
