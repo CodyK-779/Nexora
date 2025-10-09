@@ -14,7 +14,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
         <Overlay />
         <Sidebar />
         <TooltipProvider>
-          <main className="pb-20">{children}</main>
+          <main className="pb-10">{children}</main>
         </TooltipProvider>
       </MenuProvider>
       <Footer />

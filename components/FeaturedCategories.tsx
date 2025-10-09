@@ -37,21 +37,23 @@ const FeaturedCategories = async () => {
           </p>
         </div>
         {/* Categories */}
-        <div className="flex flex-wrap items-center justify-center gap-4">
-          {categories.map((cat, index) => (
+        <div className="grid lg:grid-cols-6 min-[401px]:grid-cols-3 grid-cols-2 max-[401px]:w-full items-center justify-center min-[454px]:gap-4 gap-3">
+          {categories.map((cat) => (
             <div
               key={cat.id}
-              className={`flex flex-col items-center max-[328px]:w-full w-[140px] p-4 rounded-xl ${gradientBgClasses(
+              className={`flex flex-col items-center  min-[500px]:w-[140px] min-[454px]:w-[130px] min-[416px]:w-[120px] w-[115px] max-[401px]:w-full p-4 rounded-xl ${gradientBgClasses(
                 cat.name
               )} shadow-md hover:-translate-y-1 hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in cursor-pointer`}
             >
-              <div className="p-3.5 bg-neutral-50 rounded-full mb-4">
-                <Image
-                  src={cat.image}
-                  alt="category img"
-                  width={45}
-                  height={45}
-                />
+              <div className="min-[500px]:p-3.5 p-3 bg-neutral-50 rounded-full mb-4">
+                <div className="relative min-[500px]:size-10 size-8">
+                  <Image
+                    src={cat.image}
+                    alt="category img"
+                    fill
+                    className="object-contain"
+                  />
+                </div>
               </div>
               <p className="text-sm font-semibold text-white">{cat.name}</p>
             </div>
@@ -70,3 +72,30 @@ const FeaturedCategories = async () => {
 };
 
 export default FeaturedCategories;
+
+/*
+
+<div className="grid lg:grid-cols-6 min-[420px]:grid-cols-3 grid-cols-1 w-full items-center justify-center gap-4">
+  {categories.map((cat, index) => (
+    <div
+      key={cat.id}
+      className={`flex flex-col items-center min-[460px]:w-[140px] min-[420px]:w-[120px] w-full p-4 rounded-xl ${gradientBgClasses(
+        cat.name
+      )} shadow-md hover:-translate-y-1 hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in cursor-pointer`}
+    >
+      <div className="min-[460px]:p-3.5 p-3 bg-neutral-50 rounded-full mb-4">
+        <div className="relative min-[460px]:size-10 size-8">
+          <Image
+            src={cat.image}
+            alt="category img"
+            fill
+            className="object-contain"
+          />
+        </div>
+      </div>
+      <p className="text-sm font-semibold text-white">{cat.name}</p>
+    </div>
+  ))}
+</div>
+
+*/

@@ -8,7 +8,6 @@ import HeartIcon from "./HeartIcon";
 import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import PopularAddToCart from "./PopularAddToCart";
 import { Badge } from "./ui/badge";
-import PopularProductCarousel from "./PopularProductCarousel";
 
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {
@@ -54,14 +53,14 @@ const PopularProducts = async () => {
             Discover the best-selling products loved by our customers
           </p>
         </div>
-
+        {/*  */}
         {/* Product Grid */}
         {products.length > 0 ? (
-          <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 lg:gap-6 gap-4">
+          <div className="flex sm:grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 sm:gap-5 gap-4 overflow-x-auto sm:overflow-visible no-scrollbar pb-2">
             {products.map((p) => (
               <Card
                 key={p.id}
-                className="group relative rounded-2xl shadow-sm hover:shadow-lg transition-shadow border-2"
+                className="group max-[640px]:max-w-[300px] max-[350px]:max-w-[285px] relative rounded-2xl shadow-sm hover:shadow-lg transition-shadow border-2 flex-shrink-0"
               >
                 {/* Product Image */}
                 <div className="relative w-full size-48 overflow-hidden rounded-t-2xl border-b dark:bg-white">
@@ -81,6 +80,7 @@ const PopularProducts = async () => {
                     </Badge>
                   </div>
                 </div>
+
                 {/* Product Info */}
                 <CardContent className="p-4">
                   <h3 className="font-semibold sm:text-lg text-base line-clamp-1">
@@ -96,6 +96,7 @@ const PopularProducts = async () => {
                     <HeartIcon productId={p.id} wishList={wishList} />
                   </div>
                 </CardContent>
+
                 {/* Actions */}
                 <CardFooter className="flex min-[350px]:justify-between items-center p-4 gap-2">
                   <PopularAddToCart productId={p.id} />
@@ -117,7 +118,6 @@ const PopularProducts = async () => {
             ))}
           </div>
         ) : (
-          // <PopularProductCarousel products={products} wishList={wishList} />
           <p className="text-lg font-semibold pt-10 text-center">
             No Popular Products Available
           </p>
@@ -128,3 +128,10 @@ const PopularProducts = async () => {
 };
 
 export default PopularProducts;
+
+/*
+
+
+
+
+*/
