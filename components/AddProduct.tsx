@@ -18,7 +18,7 @@ import { Category } from "@/app/generated/prisma";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { addProduct } from "@/actions/product-action";
-import { useRouter } from "next/navigation";
+import NonCloudImg from "./NonCloudImg";
 
 interface Props {
   categories: Category[];
@@ -33,7 +33,8 @@ const AddProduct = ({ categories }: Props) => {
   const [images, setImages] = useState<string[]>([]);
   const [imgInfo, setImgInfo] = useState<UploadedFile[]>([]);
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const resetForm = () => {
     setName("");
@@ -71,14 +72,12 @@ const AddProduct = ({ categories }: Props) => {
 
       if (results.success) {
         toast.success("New Product Published Successfully!");
-        resetForm();
-        router.push("/dashboard/add-product", { scroll: false });
       }
     } catch (error) {
       toast.error("Failed to publish new product.");
-      resetForm();
     } finally {
       setLoading(false);
+      resetForm();
     }
   };
 
@@ -149,6 +148,15 @@ const AddProduct = ({ categories }: Props) => {
         </div>
 
         {/* Right column */}
+        {/* <NonCloudImg
+          uploadProgress={uploadProgress}
+          uploading={uploading}
+          imgInfo={imgInfo}
+          setImgInfo={setImgInfo}
+          setImages={setImages}
+          setUploading={setUploading}
+          setUploadProgress={setUploadProgress}
+        /> */}
         <ImageUpload
           imgInfo={imgInfo}
           setImgInfo={setImgInfo}
@@ -158,7 +166,7 @@ const AddProduct = ({ categories }: Props) => {
       <div className="grid sm:place-content-center md:place-content-start">
         <Button
           className="w-full min-[375px]:large-btn flex items-center gap-2 font-medium py-2 mt-7 text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 ease-in"
-          disabled={loading}
+          disabled={loading || uploading}
           onClick={handleUpload}
         >
           {loading ? (

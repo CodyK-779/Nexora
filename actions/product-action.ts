@@ -57,6 +57,7 @@ export async function addProduct(name: string, description: string, price: numbe
       }
     });
 
+    revalidatePath("/dashboard/add-product");
     return { success: true }
   } catch (error) {
     console.error("Failed to create new product", error);

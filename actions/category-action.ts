@@ -20,6 +20,7 @@ export async function createCategory(name: string, image: string) {
       }
     });
 
+    revalidatePath("/dashboard/manage-categories");
     return { success: true }
   } catch (error) {
     console.error("Failed to create new category", error);
