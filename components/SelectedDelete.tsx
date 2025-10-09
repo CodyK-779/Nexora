@@ -7,7 +7,6 @@ import { Table } from "@tanstack/react-table";
 import { useSession } from "@/app/lib/auth-client";
 import { toast } from "sonner";
 import { selectedUserDelete } from "@/actions/user-action";
-import { creatorId } from "@/app/(dashboard)/dashboard/users/page";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,6 +18,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "./ui/alert-dialog";
+import { creatorId } from "./InterfaceTypes";
 
 interface Props<TData> {
   selectedCount: number;

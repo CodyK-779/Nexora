@@ -11,7 +11,7 @@ import { Role } from "@/app/generated/prisma";
 import { changeRole } from "@/actions/user-action";
 import { toast } from "sonner";
 import { useSession } from "@/app/lib/auth-client";
-import { creatorId } from "@/app/(dashboard)/dashboard/users/page";
+import { creatorId } from "./InterfaceTypes";
 
 interface Props {
   userId: string;

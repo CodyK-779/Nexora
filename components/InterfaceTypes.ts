@@ -1,5 +1,7 @@
 import { $Enums, Address, Cart, CartItem, Category, Product, User, WishListItem } from "@/app/generated/prisma";
 
+export const creatorId = "9a45ASFRxYfeQRskZjC2kCCEWTtMIS8e";
+
 export interface ProductType {
   name: string;
   id: string;
@@ -28,7 +30,7 @@ export interface WishListType {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  items: WishListItemType[];
+  items: WishListItem[];
 }
 
 export interface WishListItemType {
@@ -48,6 +50,13 @@ export interface CartType {
   cartItem: CartItem[];
 }
 
+export interface WishListTabType {
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  items: WishListItemType[];
+}
+
 export interface ProductDetailsType {
   name: string;
   id: string;
@@ -59,7 +68,7 @@ export interface ProductDetailsType {
   inventory: number;
   createdAt: Date;
   updatedAt: Date;
-  wishListItems: WishListItemType[];
+  wishListItems: WishListItem[];
   category: {
     name: string;
   };
@@ -136,5 +145,5 @@ export interface UserDetailsType {
   address: Address[];
   order: OrdersType[];
   cart: Cart | null;
-  wishList: WishListType | null;
+  wishList: WishListTabType | null;
 }

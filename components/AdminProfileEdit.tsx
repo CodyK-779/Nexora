@@ -19,8 +19,8 @@ import { Button } from "./ui/button";
 import UserImgChange from "./UserImgChange";
 import { editUserProfile } from "@/actions/user-action";
 import { toast } from "sonner";
-import { creatorId } from "@/app/(dashboard)/dashboard/users/page";
 import { useSession } from "@/app/lib/auth-client";
+import { creatorId } from "./InterfaceTypes";
 
 interface Props {
   user: Payment;

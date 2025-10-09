@@ -11,7 +11,7 @@ import {
   CardContent,
 } from "./ui/card";
 import { TabsContent } from "./ui/tabs";
-import { WishListType } from "./InterfaceTypes";
+import { WishListTabType } from "./InterfaceTypes";
 import { formattedPrice } from "./PopularProducts";
 import Image from "next/image";
 import Link from "next/link";
@@ -21,7 +21,7 @@ import { Status } from "@/app/generated/prisma";
 
 interface Props {
   userId: string;
-  wishlist: WishListType | null;
+  wishlist: WishListTabType | null;
 }
 
 const WishListTab = ({ userId, wishlist }: Props) => {
