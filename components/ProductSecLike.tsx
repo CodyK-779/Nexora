@@ -3,7 +3,7 @@
 import { Heart } from "lucide-react";
 import React, { useState } from "react";
 import { Button } from "./ui/button";
-import { WishListType } from "./InterfaceTypes";
+import { ShopWishListType } from "./InterfaceTypes";
 import { useSession } from "@/app/lib/auth-client";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -11,7 +11,7 @@ import { toggleWishList } from "@/actions/wishlist-action";
 
 interface Props {
   productId: string;
-  wishlist: WishListType | undefined;
+  wishlist: ShopWishListType | undefined;
 }
 
 const ProductSecLike = ({ productId, wishlist }: Props) => {

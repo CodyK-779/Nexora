@@ -32,7 +32,7 @@ const WishlistItems = async ({ userId, search }: Props) => {
   };
 
   return (
-    <section className="max-container sm:pt-20 pt-16">
+    <section className="max-container sm:py-20 py-16">
       {wishListItems.length > 0 ? (
         <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1 lg:gap-6 min-[500px]:gap-4 gap-8">
           {wishListItems.map((item) => (

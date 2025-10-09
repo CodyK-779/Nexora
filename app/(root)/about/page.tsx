@@ -14,7 +14,7 @@ import Link from "next/link";
 
 export default function AboutPage() {
   return (
-    <section className="min-h-screen bg-white dark:bg-gray-950 mt-[68px] -mb-20">
+    <section className="min-h-screen bg-white dark:bg-gray-950 mt-[68px]">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white sm:py-20 py-16">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -243,20 +243,20 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="grid min-[500px]:grid-cols-2 lg:grid-cols-4 lg:gap-8 sm:gap-5 min-[500px]:gap-4 gap-6">
+          <div className="grid grid-cols-2 lg:grid-cols-4 lg:gap-6 min-[350px]:gap-4 gap-3.5">
             {teamMembers.map((member, index) => (
               <Card
                 key={index}
                 className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 group bg-neutral-50 dark:bg-gray-900"
               >
-                <CardContent className="p-6 text-center">
-                  <div className="relative sm:size-32 size-[100px] bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-full mx-auto mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
+                <CardContent className="min-[450px]:p-6 min-[350px]:p-4 py-3 px-2 text-center">
+                  <div className="relative sm:size-32 min-[450px]:size-[100px] min-[350px]:size-[80px] size-[70px] bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-600 rounded-full mx-auto mb-4 group-hover:scale-105 transition-transform duration-300 overflow-hidden">
                     <Image src={member.image} alt="Ceo Avatar" fill />
                   </div>
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">
+                  <h3 className="min-[450px]:text-lg text-base font-semibold text-gray-900 dark:text-white mb-2">
                     {member.name}
                   </h3>
-                  <p className="font-medium text-gray-600 dark:text-gray-400 text-sm">
+                  <p className="font-medium text-gray-600 dark:text-gray-400 min-[385px]:text-sm text-xs">
                     {member.role}
                   </p>
                 </CardContent>
@@ -269,7 +269,7 @@ export default function AboutPage() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-700 text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="md:text-4xl min-[450px]:text-3xl min-[350px]:text-2xl text-xl  font-semibold mb-4">
+          <h2 className="md:text-4xl min-[450px]:text-3xl min-[350px]:text-2xl text-xl font-semibold mb-4">
             Ready to Experience the Difference?
           </h2>
           <p className="sm:text-xl min-[350px]:text-base text-sm font-medium text-blue-100 mb-8 max-w-2xl mx-auto">

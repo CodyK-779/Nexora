@@ -1,60 +1,31 @@
-import Image from "next/image";
-import { Card, CardContent, CardFooter } from "./ui/card";
-import { Button } from "./ui/button";
-import { ExternalLink } from "lucide-react";
-import { getPopularProducts } from "@/actions/product-action";
-import Link from "next/link";
-import HeartIcon from "./HeartIcon";
+import { getLatestProducts } from "@/actions/product-action";
 import { getCurrentUserWishlist } from "@/actions/wishlist-action";
+import { categoryColors, formattedPrice } from "./PopularProducts";
 import PopularAddToCart from "./PopularAddToCart";
+import Image from "next/image";
 import { Badge } from "./ui/badge";
+import Link from "next/link";
+import { ExternalLink } from "lucide-react";
+import { Button } from "./ui/button";
+import { Card, CardContent, CardFooter } from "./ui/card";
+import HeartIcon from "./HeartIcon";
 
-export const formattedPrice = (price: number) => {
-  const formatted = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(price);
-
-  return formatted;
-};
-
-export const categoryColors = (category: string) => {
-  switch (category) {
-    case "Electronics":
-      return "bg-gradient-to-r from-gray-900 via-purple-900 to-violet-900 text-white rounded-full";
-    case "Clothings":
-      return "bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 text-white rounded-full";
-    case "Household":
-      return "bg-gradient-to-bl from-emerald-400 via-teal-500 to-green-700 text-white rounded-full";
-    case "Furniture":
-      return "bg-gradient-to-t from-[#10a19d] via-[#540375] to-[#ff7000] text-white rounded-full";
-    case "Sports":
-      return "bg-gradient-to-l from-[#e966a0] via-[#2b2730] to-[#6554af] text-white rounded-full";
-    case "Collectables":
-      return "bg-gradient-to-br from-indigo-900 via-purple-800 via-fuchsia-700 to-cyan-500 text-white rounded-full";
-  }
-};
-
-const PopularProducts = async () => {
-  const products = await getPopularProducts();
+const LatestProductSection = async () => {
+  const products = await getLatestProducts();
   const wishList = await getCurrentUserWishlist();
 
   return (
-    <section className="py-12 ">
+    <section className="py-12 bg-neutral-100 dark:bg-neutral-900">
       <div className="max-container">
-        {/* Section Header */}
         <div className="text-center mb-10">
           <h2 className="md:text-4xl min-[400px]:text-3xl text-2xl font-semibold tracking-tight sm:text-4xl">
-            Most{" "}
-            <span className="text-blue-700 dark:text-blue-600">Popular</span>{" "}
-            Items
+            Our <span className="text-blue-700 dark:text-blue-600">Latest</span>{" "}
+            Products
           </h2>
           <p className="mt-2 min-[350px]:text-base text-sm text-gray-500 dark:text-gray-400">
             Discover the best-selling products loved by our customers
           </p>
         </div>
-        {/*  */}
-        {/* Product Grid */}
         {products.length > 0 ? (
           <div className="flex sm:grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 sm:gap-5 gap-4 overflow-x-auto sm:overflow-visible no-scrollbar pb-2">
             {products.map((p) => (
@@ -127,4 +98,4 @@ const PopularProducts = async () => {
   );
 };
 
-export default PopularProducts;
+export default LatestProductSection;

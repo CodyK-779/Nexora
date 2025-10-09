@@ -72,30 +72,3 @@ const FeaturedCategories = async () => {
 };
 
 export default FeaturedCategories;
-
-/*
-
-<div className="grid lg:grid-cols-6 min-[420px]:grid-cols-3 grid-cols-1 w-full items-center justify-center gap-4">
-  {categories.map((cat, index) => (
-    <div
-      key={cat.id}
-      className={`flex flex-col items-center min-[460px]:w-[140px] min-[420px]:w-[120px] w-full p-4 rounded-xl ${gradientBgClasses(
-        cat.name
-      )} shadow-md hover:-translate-y-1 hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in cursor-pointer`}
-    >
-      <div className="min-[460px]:p-3.5 p-3 bg-neutral-50 rounded-full mb-4">
-        <div className="relative min-[460px]:size-10 size-8">
-          <Image
-            src={cat.image}
-            alt="category img"
-            fill
-            className="object-contain"
-          />
-        </div>
-      </div>
-      <p className="text-sm font-semibold text-white">{cat.name}</p>
-    </div>
-  ))}
-</div>
-
-*/

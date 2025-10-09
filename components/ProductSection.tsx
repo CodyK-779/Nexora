@@ -1,7 +1,7 @@
 "use client";
 
 import { Search } from "lucide-react";
-import { ProductsType, WishListType } from "./InterfaceTypes";
+import { ProductsType, ShopWishListType } from "./InterfaceTypes";
 import Image from "next/image";
 import Link from "next/link";
 import { formattedPrice } from "./PopularProducts";
@@ -10,12 +10,12 @@ import ProductSecLike from "./ProductSecLike";
 
 interface Props {
   filteredProducts: ProductsType[];
-  wishlist: WishListType | undefined;
+  wishlist: ShopWishListType | undefined;
 }
 
 const ProductSection = ({ filteredProducts, wishlist }: Props) => {
   return (
-    <section className="max-container grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1 lg:gap-6 min-[500px]:gap-4 gap-8">
+    <section className="max-container grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1 lg:gap-6 min-[500px]:gap-4 pb-20 gap-8">
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
           <div key={product.id} className="flex flex-col">

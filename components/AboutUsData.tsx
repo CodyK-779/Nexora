@@ -7,19 +7,19 @@ export const teamMembers = [
     image: "/ceo.jpg",
   },
   {
-    name: "Marcus Johnson",
+    name: "Chad",
     role: "Head of Operations",
-    image: "/team-2.jpg",
+    image: "/chad.jpg",
   },
   {
-    name: "Elena Rodriguez",
+    name: "Speed",
     role: "Product Director",
-    image: "/team-3.jpg",
+    image: "/speed.webp",
   },
   {
-    name: "David Kim",
+    name: "Genius",
     role: "Technology Lead",
-    image: "/team-4.jpg",
+    image: "/monke.jpg",
   },
 ];
 

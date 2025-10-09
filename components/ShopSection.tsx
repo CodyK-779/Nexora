@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { ProductsType, WishListType } from "./InterfaceTypes";
+import { ProductsType, ShopWishListType } from "./InterfaceTypes";
 import ProductFilter from "./ProductFilter";
 import ProductSection from "./ProductSection";
 import { Category } from "@/app/generated/prisma";
@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 interface Props {
   categories: Category[];
   products: ProductsType[];
-  wishlist: WishListType | undefined;
+  wishlist: ShopWishListType | undefined;
 }
 
 export default function ShopSection({ products, categories, wishlist }: Props) {

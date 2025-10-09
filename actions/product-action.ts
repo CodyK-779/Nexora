@@ -65,25 +65,6 @@ export async function addProduct(name: string, description: string, price: numbe
   }
 }
 
-export async function getPopularProducts() {
-  try {
-    const products = prisma.product.findMany({
-      where: {
-        status: "Popular"
-      },
-      include: {
-        category: true
-      },
-      take: 4
-    });
-
-    return products;
-  } catch (error) {
-    console.error("Error getting popular products:", error);
-    throw new Error("Failed to get popular products");
-  }
-}
-
 export async function getProductDetails(id: string) {
   try {
     if (!id) return;
@@ -218,5 +199,39 @@ export async function deleteProduct(id: string) {
   } catch (error) {
     console.error("Error deleting this product:", error);
     return { success: false, error: "Failed to delete this product" };
+  }
+}
+
+export async function getPopularProducts() {
+  try {
+    const products = prisma.product.findMany({
+      where: {
+        status: "Popular"
+      },
+      include: {
+        category: true
+      },
+      take: 4
+    });
+
+    return products;
+  } catch (error) {
+    console.error("Error getting popular products:", error);
+    throw new Error("Failed to get popular products");
+  }
+}
+
+export async function getLatestProducts() {
+  try {
+    const products = await prisma.product.findMany({
+      where: { status: "New" },
+      include: { category: true },
+      take: 4
+    });
+
+    return products;
+  } catch (error) {
+    console.error("Failed to get latest products", error);
+    throw new Error("Failed to get latest products");
   }
 }

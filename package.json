@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@lottiefiles/react-lottie-player": "^3.6.0",
     "@prisma/client": "^6.13.0",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-avatar": "^1.1.10",
@@ -30,6 +31,7 @@
     "clsx": "^2.1.1",
     "dotted-map": "^2.2.3",
     "embla-carousel-react": "^8.6.0",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.536.0",
     "motion": "^12.23.22",
     "next": "15.4.5",
