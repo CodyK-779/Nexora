@@ -69,12 +69,12 @@ const ProductSecButtons = ({ productId }: Props) => {
   const route = session ? `/cart/${session.user.id}` : "/login";
 
   return (
-    <div className="flex items-center min-[500px]:gap-1.5 gap-2 mt-1.5 w-full">
+    <div className="flex flex-col min-[500px]:flex-row items-center min-[500px]:gap-1.5 gap-2 mt-1.5 w-full">
       <Button
         size="sm"
         disabled={adding}
         onClick={handleAddToCart}
-        className="flex items-center gap-1.5 font-medium w-full"
+        className="min-[400px]:small-btn extra-small-btn flex items-center gap-1.5 font-medium w-full"
       >
         {adding ? (
           <>
@@ -94,7 +94,7 @@ const ProductSecButtons = ({ productId }: Props) => {
         asChild
         disabled={loading}
         onClick={handleBuy}
-        className="w-full border bg-white text-black dark:bg-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
+        className="w-full border min-[400px]:small-btn extra-small-btn bg-white text-black dark:bg-black dark:text-white hover:bg-neutral-100 dark:hover:bg-neutral-900 transition-colors"
       >
         <Link href={route} className="flex items-center gap-1.5 font-medium">
           <ShoppingBag />

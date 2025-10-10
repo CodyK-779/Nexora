@@ -15,10 +15,10 @@ interface Props {
 
 const ProductSection = ({ filteredProducts, wishlist }: Props) => {
   return (
-    <section className="max-container grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1 lg:gap-6 min-[500px]:gap-4 pb-20 gap-8">
+    <section className="max-container grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 lg:gap-6 min-[500px]:gap-4 pb-20 min-[400px]:gap-3 gap-2">
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
-          <div key={product.id} className="flex flex-col">
+          <div key={product.id} className="flex flex-col min-[500px]:mb-0 mb-4">
             <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 group">
               <Link href={`/product/${product.id}`}>
                 <Image
@@ -31,17 +31,17 @@ const ProductSection = ({ filteredProducts, wishlist }: Props) => {
               <ProductSecLike productId={product.id} wishlist={wishlist} />
             </div>
             <div className="flex flex-col mx-1 mt-2">
-              <p className="text-sm font-semibold line-clamp-1">
+              <p className="min-[400px]:text-sm text-xs font-semibold line-clamp-1">
                 {product.name}
               </p>
-              <p className="mt-1 text-xs font-medium text-neutral-500 dark:text-neutral-400 line-clamp-1">
+              <p className="mt-1 min-[400px]:text-xs text-[10px] font-medium text-neutral-500 dark:text-neutral-400 line-clamp-1">
                 {product.description}
               </p>
               <div className="flex items-center justify-between mt-1">
-                <p className="text-xs font-medium text-neutral-500 dark:text-neutral-300">
+                <p className="min-[400px]:text-xs text-[10px] font-medium text-neutral-500 dark:text-neutral-300">
                   <span className="text-yellow-400">★</span> 4.5 reviews
                 </p>
-                <p className="text-sm font-semibold">
+                <p className="min-[400px]:text-sm text-xs font-semibold">
                   {formattedPrice(product.price)}
                 </p>
               </div>
