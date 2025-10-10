@@ -66,6 +66,9 @@ const EditProduct = ({ product, categories }: Props) => {
 
       if (result.success) {
         toast.success("Product Details Updated Successfully!");
+
+        router.refresh();
+        router.replace(`/dashboard/products?t=${Date.now()}`);
       } else {
         toast.error("Something went wrong");
       }
@@ -75,7 +78,6 @@ const EditProduct = ({ product, categories }: Props) => {
     } finally {
       setLoading(false);
       setShowEditForm(false);
-      router.refresh();
     }
   };
 
