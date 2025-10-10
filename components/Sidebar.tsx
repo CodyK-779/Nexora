@@ -1,6 +1,6 @@
 "use client";
 
-import { X } from "lucide-react";
+import { User, X } from "lucide-react";
 import { useMenu } from "./MenuProvider";
 import { ModeToggle } from "./ModeToggle";
 import Link from "next/link";
@@ -68,12 +68,20 @@ const Sidebar = () => {
         {session && (
           <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
             <div className="flex items-center gap-3">
-              <Avatar className="size-12">
-                <AvatarImage src={session.user.image!} />
-                <AvatarFallback className="bg-black text-white text-lg dark:bg-neutral-800 font-medium">
-                  {session.user.name?.charAt(0).toUpperCase() || "U"}
-                </AvatarFallback>
-              </Avatar>
+              <div className="relative size-11 rounded-full overflow-hidden">
+                {session.user.image ? (
+                  <Image
+                    src={session.user.image}
+                    alt={session.user.name}
+                    fill
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="size-11 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center">
+                    <User className="size-6 text-blue-600 dark:text-blue-400" />
+                  </div>
+                )}
+              </div>
               <div className="flex flex-col">
                 <p className="text-sm font-medium">{session.user.name}</p>
                 <p className="text-xs text-neutral-600 dark:text-neutral-400">

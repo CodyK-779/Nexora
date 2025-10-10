@@ -10,6 +10,8 @@ import PopularAddToCart from "./PopularAddToCart";
 import { Badge } from "./ui/badge";
 import { BoxReveal } from "./ui/box-reveal";
 
+export const dynamic = "force-dynamic";
+
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {
     style: "currency",
