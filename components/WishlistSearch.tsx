@@ -47,13 +47,15 @@ const WishlistSearch = ({ userId, user }: Props) => {
 
   const currentUser = session.user.id === userId;
   const selectedSearch = searchParams.get("search") || "";
-
+  // bg-neutral-100 dark:bg-neutral-900
   return (
-    <section className="w-full mt-[68px] py-14 bg-neutral-100 dark:bg-neutral-900">
+    <section className="w-full mt-[68px] py-14 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white">
       <div className="max-w-5xl mx-auto px-2 flex flex-col justify-center gap-2">
         <h1 className="sm:text-5xl min-[425px]:text-3xl min-[350px]:text-[26px] text-xl font-semibold text-center px-2">
           <span>{currentUser ? "Your" : user.name.split(" ")[0] + "'s"}</span>{" "}
-          <span className="text-blue-600 dark:text-blue-500">wishlisted</span>{" "}
+          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+            wishlisted
+          </span>{" "}
           items
         </h1>
         <form
@@ -84,7 +86,7 @@ const WishlistSearch = ({ userId, user }: Props) => {
             </button>
           )}
         </form>
-        <p className="text-xs text-neutral-500 dark:text-neutral-400 font-medium text-center mt-3">
+        <p className="text-xs text-neutral-200 font-medium text-center mt-3">
           Clear the input field to cancel the filtering
         </p>
       </div>

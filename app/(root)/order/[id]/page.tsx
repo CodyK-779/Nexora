@@ -22,7 +22,7 @@ export default async function OrderPage({
   const orders = user.order;
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen pb-10">
       <OrderPageHeader currentUser={currentUser} name={user.name} />
       <OrderTable orders={orders} />
     </div>

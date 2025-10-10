@@ -27,7 +27,7 @@ export default async function CartPage({
   return (
     <>
       <CartPageHeader />
-      <div className="max-container mt-10 w-full flex lg:flex-row items-start flex-col lg:gap-6 gap-10">
+      <div className="max-container mt-10 w-full flex lg:flex-row items-start flex-col lg:gap-6 gap-10 pb-20">
         <DataTable columns={columns} data={cartItem} />
         <OrderSummary
           addresses={addresses}

@@ -23,7 +23,10 @@ export function NewsLetter() {
       <div className="max-w-4xl mx-auto px-4 text-center">
         <Mail className="sm:size-12 size-10 mx-auto mb-4" />
         <h2 className="sm:text-3xl text-2xl font-semibold mb-2">
-          Our Newsletter
+          Our{" "}
+          <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+            Newsletter
+          </span>
         </h2>
         <p className="sm:text-base text-sm text-blue-100 mb-8 max-w-2xl mx-auto">
           Get the latest updates on new products, exclusive deals, and special

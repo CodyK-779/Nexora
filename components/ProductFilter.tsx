@@ -39,15 +39,18 @@ const ProductFilter = ({
   categories,
 }: Props) => {
   return (
-    <section className="bg-neutral-100 dark:bg-neutral-900 w-full mt-[69px] pt-10 pb-5 mb-10">
+    // bg-neutral-100 dark:bg-neutral-900
+    <section className="w-full mt-[69px] pt-10 pb-5 mb-10 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800">
       <div className="max-container">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="sm:text-5xl min-[400px]:text-4xl min-[350px]:text-3xl text-2xl font-semibold text-gray-900 dark:text-white mb-2">
+          <h1 className="sm:text-5xl min-[400px]:text-4xl min-[350px]:text-3xl text-white text-2xl font-semibold mb-2">
             Our{" "}
-            <span className="text-blue-600 dark:text-blue-500">Products</span>
+            <span className="bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent">
+              Products
+            </span>
           </h1>
-          <p className="min-[450px]:text-lg min-[376px]:text-base min-[335px]:text-sm text-xs font-medium text-gray-600 dark:text-gray-400">
+          <p className="min-[450px]:text-lg min-[376px]:text-base min-[335px]:text-sm text-xs font-medium text-neutral-200">
             Discover amazing products at great prices
           </p>
         </div>
@@ -107,10 +110,10 @@ const ProductFilter = ({
         </div>
         {/* Results Info */}
         <div className="flex justify-between items-center font-medium mx-1">
-          <p className="min-[375px]:text-sm text-xs text-gray-600 dark:text-gray-400">
+          <p className="min-[375px]:text-sm text-xs text-neutral-200">
             Showing {filteredProducts.length} of {products.length} products
           </p>
-          <div className="min-[375px]:text-sm text-xs text-gray-600 dark:text-gray-400">
+          <div className="min-[375px]:text-sm text-xs text-neutral-200">
             Sorted by:{" "}
             {sortBy === "name"
               ? "Name"

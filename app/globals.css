@@ -147,44 +147,30 @@
   z-index: 9999 !important;
 }
 
-@theme inline {
-  @keyframes marquee {
+@keyframes marquee {
   from {
     transform: translateX(0);
-    }
+  }
   to {
     transform: translateX(calc(-100% - var(--gap)));
-    }
+  }
   }
   @keyframes marquee-vertical {
   from {
     transform: translateY(0);
-    }
+  }
   to {
     transform: translateY(calc(-100% - var(--gap)));
-    }
   }
-
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-  .animate-shimmer {
-    animation: shimmer 2s infinite;
-  }
-
-  @keyframes text-shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
-  }
-
-  .animate-text-shimmer {
-    background-size: 200% auto;
-    animation: text-shimmer 3s linear infinite;
-  }
-
 }
+
+@keyframes text-shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-text-shimmer {
+  background-size: 200% auto;
+  animation: text-shimmer 3s linear infinite;
+}
+

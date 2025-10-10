@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { Marquee } from "./ui/marquee";
 import { testimonials } from "./testimonialData";
