@@ -12,12 +12,12 @@ export const teamMembers = [
     image: "/chad.jpg",
   },
   {
-    name: "Speed",
+    name: "Lil'D",
     role: "Product Director",
-    image: "/speed.webp",
+    image: "/LilD.jpg",
   },
   {
-    name: "Genius",
+    name: "Monke",
     role: "Technology Lead",
     image: "/monke.jpg",
   },

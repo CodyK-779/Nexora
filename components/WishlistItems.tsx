@@ -1,6 +1,5 @@
 import { getFilteredWishlistItems } from "@/actions/wishlist-action";
 import Image from "next/image";
-import { Badge } from "./ui/badge";
 import { formattedPrice } from "./PopularProducts";
 import WishAdd2cartOrRemove from "./WishAdd2cartOrRemove";
 import Link from "next/link";
@@ -34,9 +33,9 @@ const WishlistItems = async ({ userId, search }: Props) => {
   return (
     <section className="max-container sm:py-20 py-16">
       {wishListItems.length > 0 ? (
-        <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 min-[500px]:grid-cols-2 grid-cols-1 lg:gap-6 min-[500px]:gap-4 gap-8">
+        <div className="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 lg:gap-6 min-[500px]:gap-4 min-[400px]:gap-3 gap-2">
           {wishListItems.map((item) => (
-            <div key={item.id} className="flex flex-col">
+            <div key={item.id} className="flex flex-col min-[500px]:mb-0 mb-4">
               <Link href={`/product/${item.product.id}`}>
                 <div className="relative w-full aspect-square rounded-xl overflow-hidden border-2 group">
                   <Image
@@ -45,28 +44,27 @@ const WishlistItems = async ({ userId, search }: Props) => {
                     fill
                     className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-300 ease-in"
                   />
-                  <Badge
-                    textSize="text-[10px]"
-                    className={`absolute top-2 right-2 text-[10px] ${categoryColors(
+                  <div
+                    className={`absolute top-2 right-2 min-[400px]:text-[10px] min-[360px]:text-[8px] text-[7px] text-white font-medium min-[360px]:px-2.5 px-2 py-0.5 rounded-full ${categoryColors(
                       item.product.category.name
-                    )} text-white rounded-full`}
+                    )}`}
                   >
                     {item.product.category.name}
-                  </Badge>
+                  </div>
                 </div>
               </Link>
 
-              <p className="mt-2 mx-1 text-sm font-semibold line-clamp-1">
+              <p className="mt-2 mx-1 min-[400px]:text-sm text-xs font-semibold line-clamp-1">
                 {item.product.name}
               </p>
-              <p className="mt-1 mx-1 text-xs font-medium text-neutral-500 dark:text-neutral-400 line-clamp-1">
+              <p className="mt-1 mx-1 min-[400px]:text-xs text-[10px] font-medium text-neutral-500 dark:text-neutral-400 line-clamp-1">
                 {item.product.description}
               </p>
               <div className="flex items-center justify-between mt-1 mx-1">
-                <p className="text-xs font-medium text-neutral-500 dark:text-neutral-300">
+                <p className="min-[400px]:text-xs text-[10px] font-medium text-neutral-500 dark:text-neutral-300">
                   <span className="text-yellow-400">★</span> 4.5 reviews
                 </p>
-                <p className="text-sm font-semibold">
+                <p className="min-[400px]:text-sm text-xs font-semibold">
                   {formattedPrice(item.product.price)}
                 </p>
               </div>
