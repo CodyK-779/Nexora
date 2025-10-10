@@ -6,6 +6,8 @@ import PopularProducts from "@/components/PopularProducts";
 import Testimonials from "@/components/Testimonials";
 import { TrustBadges } from "@/components/TrustBadges";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <>

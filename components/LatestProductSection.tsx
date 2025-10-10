@@ -11,6 +11,8 @@ import { Card, CardContent, CardFooter } from "./ui/card";
 import HeartIcon from "./HeartIcon";
 import { BoxReveal } from "./ui/box-reveal";
 
+export const dynamic = "force-dynamic";
+
 const LatestProductSection = async () => {
   const products = await getLatestProducts();
   const wishList = await getCurrentUserWishlist();
