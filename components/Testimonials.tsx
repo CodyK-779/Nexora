@@ -21,13 +21,13 @@ const ReviewCard = ({ name, email, img, review, stars }: Props) => {
     <div className="relative h-full w-fit cursor-pointer overflow-hidden rounded-xl border-2 p-4 bg-white dark:bg-neutral-950 border-neutral-300 dark:border-neutral-800 hover:shadow-xl transition duration-150 ease-in">
       <div className="flex items-start justify-between">
         <div className="flex items-center gap-3">
-          <Image
+          {/* <Image
             src={img}
             alt="profile"
             width={40}
             height={40}
             className="size-10 object-cover rounded-full"
-          />
+          /> */}
           <div className="flex flex-col">
             <p className="font-medium">{name}</p>
             <p className="text-sm -mt-0.5 font-medium text-neutral-600 dark:text-neutral-400">
