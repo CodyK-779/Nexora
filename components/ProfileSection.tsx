@@ -19,7 +19,7 @@ export default function ProfileSection({ user }: Props) {
   const currentUser = session?.user.id === user.id;
 
   return (
-    <div className="min-h-screen mt-[68px] -mb-20 pt-8 pb-20 bg-gray-50 dark:bg-gray-950">
+    <div className="min-h-screen mt-[68px] pt-8 pb-20 bg-gray-50 dark:bg-gray-950">
       <div className="max-container">
         {/* Header */}
         <ProfileHeader

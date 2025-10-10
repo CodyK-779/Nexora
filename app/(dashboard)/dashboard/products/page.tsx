@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getAllProducts } from "@/actions/product-action";
 import { DataTable } from "./data-table";
 import { getAllCategories } from "@/actions/category-action";

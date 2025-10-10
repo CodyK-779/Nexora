@@ -94,7 +94,7 @@ const CategoryEdit = ({ id, name, image }: Props) => {
             </div>
             <CategoryImgChange editForm={editForm} setEditForm={setEditForm} />
             <DialogFooter>
-              <DialogClose asChild>
+              <DialogClose asChild className="sm:mt-0 mt-2.5">
                 <Button variant="outline">Cancel</Button>
               </DialogClose>
               <Button
