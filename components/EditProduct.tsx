@@ -40,6 +40,8 @@ const EditProduct = ({ product, categories }: Props) => {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [showEditForm, setShowEditForm] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [editForm, setEditForm] = useState({
     name: product.name || "",
     description: product.description || "",
@@ -67,8 +69,8 @@ const EditProduct = ({ product, categories }: Props) => {
       if (result.success) {
         toast.success("Product Details Updated Successfully!");
 
-        router.refresh();
-        router.replace(`/dashboard/products?t=${Date.now()}`);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        window.location.reload();
       } else {
         toast.error("Something went wrong");
       }
@@ -170,7 +172,14 @@ const EditProduct = ({ product, categories }: Props) => {
             </div>
             <div className="flex flex-col gap-2.5 py-4">
               <Label>Product Images</Label>
-              <ProductImgChange editForm={editForm} setEditForm={setEditForm} />
+              <ProductImgChange
+                uploading={uploading}
+                uploadProgress={uploadProgress}
+                editForm={editForm}
+                setUploading={setUploading}
+                setUploadProgress={setUploadProgress}
+                setEditForm={setEditForm}
+              />
             </div>
           </div>
           <DialogFooter>
