@@ -98,18 +98,18 @@ const NonCloudImg = ({
         <CardTitle>Images</CardTitle>
       </CardHeader>
       <CardContent>
-        <label htmlFor="image-upload" className="cursor-pointer">
-          <div
-            // onClick={() => {
-            //   if (imgInfo.length < 4) {
-            //     open();
-            //   } else {
-            //     toast.error("You can only upload a maximum of 4 images.");
-            //     return;
-            //   }
-            // }}
-            className="flex flex-col items-center justify-center border-2 border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg p-6 text-center cursor-pointer"
-          >
+        <label
+          htmlFor="image-upload"
+          className="cursor-pointer"
+          onClick={(e) => {
+            if (imgInfo.length >= 4) {
+              e.preventDefault();
+              toast.error("You can only upload a maximum of 4 images.");
+              return;
+            }
+          }}
+        >
+          <div className="flex flex-col items-center justify-center border-2 border-dashed border-neutral-300 dark:border-neutral-700 rounded-lg p-6 text-center cursor-pointer">
             <Image
               src="/dropzone.png"
               alt="Image Dropzone"
@@ -139,6 +139,33 @@ const NonCloudImg = ({
             onChange={handleChange}
           />
         </label>
+        {uploading && (
+          <div className="flex items-center justify-between border rounded-lg px-2.5 py-2 bg-neutral-50 dark:bg-neutral-800 mt-4 w-full">
+            <div className="flex items-center w-full gap-3 min-w-0">
+              {" "}
+              {/* Add min-w-0 here */}
+              <div className="size-12 flex-shrink-0 object-cover rounded-md bg-neutral-300 dark:bg-neutral-900" />
+              <div className="min-w-0 flex-1">
+                {" "}
+                {/* Add this wrapper */}
+                {/* File name */}
+                <p className="text-sm font-medium text-neutral-800 dark:text-neutral-200 truncate">
+                  Loading...
+                </p>
+                {/* File size */}
+                <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700 mt-1.5">
+                  <div
+                    className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300 ease-in"
+                    style={{ width: `${uploadProgress}%` }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+            <button className="flex-shrink-0 text-red-500 transition ml-2">
+              <Trash2 size={16} />
+            </button>
+          </div>
+        )}
 
         {/* Image Preview */}
         {imgInfo.length > 0 && (
@@ -160,14 +187,6 @@ const NonCloudImg = ({
                     <p className="text-sm font-medium text-neutral-800 dark:text-neutral-200 truncate max-w-[150px]">
                       {file.name}
                     </p>
-                    {uploading && (
-                      <div className="col-span-2 w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
-                        <div
-                          className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
-                          style={{ width: `${uploadProgress}%` }}
-                        ></div>
-                      </div>
-                    )}
                     {/* File size */}
                     <p className="text-xs text-neutral-500 mt-1.5">
                       {(file.size / 1024).toFixed(1)} KB

@@ -148,7 +148,7 @@ const AddProduct = ({ categories }: Props) => {
         </div>
 
         {/* Right column */}
-        {/* <NonCloudImg
+        <NonCloudImg
           uploadProgress={uploadProgress}
           uploading={uploading}
           imgInfo={imgInfo}
@@ -156,12 +156,12 @@ const AddProduct = ({ categories }: Props) => {
           setImages={setImages}
           setUploading={setUploading}
           setUploadProgress={setUploadProgress}
-        /> */}
-        <ImageUpload
+        />
+        {/* <ImageUpload
           imgInfo={imgInfo}
           setImgInfo={setImgInfo}
           setImages={setImages}
-        />
+        /> */}
       </div>
       <div className="grid sm:place-content-center md:place-content-start">
         <Button

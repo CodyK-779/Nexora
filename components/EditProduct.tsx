@@ -70,6 +70,7 @@ const EditProduct = ({ product, categories }: Props) => {
         toast.success("Product Details Updated Successfully!");
 
         await new Promise((resolve) => setTimeout(resolve, 1000));
+
         window.location.reload();
       } else {
         toast.error("Something went wrong");
