@@ -61,6 +61,7 @@ const AdminProfileEdit = ({ user }: Props) => {
     } else {
       toast.error("Failed to update profile");
       setLoading(false);
+      setShowEditForm(false);
     }
   };
 

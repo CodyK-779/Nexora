@@ -82,7 +82,7 @@ export function DataTable<TData, TValue>({
           }
           className="max-w-sm"
         />
-        <div className="flex items-center gap-3 ml-2">
+        <div className="flex items-center max-[450px]:justify-between max-[450px]:w-full gap-3 min-[450px]:ml-2 ml-0">
           <SelectedDelete selectedCount={selectedCount} table={table} />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

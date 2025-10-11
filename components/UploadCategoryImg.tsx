@@ -1,32 +1,24 @@
-"use client";
-
 import { Upload } from "lucide-react";
 import { Label } from "./ui/label";
-import Image from "next/image";
-
-interface EditFormType {
-  name: string;
-  image: string;
-}
 
 interface Props {
+  image: string;
   uploading: boolean;
   uploadProgress: number;
-  editForm: EditFormType;
+  setImage: React.Dispatch<React.SetStateAction<string>>;
   setUploading: React.Dispatch<React.SetStateAction<boolean>>;
   setUploadProgress: React.Dispatch<React.SetStateAction<number>>;
-  setEditForm: React.Dispatch<React.SetStateAction<EditFormType>>;
 }
 
-const CategoryImgChange = ({
+const UploadCategoryImg = ({
+  image,
   uploading,
   uploadProgress,
-  editForm,
+  setImage,
   setUploading,
   setUploadProgress,
-  setEditForm,
 }: Props) => {
-  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -64,10 +56,10 @@ const CategoryImgChange = ({
       if (!res.ok) throw new Error("Upload failed");
       const data = await res.json();
 
-      setEditForm((prev) => ({ ...prev, image: data.secure_url }));
+      setImage(data.secure_url);
       setTimeout(() => setUploading(false), 500);
-    } catch (error) {
-      console.error("Upload failed:", error);
+    } catch (err) {
+      console.error("Cloudinary upload error:", err);
     } finally {
       setUploading(false);
       setUploadProgress(0);
@@ -75,44 +67,44 @@ const CategoryImgChange = ({
   };
 
   return (
-    <div className="flex flex-col gap-2 mt-1">
-      <Label htmlFor="Image" className="text-sm">
-        Category Image
-      </Label>
-      <div className="flex items-center justify-center">
-        <div className="relative size-24 my-4 rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 flex items-center justify-center bg-white">
-          <Image
-            src={editForm.image}
-            alt="Category Image"
-            fill
-            className="object-cover"
-          />
-        </div>
+    <>
+      <div className="flex flex-col gap-2">
+        <Label htmlFor="image">Category Image</Label>
+        <label htmlFor="image-upload" className="cursor-pointer">
+          <div className="flex items-center justify-center cursor-pointer border-2 border-neutral-200 dark:border-neutral-700 rounded-lg px-4 py-1.5 text-sm font-medium hover:bg-muted transition">
+            <Upload className="w-4 h-4 mr-2" />
+            {image ? "Change Image" : "Upload Image"}
+          </div>
+        </label>
+        <input
+          id="image-upload"
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleChange}
+        />
       </div>
       {uploading && (
-        <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
+        <div className="col-span-2 w-full bg-gray-200 rounded-full h-2 dark:bg-gray-700">
           <div
             className="bg-gradient-to-r from-blue-500 to-purple-600 h-2 rounded-full transition-all duration-300"
             style={{ width: `${uploadProgress}%` }}
+          ></div>
+        </div>
+      )}
+
+      {/* Image Preview */}
+      {image && (
+        <div className="md:col-span-2 flex justify-center">
+          <img
+            src={image}
+            alt="Preview"
+            className="h-40 w-40 object-cover rounded-xl border-2 border-neutral-200 dark:border-neutral-700"
           />
         </div>
       )}
-      <label
-        htmlFor="image-update"
-        className="flex items-center justify-center w-full cursor-pointer border-2 border-neutral-200 dark:border-neutral-700 rounded-lg px-4 py-2 text-sm font-medium hover:bg-muted transition"
-      >
-        <Upload className="w-4 h-4 mr-2" />
-        Update Image
-      </label>
-      <input
-        id="image-update"
-        type="file"
-        accept="image/*"
-        className="hidden"
-        onChange={handleFileChange}
-      />
-    </div>
+    </>
   );
 };
 
-export default CategoryImgChange;
+export default UploadCategoryImg;

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { getAllCategories } from "@/actions/category-action";
+import { getFeaturedCategories } from "@/actions/category-action";
 import { BoxReveal } from "./ui/box-reveal";
 
 const gradientBgClasses = (category: string) => {
@@ -22,7 +22,7 @@ const gradientBgClasses = (category: string) => {
 };
 
 const FeaturedCategories = async () => {
-  const categories = await getAllCategories();
+  const categories = await getFeaturedCategories();
 
   return (
     <section className="py-16 cm:mt-10 bg-gray-100 dark:bg-neutral-900">

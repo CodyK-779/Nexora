@@ -73,9 +73,25 @@ export async function getAllCategories() {
       },
     });
 
-    return categories
+    return categories;
   } catch (error) {
     console.error("Failed to get all categories.", error);
     throw new Error("Failed to get all categories.");
+  }
+}
+
+export async function getFeaturedCategories() {
+  try {
+    const categories = await prisma.category.findMany({
+      orderBy: {
+        createdAt: "asc"
+      },
+      take: 6
+    });
+
+    return categories;
+  } catch (error) {
+    console.error("Failed to get featured categories.", error);
+    throw new Error("Failed to get featured categories.");
   }
 }

@@ -12,13 +12,12 @@ import {
 } from "./ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
-import ImageUpload from "./ImageUpload";
 import { Textarea } from "./ui/textarea";
 import { Category } from "@/app/generated/prisma";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { addProduct } from "@/actions/product-action";
-import NonCloudImg from "./NonCloudImg";
+import ImageUpload from "./ImageUpload";
 
 interface Props {
   categories: Category[];
@@ -148,7 +147,7 @@ const AddProduct = ({ categories }: Props) => {
         </div>
 
         {/* Right column */}
-        <NonCloudImg
+        <ImageUpload
           uploadProgress={uploadProgress}
           uploading={uploading}
           imgInfo={imgInfo}
@@ -157,11 +156,6 @@ const AddProduct = ({ categories }: Props) => {
           setUploading={setUploading}
           setUploadProgress={setUploadProgress}
         />
-        {/* <ImageUpload
-          imgInfo={imgInfo}
-          setImgInfo={setImgInfo}
-          setImages={setImages}
-        /> */}
       </div>
       <div className="grid sm:place-content-center md:place-content-start">
         <Button

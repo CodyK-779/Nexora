@@ -29,6 +29,8 @@ interface Props {
 const CategoryEdit = ({ id, name, image }: Props) => {
   const [open, setOpen] = useState(false);
   const [loading, setIsLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [editForm, setEditForm] = useState({
     name,
     image,
@@ -60,59 +62,67 @@ const CategoryEdit = ({ id, name, image }: Props) => {
 
   return (
     <>
+      <DropdownMenuItem
+        className="flex items-center gap-3 cursor-pointer"
+        onClick={(e) => {
+          e.preventDefault();
+          setOpen(true);
+        }}
+      >
+        <Edit />
+        Edit
+      </DropdownMenuItem>
+
       <Dialog open={open} onOpenChange={setOpen}>
-        <form>
-          <DialogTrigger asChild>
-            <DropdownMenuItem
-              className="flex items-center gap-3 cursor-pointer"
-              onSelect={(e) => e.preventDefault()}
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle className="mb-1.5">Edit Category</DialogTitle>
+            <DialogDescription>
+              Make changes to your category here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex flex-col gap-2">
+            <Label htmlFor="name" className="text-sm ">
+              Category Name
+            </Label>
+            <Input
+              id="name"
+              placeholder="e.g. Electronics"
+              value={editForm.name}
+              onChange={(e) =>
+                setEditForm({ ...editForm, name: e.target.value })
+              }
+              className="border-2 border-neutral-200 dark:border-neutral-700"
+            />
+          </div>
+          <CategoryImgChange
+            uploadProgress={uploadProgress}
+            uploading={uploading}
+            editForm={editForm}
+            setUploading={setUploading}
+            setUploadProgress={setUploadProgress}
+            setEditForm={setEditForm}
+          />
+          <DialogFooter>
+            <DialogClose asChild className="sm:mt-0 mt-2.5">
+              <Button variant="outline">Cancel</Button>
+            </DialogClose>
+            <Button
+              disabled={loading || uploading}
+              className="flex items-center gap-2"
+              onClick={handleSubmit}
             >
-              <Edit />
-              Edit
-            </DropdownMenuItem>
-          </DialogTrigger>
-          <DialogContent className="sm:max-w-[425px]">
-            <DialogHeader>
-              <DialogTitle className="mb-1.5">Edit Category</DialogTitle>
-              <DialogDescription>
-                Make changes to your category here. Click save when you're done.
-              </DialogDescription>
-            </DialogHeader>
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="name" className="text-sm ">
-                Category Name
-              </Label>
-              <Input
-                id="name"
-                placeholder="e.g. Electronics"
-                value={editForm.name}
-                onChange={(e) =>
-                  setEditForm({ ...editForm, name: e.target.value })
-                }
-                className="border-2 border-neutral-200 dark:border-neutral-700"
-              />
-            </div>
-            <CategoryImgChange editForm={editForm} setEditForm={setEditForm} />
-            <DialogFooter>
-              <DialogClose asChild className="sm:mt-0 mt-2.5">
-                <Button variant="outline">Cancel</Button>
-              </DialogClose>
-              <Button
-                className="flex items-center gap-2"
-                onClick={handleSubmit}
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="animate-spin" />
-                    Loading...
-                  </>
-                ) : (
-                  <p>Confirm</p>
-                )}
-              </Button>
-            </DialogFooter>
-          </DialogContent>
-        </form>
+              {loading ? (
+                <>
+                  <Loader2 className="animate-spin" />
+                  Loading...
+                </>
+              ) : (
+                <p>Confirm</p>
+              )}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
       </Dialog>
     </>
   );
