@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getAllUsers } from "@/actions/user-action";
 import { columns } from "./columns";
 import { DataTable } from "./data-table";
