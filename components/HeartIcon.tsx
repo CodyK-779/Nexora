@@ -12,15 +12,13 @@ import { WishListItem } from "@/app/generated/prisma";
 
 interface Props {
   productId: string;
-  wishList:
-    | {
-        id: string;
-        userId: string;
-        createdAt: Date;
-        updatedAt: Date;
-        items: WishListItem[];
-      }
-    | undefined;
+  wishList: {
+    id: string;
+    userId: string;
+    createdAt: Date;
+    updatedAt: Date;
+    items: WishListItem[];
+  } | null;
 }
 
 const HeartIcon = ({ productId, wishList }: Props) => {
