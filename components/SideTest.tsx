@@ -20,7 +20,7 @@ export const navLinks = [
 const sidebarStyles =
   "cm:hidden fixed top-0 right-0 rounded-md z-30 min-h-screen w-[350px] max-[640px]:w-full bg-white/80 dark:bg-neutral-900/70 backdrop-blur-md shadow transition-transform duration-200 ease-in";
 
-const Sidebar = () => {
+const SideTest = () => {
   const { data: session } = useSession();
   const { openMenu, setOpenMenu } = useMenu();
   const pathname = usePathname();
@@ -63,56 +63,63 @@ const Sidebar = () => {
           </p>
         </Link>
       </div>
-      <div className={session ? "pt-16" : "pt-20"}>
-        {session && (
-          <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
-            <div className="flex items-center gap-3">
-              <div className="relative size-11 rounded-full overflow-hidden">
-                {session.user.image ? (
-                  <Image
-                    src={session.user.image}
-                    alt={session.user.name}
-                    fill
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="size-11 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center">
-                    <User className="size-6 text-blue-600 dark:text-blue-400" />
-                  </div>
-                )}
-              </div>
-              <div className="flex flex-col">
-                <p className="text-sm font-medium">{session.user.name}</p>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                  {session.user.email}
-                </p>
+      <div
+        className={`${
+          session ? "pt-16" : "pt-20"
+        } flex flex-col justify-between min-h-screen`}
+      >
+        <div>
+          {session && (
+            <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
+              <div className="flex items-center gap-3">
+                <div className="relative size-11 rounded-full overflow-hidden">
+                  {session.user.image ? (
+                    <Image
+                      src={session.user.image}
+                      alt={session.user.name}
+                      fill
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="size-11 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 flex items-center justify-center">
+                      <User className="size-6 text-blue-600 dark:text-blue-400" />
+                    </div>
+                  )}
+                </div>
+                <div className="flex flex-col">
+                  <p className="text-sm font-medium">{session.user.name}</p>
+                  <p className="text-xs text-neutral-600 dark:text-neutral-400">
+                    {session.user.email}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-        {/* Navigation Links */}
-        <nav className="p-4">
-          <ul className="space-y-2">
-            {navLinks.map((item) => {
-              const isActive = pathname === item.link;
-              return (
-                <li key={item.title} onClick={handleClose}>
-                  <Link
-                    href={item.link}
-                    className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
-                      isActive
-                        ? "bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400"
-                        : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-100"
-                    }`}
-                  >
-                    {item.title}
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-        <div className="absolute bottom-6 left-4 right-4">
+          )}
+          {/* Navigation Links */}
+          <nav className="p-4">
+            <ul className="space-y-2">
+              {navLinks.map((item) => {
+                const isActive = pathname === item.link;
+                return (
+                  <li key={item.title} onClick={handleClose}>
+                    <Link
+                      href={item.link}
+                      className={`flex items-center px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                        isActive
+                          ? "bg-blue-50 text-blue-600 dark:bg-blue-900/20 dark:text-blue-400"
+                          : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:text-neutral-900 dark:hover:text-neutral-100"
+                      }`}
+                    >
+                      {item.title}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+        </div>
+
+        <div className="px-4 pb-6">
           {!session ? (
             <div className="space-y-3">
               <Button asChild className="w-full" size="lg">
@@ -135,4 +142,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SideTest;

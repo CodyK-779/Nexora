@@ -27,28 +27,6 @@ export async function getUserWishlist(userId: string) {
   }
 }
 
-// export async function getCurrentUserWishlist() {
-//   try {
-//     const session = await auth.api.getSession({
-//       headers: await headers()
-//     });
-
-//     if (!session) return;
-
-//     const wishList = await prisma.wishList.upsert({
-//       where: { userId: session.user.id },
-//       update: {},
-//       create: { userId: session.user.id },
-//       include: { items: true }
-//     });
-
-//     return wishList;
-//   } catch (error) {
-//     console.error("Failed to get user's wishlist", error);
-//     throw new Error("Failed to get user's wishlist");
-//   }
-// }
-
 export async function getCurrentUserWishlist() {
   try {
     const session = await auth.api.getSession({
