@@ -10,7 +10,7 @@ import { useSearchParams } from "next/navigation";
 interface Props {
   categories: Category[];
   products: ProductsType[];
-  wishlist: ShopWishListType | undefined;
+  wishlist: ShopWishListType | null;
 }
 
 export default function ShopSection({ products, categories, wishlist }: Props) {

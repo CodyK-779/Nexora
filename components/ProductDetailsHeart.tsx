@@ -12,7 +12,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 interface Props {
   productId: string;
-  wishList: WishListType | undefined;
+  wishList: WishListType | null;
 }
 
 const ProductDetailsHeart = ({ productId, wishList }: Props) => {

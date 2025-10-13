@@ -10,7 +10,7 @@ import ProductSecLike from "./ProductSecLike";
 
 interface Props {
   filteredProducts: ProductsType[];
-  wishlist: ShopWishListType | undefined;
+  wishlist: ShopWishListType | null;
 }
 
 const ProductSection = ({ filteredProducts, wishlist }: Props) => {

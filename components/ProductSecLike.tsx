@@ -11,7 +11,7 @@ import { toggleWishList } from "@/actions/wishlist-action";
 
 interface Props {
   productId: string;
-  wishlist: ShopWishListType | undefined;
+  wishlist: ShopWishListType | null;
 }
 
 const ProductSecLike = ({ productId, wishlist }: Props) => {

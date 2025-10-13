@@ -27,27 +27,66 @@ export async function getUserWishlist(userId: string) {
   }
 }
 
+// export async function getCurrentUserWishlist() {
+//   try {
+//     const session = await auth.api.getSession({
+//       headers: await headers()
+//     });
+
+//     if (!session) return;
+
+//     const wishList = await prisma.wishList.upsert({
+//       where: { userId: session.user.id },
+//       update: {},
+//       create: { userId: session.user.id },
+//       include: { items: true }
+//     });
+
+//     return wishList;
+//   } catch (error) {
+//     console.error("Failed to get user's wishlist", error);
+//     throw new Error("Failed to get user's wishlist");
+//   }
+// }
+
 export async function getCurrentUserWishlist() {
   try {
     const session = await auth.api.getSession({
-      headers: await headers()
+      headers: await headers(),
     });
 
-    if (!session) return;
+    if (!session) return null;
 
-    const wishList = await prisma.wishList.upsert({
+    let wishList = await prisma.wishList.findUnique({
       where: { userId: session.user.id },
-      update: {},
-      create: { userId: session.user.id },
-      include: { items: true }
+      include: { items: true },
     });
+
+    if (!wishList) {
+      try {
+        wishList = await prisma.wishList.create({
+          data: { userId: session.user.id },
+          include: { items: true },
+        });
+      } catch (err: any) {
+        if (err.code === "P2002") {
+          wishList = await prisma.wishList.findUnique({
+            where: { userId: session.user.id },
+            include: { items: true },
+          });
+        } else {
+          throw err;
+        }
+      }
+    }
 
     return wishList;
   } catch (error) {
     console.error("Failed to get user's wishlist", error);
-    throw new Error("Failed to get user's wishlist");
+    return null;
   }
 }
+
 
 export async function getFilteredWishlistItems( userId: string, search: string) {
   try {

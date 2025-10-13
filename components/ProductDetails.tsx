@@ -9,7 +9,7 @@ import BuyNowBtn from "./BuyNowBtn";
 
 interface Props {
   product: ProductDetailsType;
-  wishList: WishListType | undefined;
+  wishList: WishListType | null;
 }
 
 const nikeId = "73520229-db86-41aa-9a0c-b7fe11cf2c3e";
