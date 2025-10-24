@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import { Button } from "./ui/button";
@@ -9,8 +11,6 @@ import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import PopularAddToCart from "./PopularAddToCart";
 import { Badge } from "./ui/badge";
 import { BoxReveal } from "./ui/box-reveal";
-
-export const dynamic = "force-dynamic";
 
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {

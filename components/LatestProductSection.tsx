@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getLatestProducts } from "@/actions/product-action";
 import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import { categoryColors, formattedPrice } from "./PopularProducts";
@@ -10,8 +12,6 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import HeartIcon from "./HeartIcon";
 import { BoxReveal } from "./ui/box-reveal";
-
-export const dynamic = "force-dynamic";
 
 const LatestProductSection = async () => {
   const products = await getLatestProducts();
