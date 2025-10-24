@@ -1,5 +1,3 @@
-"use client";
-
 import { Search } from "lucide-react";
 import { ProductsType, ShopWishListType } from "./InterfaceTypes";
 import Image from "next/image";
