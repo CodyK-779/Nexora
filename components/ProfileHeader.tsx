@@ -1,8 +1,6 @@
 import { Edit, Settings } from "lucide-react";
 import { Button } from "./ui/button";
 import { Dispatch, SetStateAction } from "react";
-import { useSession } from "@/app/lib/auth-client";
-import { toast } from "sonner";
 
 interface Props {
   id: string;
@@ -19,8 +17,6 @@ const ProfileHeader = ({
   isEditing,
   setIsEditing,
 }: Props) => {
-  const { data: session } = useSession();
-
   return (
     <div className="flex flex-col md:flex-row justify-between items-start lg:items-center gap-6 mb-8">
       <div>
