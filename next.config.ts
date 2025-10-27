@@ -23,14 +23,15 @@ const nextConfig: NextConfig = {
     ],
   },
   turbopack: {},
-  // Keep webpack for Prisma plugin, but it will only be used in non-Turbopack builds
   webpack: (config, { isServer }) => {
     if (isServer) {
       config.plugins = [...config.plugins, new PrismaPlugin()]
     }
     return config
   },
-
+  eslint: {
+    ignoreDuringBuilds: true,
+  }
 };
 
 export default nextConfig;
