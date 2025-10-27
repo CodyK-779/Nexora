@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import { getLatestProducts } from "@/actions/product-action";
 import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import { categoryColors, formattedPrice } from "./PopularProducts";
