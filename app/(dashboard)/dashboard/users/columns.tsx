@@ -14,7 +14,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ArrowUpDown } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import AdminProfileEdit from "@/components/AdminProfileEdit";
 import ChangeRoles from "@/components/ChangeRoles";
 import DeleteUser from "@/components/DeleteUser";

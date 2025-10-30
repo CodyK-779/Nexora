@@ -3,7 +3,6 @@ import { Button } from "./ui/button";
 import { Dispatch, SetStateAction } from "react";
 
 interface Props {
-  id: string;
   name: string;
   currentUser: boolean;
   isEditing: boolean;
@@ -11,7 +10,6 @@ interface Props {
 }
 
 const ProfileHeader = ({
-  id,
   name,
   currentUser,
   isEditing,

@@ -29,9 +29,7 @@ const nextConfig: NextConfig = {
     }
     return config
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  }
+  cacheComponents: true
 };
 
 export default nextConfig;

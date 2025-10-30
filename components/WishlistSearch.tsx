@@ -4,7 +4,7 @@ import { User } from "@/app/generated/prisma";
 import { useSession } from "@/app/lib/auth-client";
 import { FilterIcon, SearchIcon, XIcon } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 
 interface Props {
   userId: string;
@@ -15,10 +15,23 @@ const WishlistSearch = ({ userId, user }: Props) => {
   const { data: session } = useSession();
   const [search, setSearch] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const [isClient, setIsClient] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  if (!session) return;
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient || !session) {
+    return (
+      <section className="w-full mt-[68px] py-14 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white">
+        <div className="max-w-5xl mx-auto px-2 flex flex-col justify-center gap-2">
+          <div className="h-12 bg-blue-500/50 rounded-full max-w-3xl mx-auto w-full animate-pulse" />
+        </div>
+      </section>
+    );
+  }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -45,9 +58,9 @@ const WishlistSearch = ({ userId, user }: Props) => {
     setSearch("");
   };
 
-  const currentUser = session.user.id === userId;
+  const currentUser = session && session.user.id === userId;
   const selectedSearch = searchParams.get("search") || "";
-  // bg-neutral-100 dark:bg-neutral-900
+
   return (
     <section className="w-full mt-[68px] py-14 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800 text-white">
       <div className="max-w-5xl mx-auto px-2 flex flex-col justify-center gap-2">

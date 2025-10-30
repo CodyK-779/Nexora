@@ -9,6 +9,7 @@ import { useSession } from "@/app/lib/auth-client";
 import { usePathname } from "next/navigation";
 import SideSignout from "./SideSignout";
 import { Button } from "./ui/button";
+import { useEffect, useState } from "react";
 
 export const navLinks = [
   { title: "Home", link: "/" },
@@ -23,7 +24,12 @@ const sidebarStyles =
 const Sidebar = () => {
   const { data: session } = useSession();
   const { openMenu, setOpenMenu } = useMenu();
+  const [padding, setPadding] = useState("pt-20");
   const pathname = usePathname();
+
+  useEffect(() => {
+    setPadding(session ? "pt-16" : "pt-20");
+  }, [session]);
 
   const handleClose = () => setOpenMenu(false);
 
@@ -63,7 +69,7 @@ const Sidebar = () => {
           </p>
         </Link>
       </div>
-      <div className={session ? "pt-16" : "pt-20"}>
+      <div className={padding}>
         {session && (
           <div className="p-6 border-b border-neutral-200 dark:border-neutral-700">
             <div className="flex items-center gap-3">

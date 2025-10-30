@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo, useEffect, Suspense } from "react";
 import { ProductsType, ShopWishListType } from "./InterfaceTypes";
 import ProductFilter from "./ProductFilter";
 import ProductSection from "./ProductSection";
@@ -69,7 +69,12 @@ export default function ShopSection({ products, categories, wishlist }: Props) {
       />
 
       {/* Product Grid/List */}
-      <ProductSection filteredProducts={filteredProducts} wishlist={wishlist} />
+      <Suspense fallback={<p>Loading...</p>}>
+        <ProductSection
+          filteredProducts={filteredProducts}
+          wishlist={wishlist}
+        />
+      </Suspense>
     </>
   );
 }

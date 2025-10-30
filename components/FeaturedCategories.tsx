@@ -1,10 +1,11 @@
-export const dynamic = "force-dynamic";
+"use cache";
 
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { getFeaturedCategories } from "@/actions/category-action";
 import { BoxReveal } from "./ui/box-reveal";
+import { cacheLife } from "next/cache";
 
 const gradientBgClasses = (category: string) => {
   switch (category) {
@@ -24,6 +25,8 @@ const gradientBgClasses = (category: string) => {
 };
 
 const FeaturedCategories = async () => {
+  cacheLife("days");
+
   const categories = await getFeaturedCategories();
 
   return (

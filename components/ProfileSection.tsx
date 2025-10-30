@@ -23,7 +23,6 @@ export default function ProfileSection({ user }: Props) {
       <div className="max-container">
         {/* Header */}
         <ProfileHeader
-          id={user.id}
           name={user.name}
           currentUser={currentUser}
           isEditing={isEditing}

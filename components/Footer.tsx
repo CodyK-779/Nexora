@@ -1,8 +1,12 @@
+"use cache";
+
 import Image from "next/image";
 import Link from "next/link";
 import { getAllCategories } from "@/actions/category-action";
+import { cacheLife } from "next/cache";
 
 const Footer = async () => {
+  cacheLife("hours");
   const categories = await getAllCategories();
 
   const navLinks = [

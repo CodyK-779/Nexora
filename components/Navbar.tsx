@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import NavButtons from "./NavButtons";
 import NavLinks from "./NavLinks";
+import { Suspense } from "react";
+import NavSkeleton from "./skeletons/NavSkeleton";
+import NavLinksSkeleton from "./skeletons/NavLinksSkeleton";
 
 const Navbar = () => {
   return (
@@ -29,10 +32,14 @@ const Navbar = () => {
             </p>
           </Link>
           {/* Second Row */}
-          <NavLinks />
+          <Suspense fallback={<NavLinksSkeleton />}>
+            <NavLinks />
+          </Suspense>
         </div>
         {/* Third Row */}
-        <NavButtons />
+        <Suspense fallback={<NavSkeleton />}>
+          <NavButtons />
+        </Suspense>
       </div>
     </div>
   );

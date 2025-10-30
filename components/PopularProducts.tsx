@@ -41,7 +41,7 @@ const PopularProducts = async () => {
   const wishList = await getCurrentUserWishlist();
 
   return (
-    <section className="py-12 ">
+    <section className="py-12">
       <div className="max-container">
         {/* Section Header */}
         <div className="flex flex-col items-center justify-center text-center mb-10">

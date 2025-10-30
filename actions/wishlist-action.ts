@@ -2,6 +2,7 @@
 
 import { auth } from "@/app/lib/auth";
 import { prisma } from "@/app/lib/prisma";
+import { getSafeHeaders } from "@/lib/safe-headers";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 
@@ -29,9 +30,11 @@ export async function getUserWishlist(userId: string) {
 
 export async function getCurrentUserWishlist() {
   try {
-    const session = await auth.api.getSession({
-      headers: await headers(),
-    });
+    const sessionHeaders = {
+      headers: await getSafeHeaders(),
+    };
+
+    const session = await auth.api.getSession(sessionHeaders);
 
     if (!session) return null;
 
@@ -64,7 +67,6 @@ export async function getCurrentUserWishlist() {
     return null;
   }
 }
-
 
 export async function getFilteredWishlistItems( userId: string, search: string) {
   try {

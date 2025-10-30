@@ -1,8 +1,29 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Loading() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return (
+      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-black dark:via-neutral-950 dark:to-neutral-900">
+        <div className="w-20 h-20 border-[5px] border-neutral-300 dark:border-neutral-700 rounded-full"></div>
+        <h1 className="mt-8 text-3xl md:text-4xl font-extrabold text-neutral-900 dark:text-white">
+          Nexora
+        </h1>
+        <p className="mt-3 text-sm md:text-base text-neutral-500 dark:text-neutral-400">
+          Loading your experience...
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col items-center justify-center min-h-screen w-full bg-gradient-to-br from-white via-neutral-50 to-neutral-100 dark:from-black dark:via-neutral-950 dark:to-neutral-900 overflow-hidden">
       {/* Floating dots background */}
