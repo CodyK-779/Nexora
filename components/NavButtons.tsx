@@ -3,9 +3,9 @@ import Link from "next/link";
 import ProfileDropdown from "./ProfileDropdown";
 import MobileMenu from "./MobileMenu";
 import { auth } from "../app/lib/auth";
-import { headers } from "next/headers";
 import NavSearch from "./NavSearch";
 import { ModeToggle } from "./ModeToggle";
+import { headers } from "next/headers";
 
 const NavButtons = async () => {
   const session = await auth.api.getSession({
@@ -25,7 +25,7 @@ const NavButtons = async () => {
           </Link>
         </button>
       ) : (
-        <ProfileDropdown />
+        <ProfileDropdown userId={session.user.id} />
       )}
       <ModeToggle />
       <MobileMenu />

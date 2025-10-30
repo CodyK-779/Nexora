@@ -8,20 +8,16 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import DropdownSignout from "./DropdownSignout";
-import { auth } from "@/app/lib/auth";
-import { headers } from "next/headers";
 import { getUserDetails } from "@/actions/user-action";
 import Link from "next/link";
 import Image from "next/image";
 
-const ProfileDropdown = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+interface Props {
+  userId: string;
+}
 
-  if (!session) return;
-
-  const user = await getUserDetails(session.user.id);
+const ProfileDropdown = async ({ userId }: Props) => {
+  const user = await getUserDetails(userId);
 
   if (!user) return;
 
@@ -58,15 +54,15 @@ const ProfileDropdown = async () => {
             )}
           </div>
           <div className="flex flex-col gap-0.5">
-            <p className="text-sm font-medium">{session.user.name}</p>
+            <p className="text-sm font-medium">{user.name}</p>
             <p className="text-xs font-medium text-neutral-500 dark:text-neutral-300">
-              {session.user.email}
+              {user.email}
             </p>
           </div>
         </DropdownMenuItem>
         <DropdownMenuSeparator className="border border-neutral-100 dark:border-neutral-800" />
         <DropdownMenuGroup className="pt-2">
-          <Link href={`/profile/${session.user.id}`}>
+          <Link href={`/profile/${user.id}`}>
             <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
               <Settings className="size-8" />
               <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
@@ -83,17 +79,6 @@ const ProfileDropdown = async () => {
                 </p>
               </DropdownMenuItem>
             </Link>
-            // <DropdownMenuItem asChild>
-            //   <Link
-            //     href="/dashboard"
-            //     className="flex items-center gap-3 px-4 py-2.5 cursor-pointer"
-            //   >
-            //     <LayoutDashboard className="size-4" />
-            //     <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
-            //       Admin Dashboard
-            //     </p>
-            //   </Link>
-            // </DropdownMenuItem>
           )}
           <Link href={`/cart/${user.id}`}>
             <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
