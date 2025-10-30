@@ -1,7 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
 import { Input } from "./ui/input";
 import { Filter, Search } from "lucide-react";
-import { ProductsType } from "./InterfaceTypes";
 import {
   Select,
   SelectContent,
@@ -9,36 +7,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-import { Category } from "@/app/generated/prisma";
 import { Skeleton } from "./ui/skeleton";
 
-interface Props {
-  search: string;
-  category: string;
-  status: string;
-  sortBy: string;
-  products: ProductsType[];
-  categories: Category[];
-  filteredProducts: ProductsType[];
-  setSearch: Dispatch<SetStateAction<string>>;
-  setCategory: Dispatch<SetStateAction<string>>;
-  setStatus: Dispatch<SetStateAction<string>>;
-  setSortBy: Dispatch<SetStateAction<string>>;
-}
-
-const ProductFilter = ({
-  search,
-  setSearch,
-  category,
-  setCategory,
-  status,
-  setStatus,
-  sortBy,
-  setSortBy,
-  filteredProducts,
-  products,
-  categories,
-}: Props) => {
+const ProductFilterShell = () => {
   return (
     // bg-neutral-100 dark:bg-neutral-900
     <section className="w-full mt-[69px] pt-10 pb-5 mb-10 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-800">
@@ -62,29 +33,22 @@ const ProductFilter = ({
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 placeholder="Search products..."
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
                 className="pl-10 w-full border dark:border-neutral-600 shadow"
               />
             </div>
             <div className="flex flex-wrap gap-4 items-center justify-center">
               {/* Category Filter */}
-              <Select value={category} onValueChange={setCategory}>
+              <Select>
                 <SelectTrigger className="min-[460px]:w-[180px] w-full border dark:border-neutral-600 shadow">
                   <Filter className="h-4 w-4 mr-2 max-[460px]:hidden" />
                   <SelectValue placeholder="Category" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="all">All Categories</SelectItem>
-                  {categories.map((cat) => (
-                    <SelectItem key={cat.id} value={cat.id}>
-                      {cat.name}
-                    </SelectItem>
-                  ))}
                 </SelectContent>
               </Select>
               {/* Status Filter */}
-              <Select value={status} onValueChange={setStatus}>
+              <Select>
                 <SelectTrigger className="min-[460px]:w-[180px] w-full border dark:border-neutral-600 shadow">
                   <SelectValue placeholder="Status" />
                 </SelectTrigger>
@@ -96,7 +60,7 @@ const ProductFilter = ({
                 </SelectContent>
               </Select>
               {/* Sort By */}
-              <Select value={sortBy} onValueChange={setSortBy}>
+              <Select>
                 <SelectTrigger className="min-[460px]:w-[180px] w-full border dark:border-neutral-600 shadow">
                   <SelectValue placeholder="Sort by" />
                 </SelectTrigger>
@@ -111,23 +75,12 @@ const ProductFilter = ({
         </div>
         {/* Results Info */}
         <div className="flex justify-between items-center font-medium mx-1">
-          <p className="min-[375px]:text-sm text-xs text-neutral-200">
-            Showing {filteredProducts.length} of {products.length} products
-          </p>
-          <div className="min-[375px]:text-sm text-xs text-neutral-200">
-            Sorted by:{" "}
-            {sortBy === "name"
-              ? "Name"
-              : sortBy === "price-low"
-              ? "Price: Low to High"
-              : sortBy === "price-high"
-              ? "Price: High to Low"
-              : "Rating"}
-          </div>
+          <Skeleton className="h-3 w-44" />
+          <Skeleton className="h-3 w-32" />
         </div>
       </div>
     </section>
   );
 };
 
-export default ProductFilter;
+export default ProductFilterShell;

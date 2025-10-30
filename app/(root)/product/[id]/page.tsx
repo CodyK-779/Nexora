@@ -10,8 +10,10 @@ export default async function ProductDetailsPage({
   params: Promise<{ id: string }>;
 }) {
   const productId = (await params).id;
-  const product = await getProductDetails(productId);
-  const wishList = await getCurrentUserWishlist();
+  const [product, wishList] = await Promise.all([
+    getProductDetails(productId),
+    getCurrentUserWishlist(),
+  ]);
 
   if (!product) return null;
 

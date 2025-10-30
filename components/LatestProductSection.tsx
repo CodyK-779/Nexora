@@ -12,8 +12,10 @@ import HeartIcon from "./HeartIcon";
 import { BoxReveal } from "./ui/box-reveal";
 
 const LatestProductSection = async () => {
-  const products = await getLatestProducts();
-  const wishList = await getCurrentUserWishlist();
+  const [products, wishList] = await Promise.all([
+    getLatestProducts(),
+    getCurrentUserWishlist(),
+  ]);
 
   return (
     <section className="py-12 bg-neutral-100 dark:bg-neutral-900">
@@ -40,23 +42,25 @@ const LatestProductSection = async () => {
                 className="group max-[640px]:max-w-[300px] max-[350px]:max-w-[285px] relative rounded-2xl shadow-sm hover:shadow-lg transition-shadow border-2 flex-shrink-0"
               >
                 {/* Product Image */}
-                <div className="relative w-full size-48 overflow-hidden rounded-t-2xl border-b dark:bg-white">
-                  <Image
-                    src={p.images[0]}
-                    alt="Product Image"
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 768px, 1024px"
-                    className="object-contain group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-2 right-2.5">
-                    <Badge
-                      textSize="text-[10px]"
-                      className={categoryColors(p.category.name)}
-                    >
-                      {p.category.name}
-                    </Badge>
+                <Link href={`/product/${p.id}`}>
+                  <div className="relative w-full size-48 overflow-hidden rounded-t-2xl border-b dark:bg-white">
+                    <Image
+                      src={p.images[0]}
+                      alt="Product Image"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 768px, 1024px"
+                      className="object-contain group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute top-2 right-2.5">
+                      <Badge
+                        textSize="text-[10px]"
+                        className={categoryColors(p.category.name)}
+                      >
+                        {p.category.name}
+                      </Badge>
+                    </div>
                   </div>
-                </div>
+                </Link>
 
                 {/* Product Info */}
                 <CardContent className="p-4">
