@@ -3,6 +3,7 @@ import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import BackButton from "@/components/BackButton";
 import ImageDetailSection from "@/components/ImageDetailSection";
 import ProductDetails from "@/components/ProductDetails";
+import { notFound } from "next/navigation";
 
 export default async function ProductDetailsPage({
   params,
@@ -15,7 +16,9 @@ export default async function ProductDetailsPage({
     getCurrentUserWishlist(),
   ]);
 
-  if (!product) return null;
+  if (!product) {
+    notFound();
+  }
 
   return (
     <section className="max-w-6xl mx-auto min-h-screen px-4 pt-28 pb-20">

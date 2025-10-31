@@ -56,10 +56,3 @@ const PopularProductsSkeleton = () => {
 };
 
 export default PopularProductsSkeleton;
-
-/*
-
-<Skeleton className="md:h-10 md:w-[330px] min-[400px]:h-8 min-[400px]:w-[285px] h-7 w-[230px]" />
-<Skeleton className="mt-2 min-[350px]:w-[480px] h-4" />
-
-*/

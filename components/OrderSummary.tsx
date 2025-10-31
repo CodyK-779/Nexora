@@ -107,7 +107,7 @@ const OrderSummary = ({
     : formattedPrice(totalPrice);
 
   return (
-    <section className="min-[500px]:min-w-[400px] max-[500px]:w-full border p-4 rounded-md bg-neutral-50 dark:bg-neutral-950">
+    <section className="min-[1100px]:min-w-[400px] min-[500px]:min-w-[350px] max-[500px]:w-full border p-4 rounded-md bg-neutral-50 dark:bg-neutral-950">
       <h3 className="font-semibold pb-3.5">Order Summary</h3>
       <hr className="border" />
       <div className="flex flex-col gap-2.5 pt-4">

@@ -37,7 +37,10 @@ export default function AboutPage() {
             experience. Join millions of satisfied customers worldwide.
           </p>
           <div className="flex flex-col-reverse sm:flex-row gap-4 justify-center items-center">
-            <Button asChild className="sm:large-btn max-[375px]:small-btn">
+            <Button
+              asChild
+              className="sm:large-btn max-[375px]:small-btn max-[640px]:w-full"
+            >
               <Link href="/shop" className="flex items-center">
                 <p className="font-semibold">Shop Now</p>
                 <ArrowRight />
@@ -45,7 +48,7 @@ export default function AboutPage() {
             </Button>
             <Button
               asChild
-              className="sm:large-btn max-[375px]:small-btn bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-900"
+              className="sm:large-btn max-[375px]:small-btn max-[640px]:w-full bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-900"
             >
               <Link
                 href="https://youtu.be/dQw4w9WgXcQ?si=cNq7K4Z40XF7lM7M"

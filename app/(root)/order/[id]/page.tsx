@@ -3,6 +3,23 @@ import { auth } from "@/app/lib/auth";
 import OrderTable from "@/components/OrderTable";
 import OrderPageHeader from "@/components/OrderPageHeader";
 import { headers } from "next/headers";
+import { notFound } from "next/navigation";
+import { cacheLife } from "next/cache";
+
+const getData = async (userId: string) => {
+  const [user, session] = await Promise.all([
+    getUserDetails(userId),
+    auth.api.getSession({ headers: await headers() }),
+  ]);
+
+  if (!user || !session) notFound();
+
+  return {
+    user,
+    currentUser: session.user.id === userId,
+    orders: user.order,
+  };
+};
 
 export default async function OrderPage({
   params,
@@ -10,16 +27,11 @@ export default async function OrderPage({
   params: Promise<{ id: string }>;
 }) {
   const userId = (await params).id;
-  const user = await getUserDetails(userId);
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+  const data = await getData(userId);
 
-  if (!session) return;
-  if (!user) return;
+  if (!data) return null;
 
-  const currentUser = session.user.id === userId;
-  const orders = user.order;
+  const { user, currentUser, orders } = data;
 
   return (
     <div className="min-h-screen pb-10">
