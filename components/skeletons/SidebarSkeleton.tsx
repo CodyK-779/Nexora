@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
-import { ModeToggle } from "./ModeToggle";
+import { ModeToggle } from "../ModeToggle";
 import Image from "next/image";
-import { Skeleton } from "./ui/skeleton";
+import { Skeleton } from "../ui/skeleton";
 
 const sidebarStyles =
   "cm:hidden fixed top-0 right-0 rounded-md z-30 min-h-screen w-[350px] max-[640px]:w-full bg-white/80 dark:bg-neutral-900/70 backdrop-blur-md shadow transition-transform duration-200 ease-in translate-x-full";

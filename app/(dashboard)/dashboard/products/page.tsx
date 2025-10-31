@@ -3,8 +3,10 @@ import { DataTable } from "./data-table";
 import { getAllCategories } from "@/actions/category-action";
 
 export default async function Products() {
-  const products = await getAllProducts();
-  const categories = await getAllCategories();
+  const [products, categories] = await Promise.all([
+    getAllProducts(),
+    getAllCategories(),
+  ]);
 
   return (
     <section className="pt-2 px-2">

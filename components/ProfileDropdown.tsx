@@ -71,14 +71,14 @@ const ProfileDropdown = async ({ userId }: Props) => {
             </DropdownMenuItem>
           </Link>
           {user.role === "ADMIN" && (
-            <Link href="/dashboard">
+            <a href="/dashboard">
               <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">
                 <LayoutDashboard className="size-4" />
                 <p className="text-sm font-medium text-neutral-600 dark:text-neutral-100">
                   Admin Dashboard
                 </p>
               </DropdownMenuItem>
-            </Link>
+            </a>
           )}
           <Link href={`/cart/${user.id}`}>
             <DropdownMenuItem className="flex items-center gap-3 px-4 py-2.5 cursor-pointer">

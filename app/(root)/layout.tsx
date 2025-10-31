@@ -3,7 +3,7 @@ import MenuProvider from "@/components/MenuProvider";
 import Navbar from "@/components/Navbar";
 import Overlay from "@/components/Overlay";
 import Sidebar from "@/components/Sidebar";
-import SidebarSkeleton from "@/components/SidebarSkeleton";
+import SidebarSkeleton from "@/components/skeletons/SidebarSkeleton";
 import NavbarSkeleton from "@/components/skeletons/NavbarSkeleton";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PropsWithChildren, Suspense } from "react";

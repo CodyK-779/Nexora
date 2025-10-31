@@ -2,7 +2,6 @@ import { Category } from "@/app/generated/prisma";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
