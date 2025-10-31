@@ -1,15 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import NavButtons from "./NavButtons";
-import NavLinks from "./NavLinks";
-import { auth } from "@/app/lib/auth";
-import { headers } from "next/headers";
+import NavLinksSkeleton from "./NavLinksSkeleton";
+import NavSkeleton from "./NavSkeleton";
 
-const Navbar = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
+const NavbarSkeleton = () => {
   return (
     <div className="fixed w-full top-0 border-b py-2 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-20">
       <div className="max-container flex items-center justify-between">
@@ -35,13 +29,13 @@ const Navbar = async () => {
             </p>
           </Link>
           {/* Second Row */}
-          <NavLinks />
+          <NavLinksSkeleton />
         </div>
         {/* Third Row */}
-        <NavButtons session={session} />
+        <NavSkeleton />
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default NavbarSkeleton;

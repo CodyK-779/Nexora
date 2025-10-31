@@ -4,6 +4,7 @@ import Navbar from "@/components/Navbar";
 import Overlay from "@/components/Overlay";
 import Sidebar from "@/components/Sidebar";
 import SidebarSkeleton from "@/components/SidebarSkeleton";
+import NavbarSkeleton from "@/components/skeletons/NavbarSkeleton";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { PropsWithChildren, Suspense } from "react";
 
@@ -11,7 +12,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <div className="overflow-hidden">
       <MenuProvider>
-        <Navbar />
+        <Suspense fallback={<NavbarSkeleton />}>
+          <Navbar />
+        </Suspense>
         <Overlay />
         <Suspense fallback={<SidebarSkeleton />}>
           <Sidebar />

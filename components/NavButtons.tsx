@@ -2,16 +2,15 @@ import { User } from "lucide-react";
 import Link from "next/link";
 import ProfileDropdown from "./ProfileDropdown";
 import MobileMenu from "./MobileMenu";
-import { auth } from "../app/lib/auth";
 import NavSearch from "./NavSearch";
 import { ModeToggle } from "./ModeToggle";
-import { headers } from "next/headers";
+import { SessionType } from "@/lib/sessionType";
 
-const NavButtons = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+interface Props {
+  session: SessionType | null;
+}
 
+const NavButtons = async ({ session }: Props) => {
   return (
     <div className="flex items-center gap-4">
       <NavSearch />
