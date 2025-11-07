@@ -54,7 +54,7 @@ const ProductDetailsHeart = ({ productId, wishList }: Props) => {
   };
 
   return (
-    <Tooltip>
+    <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
         <Button
           className="heart-icon"

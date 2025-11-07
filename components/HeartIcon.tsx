@@ -60,7 +60,7 @@ const HeartIcon = ({ productId, wishList }: Props) => {
   };
 
   return (
-    <Tooltip>
+    <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
         <Button
           size="icon"
