@@ -50,13 +50,13 @@ export default function AboutPage() {
               asChild
               className="sm:large-btn max-[375px]:small-btn max-[640px]:w-full bg-white dark:bg-black text-black dark:text-white hover:bg-neutral-200 dark:hover:bg-neutral-900"
             >
-              <Link
+              <a
                 href="https://youtu.be/dQw4w9WgXcQ?si=cNq7K4Z40XF7lM7M"
                 className="flex items-center gap-2"
               >
                 <Play />
                 <p className="font-semibold">Watch Our Story</p>
-              </Link>
+              </a>
             </Button>
           </div>
         </div>
