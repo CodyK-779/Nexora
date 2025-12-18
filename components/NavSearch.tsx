@@ -49,20 +49,22 @@ const NavSearch = () => {
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search Product"
             enterKeyHint="search"
-            className="w-full rounded-full text-sm font-medium bg-gray-100 dark:bg-neutral-800 text-gray-600 dark:text-neutral-100 pl-4 pr-16 py-2 focus:outline-none"
+            className="w-full rounded-full text-sm font-medium bg-gray-100 dark:bg-neutral-800 text-gray-600 dark:text-neutral-100 pl-4 pr-11 py-2 focus:outline-none"
           />
-          <Search
-            onClick={handleSubmit}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-neutral-200 cursor-pointer"
-          />
-          {search && (
+
+          {search ? (
             <button
               type="button"
               onClick={clearSearch}
-              className="absolute top-[8.8px] right-9 text-gray-500 dark:text-neutral-200"
+              className="absolute top-[6px] right-3 text-gray-500 dark:text-neutral-200"
             >
-              <XIcon className="size-5" />
+              <XIcon className="size-[22px]" />
             </button>
+          ) : (
+            <Search
+              onClick={handleSubmit}
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 dark:text-neutral-200 cursor-pointer"
+            />
           )}
         </form>
       </div>
