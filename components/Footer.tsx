@@ -1,20 +1,44 @@
-"use cache";
+"use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { getAllCategories } from "@/actions/category-action";
-import { cacheLife } from "next/cache";
+import { useEffect, useState } from "react";
+import { Skeleton } from "./ui/skeleton";
 
-const Footer = async () => {
-  cacheLife("hours");
-  const categories = await getAllCategories();
+interface Categories {
+  name: string;
+  id: string;
+  image: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
-  const navLinks = [
-    { title: "Home", link: "/" },
-    { title: "Shop", link: "/shop" },
-    { title: "About", link: "/about" },
-    { title: "Contact", link: "/contact" },
-  ];
+const navLinks = [
+  { title: "Home", link: "/" },
+  { title: "Shop", link: "/shop" },
+  { title: "About", link: "/about" },
+  { title: "Contact", link: "/contact" },
+];
+
+const Footer = () => {
+  const [categories, setCategories] = useState<Categories[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+
+      try {
+        const data = await getAllCategories();
+        setCategories(data);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <section className="w-full border-t-2 py-8 border-neutral-300 dark:border-neutral-800 bg-neutral-100 dark:bg-black">
@@ -63,14 +87,24 @@ const Footer = async () => {
         <div className="flex flex-col md:items-center items-start mt-4 gap-2">
           <p className="font-semibold text-xl mb-2">Categories</p>
           <ul className="flex flex-col md:items-center items-start gap-3 font-medium text-sm">
-            {categories.map((cat) => (
-              <li
-                key={cat.id}
-                className="cursor-pointer text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-200 ease-in"
-              >
-                {cat.name}
-              </li>
-            ))}
+            {!loading || !categories ? (
+              <>
+                {categories.map((cat) => (
+                  <li
+                    key={cat.id}
+                    className="cursor-pointer text-neutral-600 dark:text-neutral-300 hover:text-blue-600 dark:hover:text-blue-500 transition-colors duration-200 ease-in"
+                  >
+                    {cat.name}
+                  </li>
+                ))}
+              </>
+            ) : (
+              <>
+                {Array.from({ length: 6 }).map((_, i) => (
+                  <Skeleton key={i} className="w-20 h-3 mb-2" />
+                ))}
+              </>
+            )}
           </ul>
         </div>
 

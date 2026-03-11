@@ -16,7 +16,7 @@ const ProductSection = ({ filteredProducts, wishlist }: Props) => {
     <section className="max-container grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 lg:gap-6 min-[500px]:gap-4 pb-20 min-[400px]:gap-3 gap-2">
       {filteredProducts.length > 0 ? (
         filteredProducts.map((product) => (
-          <div key={product.id} className="flex flex-col min-[500px]:mb-0 mb-4">
+          <div key={product.id} className="flex flex-col min-[500px]:mb-8 mb-7">
             <div className="relative w-full aspect-square rounded-lg overflow-hidden border-2 group">
               <Link href={`/product/${product.id}`}>
                 <Image

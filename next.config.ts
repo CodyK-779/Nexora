@@ -1,7 +1,7 @@
 import type { NextConfig } from "next";
-const { PrismaPlugin } = require('@prisma/nextjs-monorepo-workaround-plugin')
 
 const nextConfig: NextConfig = {
+  cacheComponents: true,
   images: {
     remotePatterns: [
       {
@@ -22,14 +22,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  turbopack: {},
-  webpack: (config, { isServer }) => {
-    if (isServer) {
-      config.plugins = [...config.plugins, new PrismaPlugin()]
-    }
-    return config
+  outputFileTracingIncludes: {
+    '/api/**/*': ['./node_modules/.prisma/client/**/*'],
   },
-  cacheComponents: true
+  serverExternalPackages: ['@prisma/client', 'prisma']
 };
 
 export default nextConfig;

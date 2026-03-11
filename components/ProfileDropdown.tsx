@@ -11,15 +11,39 @@ import DropdownSignout from "./DropdownSignout";
 import { getUserDetails } from "@/actions/user-action";
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { SessionType } from "@/lib/sessionType";
+import { UserDetailsType } from "./InterfaceTypes";
+import { Skeleton } from "./ui/skeleton";
 
 interface Props {
-  userId: string;
+  session: SessionType | null;
 }
 
-const ProfileDropdown = async ({ userId }: Props) => {
-  const user = await getUserDetails(userId);
+const ProfileDropdown = ({ session }: Props) => {
+  if (!session) return null;
+
+  const userId = session.user.id;
+  const [user, setUser] = useState<UserDetailsType | null | undefined>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      setLoading(true);
+
+      try {
+        const data = await getUserDetails(userId);
+        setUser(data);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, [userId]);
 
   if (!user) return;
+  if (loading) return <Skeleton className="size-9 rounded-full" />;
 
   return (
     <DropdownMenu>

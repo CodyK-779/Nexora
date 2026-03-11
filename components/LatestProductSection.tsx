@@ -1,5 +1,4 @@
 import { getLatestProducts } from "@/actions/product-action";
-import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import { categoryColors, formattedPrice } from "./PopularProducts";
 import PopularAddToCart from "./PopularAddToCart";
 import Image from "next/image";
@@ -10,11 +9,16 @@ import { Button } from "./ui/button";
 import { Card, CardContent, CardFooter } from "./ui/card";
 import HeartIcon from "./HeartIcon";
 import { BoxReveal } from "./ui/box-reveal";
+import { ShopWishListType } from "./InterfaceTypes";
 
-const LatestProductSection = async () => {
+interface Props {
+  wishlistPromise: Promise<ShopWishListType | null>;
+}
+
+const LatestProductSection = async ({ wishlistPromise }: Props) => {
   const [products, wishList] = await Promise.all([
     getLatestProducts(),
-    getCurrentUserWishlist(),
+    wishlistPromise,
   ]);
 
   return (

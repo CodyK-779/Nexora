@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/app/lib/prisma";
-import { revalidatePath } from "next/cache";
+import { cacheLife, revalidatePath } from "next/cache";
 
 export async function createCategory(name: string, image: string) {
   try {
@@ -66,6 +66,9 @@ export async function deleteCategory(id: string) {
 }
 
 export async function getAllCategories() {
+  "use cache";
+  cacheLife("days");
+
   try {
     const categories = await prisma.category.findMany({
       orderBy: {

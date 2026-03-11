@@ -1,5 +1,3 @@
-"use client";
-
 import { Search, XIcon } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useRef, useState } from "react";

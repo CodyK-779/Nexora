@@ -5,16 +5,31 @@ import MobileMenu from "./MobileMenu";
 import NavSearch from "./NavSearch";
 import { ModeToggle } from "./ModeToggle";
 import { SessionType } from "@/lib/sessionType";
+import { Skeleton } from "./ui/skeleton";
+import { Suspense } from "react";
 
 interface Props {
   session: SessionType | null;
+  isPending: Boolean;
 }
 
-const NavButtons = async ({ session }: Props) => {
+const NavButtons = ({ session, isPending }: Props) => {
   return (
     <div className="flex items-center gap-4">
-      <NavSearch />
-      {!session ? (
+      <Suspense
+        fallback={
+          <div className="hidden sm:block cm:w-50 lg:w-72">
+            <Skeleton className="w-full rounded-full h-9" />
+          </div>
+        }
+      >
+        <NavSearch />
+      </Suspense>
+      {isPending ? (
+        <Skeleton className="size-9 rounded-full" />
+      ) : session ? (
+        <ProfileDropdown session={session} />
+      ) : (
         <button>
           <Link href="/login" className="flex items-center gap-1.5">
             <User className="min-[340px]:size-5 size-[18px] font-medium" />
@@ -23,8 +38,6 @@ const NavButtons = async ({ session }: Props) => {
             </p>
           </Link>
         </button>
-      ) : (
-        <ProfileDropdown userId={session.user.id} />
       )}
       <ModeToggle />
       <MobileMenu />

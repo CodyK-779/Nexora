@@ -5,10 +5,14 @@ import { ExternalLink } from "lucide-react";
 import { getPopularProducts } from "@/actions/product-action";
 import Link from "next/link";
 import HeartIcon from "./HeartIcon";
-import { getCurrentUserWishlist } from "@/actions/wishlist-action";
 import PopularAddToCart from "./PopularAddToCart";
 import { Badge } from "./ui/badge";
 import { BoxReveal } from "./ui/box-reveal";
+import { ShopWishListType } from "./InterfaceTypes";
+
+interface Props {
+  wishlistPromise: Promise<ShopWishListType | null>;
+}
 
 export const formattedPrice = (price: number) => {
   const formatted = new Intl.NumberFormat("en-US", {
@@ -36,10 +40,10 @@ export const categoryColors = (category: string) => {
   }
 };
 
-const PopularProducts = async () => {
+const PopularProducts = async ({ wishlistPromise }: Props) => {
   const [products, wishList] = await Promise.all([
     getPopularProducts(),
-    getCurrentUserWishlist(),
+    wishlistPromise,
   ]);
 
   return (

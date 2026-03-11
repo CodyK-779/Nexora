@@ -2,7 +2,7 @@ import ShopContent from "@/components/skeletons/ShopContent";
 import ShopSkeleton from "@/components/skeletons/ShopSkeleton";
 import { Suspense } from "react";
 
-export default async function ShopPage({
+export default function ShopPage({
   searchParams,
 }: {
   searchParams: Promise<{ product: string }>;

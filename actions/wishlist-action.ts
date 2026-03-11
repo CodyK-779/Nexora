@@ -117,14 +117,13 @@ export async function toggleWishList(productId: string, path: string) {
 
     if (!session) throw new Error("Unauthorized");
 
-    const wishlist = await prisma.wishList.upsert({
-      where: { userId: session.user.id },
-      update: {},
-      create: { userId: session.user.id },
-      include: { items: true }
-    });
-
-    const existingProduct = wishlist.items.find(item => item.productId === productId);
+    const existingProduct = await prisma.wishListItem.findFirst({
+      where: {
+        wishList: { userId: session.user.id },
+        productId
+      },
+      select: { id: true }
+    })
 
     if (existingProduct) {
       await prisma.wishListItem.delete({
@@ -133,6 +132,12 @@ export async function toggleWishList(productId: string, path: string) {
         }
       });
     } else {
+      const wishlist = await prisma.wishList.upsert({
+        where: { userId: session.user.id },
+        update: {},
+        create: { userId: session.user.id },
+        select: { id: true }
+      })
       await prisma.wishListItem.create({
         data: {
           productId,
