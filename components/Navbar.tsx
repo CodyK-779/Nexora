@@ -5,6 +5,8 @@ import Link from "next/link";
 import NavButtons from "./NavButtons";
 import NavLinks from "./NavLinks";
 import { useSession } from "@/app/lib/auth-client";
+import { Suspense } from "react";
+import NavLinksSkeleton from "./skeletons/NavLinksSkeleton";
 
 const Navbar = () => {
   const { data: session, isPending } = useSession();
@@ -34,7 +36,9 @@ const Navbar = () => {
             </p>
           </Link>
           {/* Second Row */}
-          <NavLinks />
+          <Suspense fallback={<NavLinksSkeleton />}>
+            <NavLinks />
+          </Suspense>
         </div>
         {/* Third Row */}
         <NavButtons session={session} isPending={isPending} />
