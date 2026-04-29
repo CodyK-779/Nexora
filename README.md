@@ -69,7 +69,7 @@ Nexora is a modern full-stack e-commerce application featuring a seamless shoppi
 
 ## 📸 Screenshots
 
-![image alt](https://github.com/CodyK-779/Nexora/blob/dba35b5d893d815a594ca78557b32f582b2f1888/nexora_screenshot.png)
+![image alt](https://github.com/CodyK-779/Nexora/blob/261c4750ca1cad46ce17c34c86a4a73896775ade/website_screenshot.png)
 
 ---
 
