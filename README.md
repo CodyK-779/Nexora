@@ -43,19 +43,11 @@ Nexora is a modern full-stack e-commerce application featuring a seamless shoppi
 
 - Achieved **~50% faster page load times** through:
   - Next.js Server Actions  
-  - Data caching strategies  
+  - Next.js 16 cache components  
 - Designed efficient backend logic using **Prisma ORM**
 - Structured relational database with **PostgreSQL**
 - Optimized asset handling with **Cloudinary CDN**
-
----
-
-## 🔐 Security & Data Handling
-
 - Implemented **secure authentication** using BetterAuth  
-- Enforced **role-based access control (RBAC)**  
-- Protected admin routes and sensitive operations  
-- Ensured consistent data integrity across transactions  
 
 ---
 
