@@ -42,8 +42,8 @@ const ProfileDropdown = ({ session }: Props) => {
     fetchUser();
   }, [userId]);
 
-  if (!user) return;
   if (loading) return <Skeleton className="size-9 rounded-full" />;
+  if (!user) return;
 
   return (
     <DropdownMenu>

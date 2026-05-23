@@ -1,11 +1,8 @@
-"use cache";
-
 import Image from "next/image";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { getFeaturedCategories } from "@/actions/category-action";
 import { BoxReveal } from "./ui/box-reveal";
-import { cacheLife } from "next/cache";
 
 const gradientBgClasses = (category: string) => {
   switch (category) {
@@ -25,8 +22,6 @@ const gradientBgClasses = (category: string) => {
 };
 
 const FeaturedCategories = async () => {
-  cacheLife("days");
-
   const categories = await getFeaturedCategories();
 
   return (
@@ -55,7 +50,7 @@ const FeaturedCategories = async () => {
             <div
               key={cat.id}
               className={`flex flex-col items-center  min-[500px]:w-[140px] min-[454px]:w-[130px] min-[416px]:w-[120px] w-[115px] max-[401px]:w-full p-4 rounded-xl ${gradientBgClasses(
-                cat.name
+                cat.name,
               )} shadow-md hover:-translate-y-1 hover:shadow-xl hover:scale-105 transition-all duration-200 ease-in cursor-pointer`}
             >
               <div className="min-[500px]:p-3.5 p-3 bg-neutral-50 rounded-full mb-4">

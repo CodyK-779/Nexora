@@ -26,9 +26,6 @@ const SignupOauthBtn = ({ provider, signUp }: Props) => {
         onError: (cxt) => {
           toast.error(cxt.error.message);
         },
-        onSuccess: () => {
-          toast.success(`Signed ${action} with ${providerName} successfully!`);
-        },
       },
     });
   };
